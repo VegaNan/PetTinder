@@ -8,12 +8,12 @@ public class GUI extends Application{
 
 	public static void main(String[] args) {
 		launch();
-
 	}
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		APIController.POSTAPI();	
+		APIController.GetAccessToken();	
+		APIController.Request();
 	}
 
 }

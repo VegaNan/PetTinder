@@ -1,32 +1,39 @@
 package controllers;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 public class APIController {
 
-	public static void POSTAPI(){
-		String command = "curl -d \"grant_type=client_credentials&client_id={Sh5FKvp2ektyBkmfMKq6y0I1lvwgdMl7bDsSLXv4VbojM0W4Bh}&client_secret={ArZkAHQkXrO8cMteomuYtRFyq1FZFfNsjb3b9kAy}\" https://api.petfinder.com/v2/oauth2/token";
+	private static String accessToken = null;
+	private static String location = "UT";
+	
+	public static void GetAccessToken(){
+		String command = "	curl -d \"grant_type=client_credentials&client_id=dSkqy54SfVuraExWGMSnVPzGnMwuSG1CRyjiGcAGQ6u09BcmAR&client_secret=rRlJx0QzZ110wboZJ6Td4I2dNI2lrO67R5VdJgTy\" https://api.petfinder.com/v2/oauth2/token";
 		Process process = null;
+		
 		try {
+			//set the process to execute the command
 			process = Runtime.getRuntime().exec(command);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println(process.toString());
+			//get the io streams
+			OutputStream out = process.getOutputStream();
+			InputStream in = process.getInputStream();
+			//create a buffered reader to get response from API
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			//get the response
+			String response = new String();
+			for (String line; (line = br.readLine()) != null; response += line);
+			//just making sure we have what we want
+			System.out.println(response);
+			//get the access token and save it
+			String[] info = response.split("\"");
+			accessToken = info[info.length-2];
+			System.out.println(accessToken);
 
-		OutputStream out = process.getOutputStream();
-		InputStream in = process.getInputStream();
-		
-		System.out.println(out);
-		System.out.println(in);
-		
-		try {
-			byte[] bufferArray = new byte[1000];
-			in.read(bufferArray);
-			String info = new String(bufferArray);
-			System.out.println(info);
+			//close our streams and destroy our processes
 			in.close();
 			out.close();
 			process.destroy();
@@ -34,5 +41,50 @@ public class APIController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void Request() {
+		String command = "curl -H \"Authorization: Bearer " + accessToken + "\" GET https://api.petfinder.com/v2/animals?location=" + location;
+		Process process = null;
+		int pages = 1 ;
+		
+		try {
+			//set the process to execute the command
+			process = Runtime.getRuntime().exec(command);
+			//get the io streams
+			OutputStream out = process.getOutputStream();
+			InputStream in = process.getInputStream();
+			//create a buffered reader to get response from API
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			//get the response
+			
+			String response = new String();
+			for (String line; (line = br.readLine()) != null; response += line );
+
+			//just making sure we have what we want
+			System.out.println(response.isEmpty());
+			System.out.println(response);
+			
+			//close our streams and destroy our processes
+			in.close();
+			out.close();
+			process.destroy();
+			
+			//getting the number of pages
+			
+			String[] info = response.split(",");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	public static String getLocation() {
+		return location;
+	}
+
+	public static void setLocation(String location) {
+		APIController.location = location;
 	}
 }
