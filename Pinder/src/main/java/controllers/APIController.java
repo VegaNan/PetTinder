@@ -47,6 +47,7 @@ public class APIController {
 		String command = "curl -H \"Authorization: Bearer " + accessToken + "\" GET https://api.petfinder.com/v2/animals?location=" + location;
 		Process process = null;
 		int pages = 1 ;
+		
 		try {
 			//set the process to execute the command
 			process = Runtime.getRuntime().exec(command);
