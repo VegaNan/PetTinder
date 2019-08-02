@@ -13,7 +13,8 @@ public class GUI extends Application{
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		APIController.POSTAPI();	
+		APIController.GetAccessToken();	
+		APIController.Request();
 	}
 
 }
