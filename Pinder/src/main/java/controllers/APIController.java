@@ -28,12 +28,9 @@ public class APIController {
 			String response = new String();
 			for (String line; (line = br.readLine()) != null; response += line);
 			//just making sure we have what we want
-			System.out.println(response);
 			//get the access token and save it
 			String[] info = response.split("\"");
 			accessToken = info[info.length-2];
-			System.out.println(accessToken);
-
 			//close our streams and destroy our processes
 			in.close();
 			out.close();
