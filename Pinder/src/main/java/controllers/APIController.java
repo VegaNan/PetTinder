@@ -10,6 +10,7 @@ public class APIController {
 
 	private static String accessToken = null;
 	private static String location = "UT";
+	private static DatabaseController db = new DatabaseController();
 	
 	public static void GetAccessToken(){
 		String command = "	curl -d \"grant_type=client_credentials&client_id=dSkqy54SfVuraExWGMSnVPzGnMwuSG1CRyjiGcAGQ6u09BcmAR&client_secret=rRlJx0QzZ110wboZJ6Td4I2dNI2lrO67R5VdJgTy\" https://api.petfinder.com/v2/oauth2/token";
@@ -43,40 +44,59 @@ public class APIController {
 		}
 	}
 	
-	public static void Request() {
-		String command = "curl -H \"Authorization: Bearer " + accessToken + "\" GET https://api.petfinder.com/v2/animals?location=" + location;
+	public static String animalRequest() {
+		int page = 1;
+		int pages = 5;
+		
+		String command = "curl -H \"Authorization: Bearer " + accessToken + "\" GET https://api.petfinder.com/v2/animals?location=" + location +"&page=" + page + "&limit=100";
 		Process process = null;
-		int pages = 1 ;
+		String response = new String();
 		
 		try {
 			//set the process to execute the command
 			process = Runtime.getRuntime().exec(command);
 			//get the io streams
-			OutputStream out = process.getOutputStream();
 			InputStream in = process.getInputStream();
 			//create a buffered reader to get response from API
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			//get the response
-			
-			String response = new String();
 			for (String line; (line = br.readLine()) != null; response += line );
-
-			//just making sure we have what we want
-			System.out.println(response.isEmpty());
-			System.out.println(response);
-			
 			//close our streams and destroy our processes
 			in.close();
-			out.close();
 			process.destroy();
 			
 			//getting the number of pages
-			
 			String[] info = response.split(",");
+			//pages = Integer.parseInt(info[info.length-2].split(":")[1]);
+			db.insertAnimalRecords(response);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//get ALL pets
+		while(page <= pages) {
+			response = "";
+			command = "curl -H \"Authorization: Bearer " + accessToken + "\" GET https://api.petfinder.com/v2/animals?location=" + location +"&page=" + page + "&limit=100";
+			try {
+				//set the process to execute the command
+				process = Runtime.getRuntime().exec(command);
+				//get the io streams
+				InputStream in = process.getInputStream();
+				//create a buffered reader to get response from API
+				BufferedReader br = new BufferedReader(new InputStreamReader(in));
+				//get the response
+				for (String line; (line = br.readLine()) != null; response += line );
+				//close our streams and destroy our processes
+				in.close();
+				process.destroy();
+				db.insertAnimalRecords(response);
+				page +=1;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return response;
 	}
 
 	
