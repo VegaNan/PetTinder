@@ -13,7 +13,7 @@ public class GUI extends Application{
 	@Override
 	public void start(Stage arg0) throws Exception {
 		APIController.GetAccessToken();	
-		APIController.Request();
+		APIController.animalRequest();
 	}
 
 }
