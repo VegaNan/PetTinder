@@ -61,10 +61,9 @@ public class APIController {
 			//close our streams and destroy our processes
 			in.close();
 			process.destroy();
-			
 			//getting the number of pages
 			String[] info = response.split(",");
-			//pages = Integer.parseInt(info[info.length-2].split(":")[1]);
+			pages = Integer.parseInt(info[info.length-2].split(":")[1]);
 			db.insertAnimalRecords(response);
 			
 		} catch (IOException e) {
@@ -96,6 +95,29 @@ public class APIController {
 		return response;
 	}
 
+	public static String organizationRequest() {
+		String command = "curl -H \"Authorization: Bearer " + accessToken + "\" GET https://api.petfinder.com/v2/organizations?state=" + location + "&limit=100";
+		Process process = null;
+		String response = new String();
+		try {
+			//set the process to execute the command
+			process = Runtime.getRuntime().exec(command);
+			//get the io streams
+			InputStream in = process.getInputStream();
+			//create a buffered reader to get response from API
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			//get the response
+			for (String line; (line = br.readLine()) != null; response += line );
+			//close our streams and destroy our processes
+			in.close();
+			process.destroy();
+			System.out.println(response);
+			//db.insertAnimalRecords(response);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return response;
+	}
 	
 	public static String getLocation() {
 		return location;
