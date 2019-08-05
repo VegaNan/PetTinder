@@ -12,7 +12,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.util.JSON;
 
 public class DatabaseController {
 	private static MongoDatabase database;
@@ -62,5 +61,16 @@ public class DatabaseController {
 		return cursor.first().toString();
 	}
 	
+	public String getOrganizationById(String id) {
+		MongoCollection<Document> collectionResults = database.getCollection(collectionName);
+		
+		BasicDBObject fields = new BasicDBObject();
+		fields.put("organization_id", id);
+		
+		FindIterable<Document> cursor = collectionResults.find(fields);
+		System.out.println(cursor.first());
+		
+		return  cursor.first().toString();
+	}
 	
 }
