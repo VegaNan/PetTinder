@@ -1,34 +1,41 @@
 package controllers;
 
-import java.net.UnknownHostException;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-import com.mongodb.DB;
+import org.bson.Document;
+
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+//import com.mongodb.MongoCredential;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.util.JSON;
 
 public class DatabaseController {
-	private static DB database;
+	private static MongoDatabase database;
+//	private static DB database;
 	private static DBCollection collection;
+	private String collectionName;
+	private String databaseName;
+	private MongoClient mongoClient;
+//	private MongoCredential mongoCredential;
 	
 	public DatabaseController() {
-		try {
 			System.out.println("If it breaks here, it's because you need to set up mongodb\n in the app, it's on the default host (localhost:27017)\n\t Create a database named Pinder and a collection named APIInfo \n I'm still working on being able to set that up in the backgroun\n  as well as comparing past entried by id or clearing out the database idkd");
-			String databaseName = "Pinder";
-			String collectionName = "APIInfo";
-			MongoClient mongoClient;
-			mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+			databaseName = "Pinder";
+			collectionName = "APIInfo";
+//			mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+			mongoClient = new MongoClient("localhost", 27017);
+//			mongoCredential = MongoCredential.createCredential("test", databaseName, "password".toCharArray());
+			database = mongoClient.getDatabase(databaseName);
 			
-			database = mongoClient.getDB(databaseName);
+//			database = mongoClient.getDB(databaseName);
 			System.out.println("---if you got here, it got database correctly :) ---");
-			collection = database.getCollection(collectionName);		
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}		
+//			collection = database.getCollection(collectionName);		
+	
 	}
 	
 
@@ -37,10 +44,22 @@ public class DatabaseController {
 		JSONObject obj = new JSONObject(recordInfo);
 		JSONArray jsonArr = obj.getJSONArray("animals");
 		for(int i = 0; i < jsonArr.length(); i++) {
-			DBObject dbObject = (DBObject) JSON.parse(jsonArr.getJSONObject(i).toString(1));
+			DBObject dbObject = (DBObject) BasicDBObject.parse(jsonArr.getJSONObject(i).toString(1));
 			collection.insert(dbObject);
 		}
 		
+	}
+	
+	public String getAnimalById(int id) {
+		MongoCollection<Document> collectionResults = database.getCollection(collectionName);
+		
+		BasicDBObject fields = new BasicDBObject();
+		fields.put("id", id);
+		
+		FindIterable<Document> cursor = collectionResults.find(fields);
+		System.out.println(cursor.first());
+		
+		return cursor.first().toString();
 	}
 	
 	
