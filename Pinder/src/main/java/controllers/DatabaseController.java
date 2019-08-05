@@ -1,31 +1,16 @@
 package controllers;
 
-<<<<<<< Upstream, based on branch 'Nancy' of https://github.com/VegaNan/PetTinder.git
-=======
 import org.bson.Document;
->>>>>>> 2dd46f1 new stuff
 import org.json.JSONArray;
 import org.json.JSONObject;
-<<<<<<< Upstream, based on branch 'Nancy' of https://github.com/VegaNan/PetTinder.git
-import org.bson.Document;
-=======
->>>>>>> 2dd46f1 new stuff
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-<<<<<<< Upstream, based on branch 'Nancy' of https://github.com/VegaNan/PetTinder.git
-//import com.mongodb.MongoCredential;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.util.JSON;
-=======
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
->>>>>>> 2dd46f1 new stuff
 
 public class DatabaseController {
 	private static MongoDatabase database;
@@ -74,10 +59,6 @@ public class DatabaseController {
 		
 		return cursor.first().toString();
 	}
-<<<<<<< Upstream, based on branch 'Nancy' of https://github.com/VegaNan/PetTinder.git
-	
-=======
->>>>>>> 2dd46f1 new stuff
 	
 	
 }
