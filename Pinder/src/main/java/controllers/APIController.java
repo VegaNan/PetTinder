@@ -59,7 +59,7 @@ public class APIController {
 			process.destroy();
 			//getting the number of pages
 			String[] info = response.split(",");
-			pages = Integer.parseInt(info[info.length-2].split(":")[1]);
+//			pages = Integer.parseInt(info[info.length-2].split(":")[1]);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
