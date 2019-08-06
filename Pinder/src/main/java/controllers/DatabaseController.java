@@ -3,9 +3,8 @@ package controllers;
 import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -13,7 +12,7 @@ import com.mongodb.client.MongoDatabase;
 
 public class DatabaseController {
 	private static MongoDatabase database;
-	private static DBCollection collection;
+	private static MongoCollection<Document> collection;
 	private String collectionName;
 	private String databaseName;
 	private MongoClient mongoClient;
@@ -23,6 +22,7 @@ public class DatabaseController {
 		collectionName = "APIInfo";
 		mongoClient = new MongoClient("localhost", 27017);
 		database = mongoClient.getDatabase(databaseName);
+		collection = database.getCollection(collectionName);
 		System.out.println("---if you got here, it got database correctly :) ---");
 	}
 
@@ -31,8 +31,22 @@ public class DatabaseController {
 		JSONObject obj = new JSONObject(recordInfo);
 		JSONArray jsonArr = obj.getJSONArray("animals");
 		for(int i = 0; i < jsonArr.length(); i++) {
-			DBObject dbObject = (DBObject) BasicDBObject.parse(jsonArr.getJSONObject(i).toString(1));
-			collection.insert(dbObject);
+			Document dbObject = Document.parse(jsonArr.getJSONObject(i).toString(1));
+			if(dbObject != null) {
+				collection.insertOne(dbObject);
+			}
+		}
+	}
+	
+	public void insertOrganizationRecords(String recordInfo) {
+		System.out.println("inserting record page");
+		JSONObject obj = new JSONObject(recordInfo);
+		JSONArray jsonArr = obj.getJSONArray("organizations");
+		for(int i = 0; i < jsonArr.length(); i++) {
+			Document dbObject = Document.parse(jsonArr.getJSONObject(i).toString(1));
+			if(dbObject != null) {
+				collection.insertOne(dbObject);
+			}
 		}
 	}
 	
@@ -41,19 +55,26 @@ public class DatabaseController {
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
-		System.out.println(cursor.first());
+		
 		return cursor.first().toString();
 	}
 	
 	public String getOrganizationById(String id) {
 		MongoCollection<Document> collectionResults = database.getCollection(collectionName);
-		
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("organization_id", id);
+		FindIterable<Document> cursor = collectionResults.find(fields);
 		
+		return  cursor.first().toString();
+	}
+	
+	public String getAnimalsByOrganization(String id) {
+		MongoCollection<Document> collectionResults = database.getCollection(collectionName);
+		BasicDBObject fields = new BasicDBObject();
+		fields.put("id", "$regex.*/d.*");
+		fields.put("organization_id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
 		System.out.println(cursor.first());
-		
 		return  cursor.first().toString();
 	}
 	
