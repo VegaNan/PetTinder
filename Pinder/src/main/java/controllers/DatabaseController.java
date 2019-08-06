@@ -61,13 +61,20 @@ public class DatabaseController {
 	
 	public String getOrganizationById(String id) {
 		MongoCollection<Document> collectionResults = database.getCollection(collectionName);
-		
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("organization_id", id);
-		
 		FindIterable<Document> cursor = collectionResults.find(fields);
 		System.out.println(cursor.first());
-		
+		return  cursor.first().toString();
+	}
+	
+	public String getAnimalsByOrganization(String id) {
+		MongoCollection<Document> collectionResults = database.getCollection(collectionName);
+		BasicDBObject fields = new BasicDBObject();
+		fields.put("id", "$regex.*/d.*");
+		fields.put("organization_id", id);
+		FindIterable<Document> cursor = collectionResults.find(fields);
+		System.out.println(cursor.first());
 		return  cursor.first().toString();
 	}
 	

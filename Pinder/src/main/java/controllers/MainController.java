@@ -9,5 +9,6 @@ public class MainController {
 		dbController.insertAnimalRecords(info);
 		info = APIController.organizationRequest();
 		dbController.insertOrganizationRecords(info);
+		System.out.println(dbController.getAnimalsByOrganization("UT148"));
 	}
 }
