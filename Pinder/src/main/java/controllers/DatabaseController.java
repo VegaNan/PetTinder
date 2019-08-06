@@ -3,9 +3,8 @@ package controllers;
 import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -13,7 +12,7 @@ import com.mongodb.client.MongoDatabase;
 
 public class DatabaseController {
 	private static MongoDatabase database;
-	private static DBCollection collection;
+	private static MongoCollection<Document> collection;
 	private String collectionName;
 	private String databaseName;
 	private MongoClient mongoClient;
@@ -22,7 +21,12 @@ public class DatabaseController {
 		databaseName = "Pinder";
 		collectionName = "APIInfo";
 		mongoClient = new MongoClient("localhost", 27017);
-		database = mongoClient.getDatabase(databaseName);
+		if(mongoClient.getDatabase(databaseName) == null) {
+			
+		}else {
+			database = mongoClient.getDatabase(databaseName);
+		}
+		collection = database.getCollection(collectionName);
 		System.out.println("---if you got here, it got database correctly :) ---");
 	}
 
@@ -31,8 +35,22 @@ public class DatabaseController {
 		JSONObject obj = new JSONObject(recordInfo);
 		JSONArray jsonArr = obj.getJSONArray("animals");
 		for(int i = 0; i < jsonArr.length(); i++) {
-			DBObject dbObject = (DBObject) BasicDBObject.parse(jsonArr.getJSONObject(i).toString(1));
-			collection.insert(dbObject);
+			Document dbObject = Document.parse(jsonArr.getJSONObject(i).toString(1));
+			if(dbObject != null) {
+				collection.insertOne(dbObject);
+			}
+		}
+	}
+	
+	public void insertOrganizationRecords(String recordInfo) {
+		System.out.println("inserting record page");
+		JSONObject obj = new JSONObject(recordInfo);
+		JSONArray jsonArr = obj.getJSONArray("organizations");
+		for(int i = 0; i < jsonArr.length(); i++) {
+			Document dbObject = Document.parse(jsonArr.getJSONObject(i).toString(1));
+			if(dbObject != null) {
+				collection.insertOne(dbObject);
+			}
 		}
 	}
 	
