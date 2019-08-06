@@ -3,7 +3,11 @@ package controllers;
 public class MainController {
 
 	public static void main(String[] args) {
+		DatabaseController dbController = new DatabaseController();
 		APIController.GetAccessToken();
-		APIController.organizationRequest();	
+		String info = APIController.animalRequest();
+		dbController.insertAnimalRecords(info);
+		info = APIController.organizationRequest();
+		dbController.insertOrganizationRecords(info);
 	}
 }
