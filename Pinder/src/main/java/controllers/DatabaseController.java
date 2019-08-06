@@ -3,9 +3,8 @@ package controllers;
 import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
