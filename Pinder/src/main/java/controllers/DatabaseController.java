@@ -21,11 +21,7 @@ public class DatabaseController {
 		databaseName = "Pinder";
 		collectionName = "APIInfo";
 		mongoClient = new MongoClient("localhost", 27017);
-		if(mongoClient.getDatabase(databaseName) == null) {
-			
-		}else {
-			database = mongoClient.getDatabase(databaseName);
-		}
+		database = mongoClient.getDatabase(databaseName);
 		collection = database.getCollection(collectionName);
 		System.out.println("---if you got here, it got database correctly :) ---");
 	}
