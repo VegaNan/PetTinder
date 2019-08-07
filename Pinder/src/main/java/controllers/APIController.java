@@ -61,7 +61,7 @@ public class APIController {
 			process.destroy();
 			//getting the number of pages
 			String[] info = response.split(",");
-			//pages = Integer.parseInt(info[info.length-2].split(":")[1]);
+			pages = Integer.parseInt(info[info.length-2].split(":")[1]);
 			printProgress(page, pages);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -109,7 +109,6 @@ public class APIController {
 			//close our streams and destroy our processes
 			in.close();
 			process.destroy();
-			System.out.println(response);
 			//db.insertAnimalRecords(response);
 		} catch (IOException e) {
 			e.printStackTrace();
