@@ -56,7 +56,7 @@ public class DatabaseController {
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
-		System.out.println(cursor.first());
+		
 		return cursor.first().toString();
 	}
 	
@@ -65,7 +65,7 @@ public class DatabaseController {
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
-		System.out.println(cursor.first());
+		
 		return  cursor.first().toString();
 	}
 	
