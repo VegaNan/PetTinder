@@ -29,7 +29,6 @@ public class MainController {
 		petSearch(petInfo.SpayedNeutered, "false");
 	}
 	
-	
 	private static String petSearch(petInfo petinfo, String value) {
 		String key = "";
 		
@@ -45,7 +44,6 @@ public class MainController {
 		dbController.getAnimalsBy(key, value);
 		
 		return null;
-		
 	}
 	
 }
