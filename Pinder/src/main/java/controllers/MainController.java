@@ -1,6 +1,8 @@
 
 package controllers;
 
+import views.GUI;
+
 public class MainController {
 
 	static DatabaseController dbController = new DatabaseController();
