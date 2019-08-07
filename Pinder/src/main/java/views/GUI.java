@@ -1,6 +1,5 @@
 package views;
 
-import controllers.APIController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
