@@ -12,17 +12,17 @@ import com.mongodb.client.MongoDatabase;
 
 public class DatabaseController {
 	private static MongoDatabase database;
-	private static MongoCollection<Document> collection;
-	private String collectionName;
+	private static MongoCollection<Document> animalCollection;
+	private static MongoCollection<Document> organizationCollection;
 	private String databaseName;
 	private MongoClient mongoClient;
 	
 	public DatabaseController() {
 		databaseName = "Pinder";
-		collectionName = "APIInfo";
 		mongoClient = new MongoClient("localhost", 27017);
 		database = mongoClient.getDatabase(databaseName);
-		collection = database.getCollection(collectionName);
+		animalCollection = database.getCollection("animals");
+		organizationCollection = database.getCollection("organizations");
 		System.out.println("---if you got here, it got database correctly :) ---");
 	}
 
@@ -33,7 +33,7 @@ public class DatabaseController {
 		for(int i = 0; i < jsonArr.length(); i++) {
 			Document dbObject = Document.parse(jsonArr.getJSONObject(i).toString(1));
 			if(dbObject != null) {
-				collection.insertOne(dbObject);
+				animalCollection.insertOne(dbObject);
 			}
 		}
 	}
@@ -45,13 +45,13 @@ public class DatabaseController {
 		for(int i = 0; i < jsonArr.length(); i++) {
 			Document dbObject = Document.parse(jsonArr.getJSONObject(i).toString(1));
 			if(dbObject != null) {
-				collection.insertOne(dbObject);
+				organizationCollection.insertOne(dbObject);
 			}
 		}
 	}
 	
 	public String getAnimalById(int id) {
-		MongoCollection<Document> collectionResults = database.getCollection(collectionName);
+		MongoCollection<Document> collectionResults = database.getCollection("animalCollection");
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
@@ -60,7 +60,7 @@ public class DatabaseController {
 	}
 	
 	public String getOrganizationById(String id) {
-		MongoCollection<Document> collectionResults = database.getCollection(collectionName);
+		MongoCollection<Document> collectionResults = database.getCollection("organizationCollection");
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("organization_id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
@@ -69,13 +69,12 @@ public class DatabaseController {
 	}
 	
 	public String getAnimalsByOrganization(String id) {
-		MongoCollection<Document> collectionResults = database.getCollection(collectionName);
+		MongoCollection<Document> collectionResults = database.getCollection("animalCollection");
 		BasicDBObject fields = new BasicDBObject();
-		fields.put("id", "$regex.*/d.*");
 		fields.put("organization_id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
 		System.out.println(cursor.first());
-		return  cursor.first().toString();
+		return cursor.first().toString();
 	}
 	
 }
