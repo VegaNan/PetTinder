@@ -7,7 +7,7 @@ import java.io.OutputStream;
 public class APIController {
 
 	public static void POSTAPI(){
-		String command = "curl -d \"grant_type=client_credentials&client_id={Sh5FKvp2ektyBkmfMKq6y0I1lvwgdMl7bDsSLXv4VbojM0W4Bh}&client_secret={ArZkAHQkXrO8cMteomuYtRFyq1FZFfNsjb3b9kAy}\" https://api.petfinder.com/v2/oauth2/token";
+		String command = "curl -d \"grant_type=client_credentials&client_id={Sh5FKvp2ektyBkmfMKq6y0I1lvwgdMl7bDsSLXv4VbojM0W4Bh}&client_secret={XcmKqyyxdnD6L7P8c25SFre0F5JU4kr6QwGAu9Nz}\" https://api.petfinder.com/v2/oauth2/token";
 		Process process = null;
 		try {
 			process = Runtime.getRuntime().exec(command);
