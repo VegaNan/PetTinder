@@ -45,19 +45,29 @@ public class User {
 		this.location = location;
 	}
 	
-	public void addAnimalToMatched(int id, String animalInfo) {
-		
+	public void addAnimalToMatched(int id, String animalName) {
+		matchedMap.put(id, animalName);
 	}
 	
-	public void addAnimalToMaybe(int id, String animalInfo) {
-		
+	public HashMap<Integer, String> getMatchedMap() {
+		return matchedMap;
 	}
 	
-	public void addAnimalToNo(int id, String animalInfo) {
-		
+	public void addAnimalToMaybe(int id, String animalName) {
+		maybeMap.put(id, animalName);
 	}
 	
+	public HashMap<Integer, String> getMaybeMap(){
+		return maybeMap;
+	}
 	
+	public void addAnimalToNo(int id, String animalName) {
+		noMap.put(id, animalName);
+	}
+	
+	public HashMap<Integer, String> getNoMap(){
+		return noMap;
+	}
 	
 	
 	
