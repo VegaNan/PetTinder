@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -51,7 +52,7 @@ public class DatabaseController {
 	}
 	
 	public String getAnimalById(int id) {
-		MongoCollection<Document> collectionResults = database.getCollection("animalCollection");
+		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
@@ -60,21 +61,58 @@ public class DatabaseController {
 	}
 	
 	public String getOrganizationById(String id) {
-		MongoCollection<Document> collectionResults = database.getCollection("organizationCollection");
+		MongoCollection<Document> collectionResults = organizationCollection;
 		BasicDBObject fields = new BasicDBObject();
-		fields.put("organization_id", id);
+		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
 		
 		return  cursor.first().toString();
 	}
 	
 	public String getAnimalsByOrganization(String id) {
-		MongoCollection<Document> collectionResults = database.getCollection("animalCollection");
+		String animals = "";
+		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("organization_id", id);
-		FindIterable<Document> cursor = collectionResults.find(fields);
-		System.out.println(cursor.first());
-		return cursor.first().toString();
+		Iterable<Document> cursor = collectionResults.find(fields);
+		for(Document doc: cursor) {
+			animals+=doc.toJson();
+		}
+		return animals;
+	}
+	
+	public String searchAnimalsBy(String key, String value) {
+		String animals = "";
+		MongoCollection<Document> collectionResults = animalCollection;
+		BasicDBObject fields = new BasicDBObject();
+		fields.put(key, value);
+		Iterable<Document> cursor = collectionResults.find(fields);
+		for(Document doc: cursor) {
+			animals+=doc.toJson();
+		}
+		return animals;
+	}
+	
+	public String getAnimalsByOrganizationValue(String key, String value) {
+		String animals = "";
+		
+		BasicDBObject fields = new BasicDBObject();
+		fields.put(key, value);
+		MongoCollection<Document> organizationResults = organizationCollection;
+		Iterable<Document> cursor = organizationResults.find(fields);
+		System.out.println(key + " " + value );
+		for(Document doc: cursor) {
+			String id = doc.getString("id");
+			System.out.println(id);
+			MongoCollection<Document> animalResults = animalCollection;
+			BasicDBObject fields2 = new BasicDBObject();
+			fields2.put("organization_id", id);
+			Iterable<Document> cursor2 = animalResults.find(fields2);
+			for(Document doc2: cursor2) {
+				animals+=doc2.toJson();
+			}
+		}
+		return animals;
 	}
 	
 }
