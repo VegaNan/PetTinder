@@ -4,8 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import objects.User;
 
 public class SwipeyPageController {
+	
+	User currentUser;
 
 	@FXML
 	ImageView animalView;
@@ -13,6 +16,10 @@ public class SwipeyPageController {
 	@FXML
 	Button profileButton, matchesButton, yesButton, maybeButton, noButton;
 
+	public void setUser(User user) {
+		this.currentUser = user;
+	}
+	
 	public void profilePage(ActionEvent e) {
 		
 	}

@@ -1,11 +1,18 @@
 package controllers;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import objects.AnimalPref;
 import objects.User;
 
@@ -23,7 +30,7 @@ public class SignUpController {
 	@FXML
 	Button submitButton;
 	
-	public void submitUser(ActionEvent e) {
+	public void submitUser(ActionEvent e) throws IOException {
 		if(!firstNameField.getText().trim().isEmpty() & 
 				!lastNameField.getText().trim().isEmpty() & 
 				!locationField.getText().trim().isEmpty() & 
@@ -45,6 +52,18 @@ public class SignUpController {
 			} else {
 				newUser.setAnimalPref(AnimalPref.OTHER);
 			}
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("NewContactStage.fxml"));
+			Parent newContactParent = loader.load();
+			
+			Scene newContactScene = new Scene(newContactParent);
+			SwipeyPageController controller = loader.getController();
+			controller.setUser(newUser);
+			
+			Stage window = (Stage)((Node)e.getSource()).getScene().getWindow();
+			window.setScene(newContactScene);
+			window.show();
 			
 		}
 	}
