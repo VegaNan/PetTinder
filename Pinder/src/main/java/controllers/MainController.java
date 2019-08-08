@@ -2,6 +2,7 @@
 package controllers;
 
 import objects.Animal;
+import objects.Organization;
 
 public class MainController {
 
@@ -36,11 +37,14 @@ public class MainController {
 		for(Animal animal : animals) {
 			System.out.println(animal.toString());
 		}
-		System.out.println("done");
+		
+		Organization org = dbController.createOrganizationObjects(dbController.getOrganizationById("UT158"));
+		System.out.println(org.toString());
+	
 	}
 
-	private static String petSearch(String petInfo, String value) {
-		String results = dbController.getAnimalsBy(petInfo, value);
+	private static Animal[] petSearch(String petInfo, String value) {
+		Animal[] results = dbController.getAnimalsBy(petInfo, value);
 		return results;
 	}
 
