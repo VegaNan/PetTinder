@@ -15,8 +15,12 @@
    <children>
       <Pane prefHeight="150.0" prefWidth="450.0">
          <children>
+
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" text="Back" />
             <Label layoutX="159.0" layoutY="54.0" text="Your Loved Animals" />
+
+            <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#backToSwipey" prefHeight="10.0" prefWidth="60.0" text="Back" />
+
          </children>
       </Pane>
       <ScrollPane layoutY="150.0" prefHeight="550.0" prefWidth="450.0">
