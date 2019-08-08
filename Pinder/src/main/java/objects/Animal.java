@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Animal {
 	private int id;
-	private int organizationId;
+	private String organizationId;
 	private String type;
 	private String breed;
 	private String size;
@@ -17,7 +17,7 @@ public class Animal {
 	private boolean goodWithDogs;
 	private boolean goodWithCats;
 	private String location;
-	private int distance;
+	private double distance;
 	private boolean spayedNeutered;
 	private boolean houseTrained;
 	private boolean declawed;
@@ -29,9 +29,9 @@ public class Animal {
 		
 	}
 	
-	public Animal(int id, int organizationId, String type, String breed, String size, String gender, String age,
+	public Animal(int id, String organizationId, String type, String breed, String size, String gender, String age,
 			String status, String name, String organization, boolean goodWithChildren, boolean goodWithDogs,
-			boolean goodWithCats, String location, int distance, boolean spayedNeutered, boolean houseTrained,
+			boolean goodWithCats, String location, double distance, boolean spayedNeutered, boolean houseTrained,
 			boolean declawed, String photosUrl, ArrayList<String> tags) {
 		super();
 		this.id = id;
@@ -66,11 +66,11 @@ public class Animal {
 		this.id = id;
 	}
 	
-	public int getOrganizationId() {
+	public String getOrganizationId() {
 		return organizationId;
 	}
 	
-	public void setOrganizationId(int organizationId) {
+	public void setOrganizationId(String organizationId) {
 		this.organizationId = organizationId;
 	}
 	
@@ -170,11 +170,11 @@ public class Animal {
 		this.location = location;
 	}
 	
-	public int getDistance() {
+	public double getDistance() {
 		return distance;
 	}
 	
-	public void setDistance(int distance) {
+	public void setDistance(double distance) {
 		this.distance = distance;
 	}
 
@@ -217,5 +217,17 @@ public class Animal {
 	public void setTags(ArrayList<String> tags) {
 		this.tags = tags;
 	}
+
+	@Override
+	public String toString() {
+		return "Animal [id=" + id + ", organizationId=" + organizationId + ", type=" + type + ", breed=" + breed
+				+ ", size=" + size + ", gender=" + gender + ", age=" + age + ", status=" + status + ", name=" + name
+				+ ", organization=" + organization + ", goodWithChildren=" + goodWithChildren + ", goodWithDogs="
+				+ goodWithDogs + ", goodWithCats=" + goodWithCats + ", location=" + location + ", distance=" + distance
+				+ ", spayedNeutered=" + spayedNeutered + ", houseTrained=" + houseTrained + ", declawed=" + declawed
+				+ ", photosUrl=" + photosUrl + ", tags=" + tags + "]";
+	}
+	
+	
 	
 }
