@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<AnchorPane prefHeight="700.0" prefWidth="450.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane prefHeight="700.0" prefWidth="450.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="views.GUI.java">
    <children>
       <Label layoutX="112.5" layoutY="50.0" prefHeight="75.0" prefWidth="225.0" text="Pinder" />
       <Pane layoutX="150.0" layoutY="375.0" prefHeight="150.0" prefWidth="150.0">
          <children>
-            <Button layoutX="35.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Login" />
-            <Button layoutX="35.0" layoutY="20.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Sign Up" />
+            <Button fx:id="loginButton" layoutX="35.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Login" />
+            <Button onAction="#signUpPage" fx:id="signUpButton" layoutX="35.0" layoutY="20.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="Sign Up" />
          </children>
       </Pane>
       <Label layoutX="50.0" layoutY="575.0" prefHeight="80.0" prefWidth="350.0" text="Our Mission is to easily connect animals with their forever home!" />
