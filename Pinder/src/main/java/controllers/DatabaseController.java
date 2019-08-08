@@ -13,6 +13,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import objects.Animal;
+import objects.Organization;
 
 public class DatabaseController {
 	private static MongoDatabase database;
@@ -68,13 +69,18 @@ public class DatabaseController {
 	
 	public String getOrganizationById(String id) {
 		MongoCollection<Document> collectionResults = organizationCollection;
+		String org = "";
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
-		return  cursor.first().toString();
+
+		for(Document doc: cursor) {
+			org+=doc.toJson() + "~";
+		}
+		return org;
 	}
 	
-	public String getAnimalsByOrganization(String id) {
+	public Animal[] getAnimalsByOrganization(String id) {
 		String animals = "";
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
@@ -83,10 +89,11 @@ public class DatabaseController {
 		for(Document doc: cursor) {
 			animals+=doc.toJson() + "~";
 		}
-		return animals;
+		Animal[] animalsObj =  createAnimalObjects(animals);
+		return animalsObj;
 	}
 	
-	public String getAnimalsBy(String key, String value) {
+	public Animal[] getAnimalsBy(String key, String value) {
 		String animals = "";
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
@@ -95,10 +102,12 @@ public class DatabaseController {
 		for(Document doc: cursor) {
 			animals+=doc.toJson() + "~";
 		}
-		return animals;
+		
+		Animal[] animalsObj =  createAnimalObjects(animals);
+		return animalsObj;
 	}
 	
-	public String getAnimalsByOrganizationValue(String orgKey, String orgValue) {
+	public Animal[] getAnimalsByOrganizationValue(String orgKey, String orgValue) {
 
 		MongoCollection<Document> organizationResults = organizationCollection;
 		BasicDBObject fields = new BasicDBObject();
@@ -118,11 +127,14 @@ public class DatabaseController {
 				animals+=doc2.toJson() + "~";
 			}
 		}
-		return animals;
+		
+		Animal[] animalsObj =  createAnimalObjects(animals);
+		return animalsObj;
 	}
 	
 	public Animal[] createAnimalObjects(String dbString) {
 		String[] dbAnimals = dbString.split("~");
+		
 		int animalNum = dbAnimals.length;
 		Animal[] animals = new Animal[animalNum];
 		
@@ -157,8 +169,31 @@ public class DatabaseController {
 			}
 		
 		return animals;
-		
 	}
 	
+	public Organization createOrganizationObjects(String dbString) {
+		JSONObject jo = new JSONObject(dbString);
+		String organizationId = jo.getString("id");
+		String name = jo.getString("name");
+		String location = jo.getJSONObject("address").getString("address1");
+		String state = jo.getJSONObject("address").getString("state");
+		String country = jo.getJSONObject("address").getString("country");
+		String contactEmail = jo.getString("email");
+		String contactPhone = jo.getString("phone");
+		String zipcode = jo.getJSONObject("address").getString("postcode");
+		boolean hasWebsite = false;
+		String websiteUrl = null;
+		
+		if(!jo.get("website").toString().contains("null")) {
+			hasWebsite = true;
+			websiteUrl = jo.get("website").toString();
+		}
+		
+		
+		Organization org = new Organization(organizationId, name, location, state, country,
+		contactEmail, contactPhone, zipcode, hasWebsite, websiteUrl);
+		
+		return org;
+	}
 
 }
