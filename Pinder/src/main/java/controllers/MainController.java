@@ -6,22 +6,16 @@ import objects.Animal;
 public class MainController {
 
 	static DatabaseController dbController = new DatabaseController();
-	
-	/*		
-	 	attributes.spayed_neutered
-		status
-		size
-		type
-		age
-		distance
-	*/
-	
+
 	/*
-		Baby
-		Young
-		Adult
-		Senior
-	*/
+	 * attributes.spayed_neutered status size type age distance
+	 */
+
+
+	/*
+	 * Baby Young Adult Senior
+	 */
+
 
 	public static void main(String[] args) {
 		/*APIController.GetAccessToken();
@@ -35,6 +29,7 @@ public class MainController {
 		System.out.println("test animals by   " + dbController.getAnimalsBy("gender", "Female"));
 	
 		System.out.println("test pet search   " + petSearch("gender", "Female"));
+
 		*/
 		
 		Animal[] animals = dbController.createAnimalObjects(dbController.getAnimalById(45201542));
@@ -43,10 +38,10 @@ public class MainController {
 		}
 		System.out.println("done");
 	}
-	
+
 	private static String petSearch(String petInfo, String value) {
 		String results = dbController.getAnimalsBy(petInfo, value);
 		return results;
 	}
-	
+
 }
