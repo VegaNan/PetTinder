@@ -33,7 +33,7 @@ public class MainController {
 		System.out.println("test animals by   " + dbController.getAnimalsBy("gender", "Female"));
 
 		System.out.println("test pet search   " + petSearch("gender", "Female"));
-
+*/
 	}
 	
 	private static String petSearch(String petInfo, String value) {
