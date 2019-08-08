@@ -42,6 +42,8 @@ public class GUI extends Application{
 	}
 
 	private void loginPage(Stage primaryStage) {
+		
+		
 		changeScene("/views/LoginPage.fxml", primaryStage);
 		
 		
