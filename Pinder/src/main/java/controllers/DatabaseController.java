@@ -10,6 +10,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoIterable;
 
 public class DatabaseController {
 	private static MongoDatabase database;
@@ -81,7 +82,7 @@ public class DatabaseController {
 		return animals;
 	}
 	
-	public String searchAnimalsBy(String key, String value) {
+	public String getAnimalsBy(String key, String value) {
 		String animals = "";
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
@@ -93,14 +94,15 @@ public class DatabaseController {
 		return animals;
 	}
 	
-	public String getAnimalsByOrganizationValue(String key, String value) {
+	public String getAnimalsByOrganizationValue(String orgKey, String orgValue) {
+
+		MongoCollection<Document> organizationResults = organizationCollection;
+		BasicDBObject fields = new BasicDBObject();
+		fields.put(orgKey, orgValue);
+		Iterable<Document> cursor = organizationResults.find(fields);
+		
 		String animals = "";
 		
-		BasicDBObject fields = new BasicDBObject();
-		fields.put(key, value);
-		MongoCollection<Document> organizationResults = organizationCollection;
-		Iterable<Document> cursor = organizationResults.find(fields);
-		System.out.println(key + " " + value );
 		for(Document doc: cursor) {
 			String id = doc.getString("id");
 			System.out.println(id);
