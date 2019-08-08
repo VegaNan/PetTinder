@@ -1,11 +1,14 @@
 package views;
 
 import controllers.LoginPageController;
+import controllers.SignUpController;
+import controllers.SwipeyPageController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import objects.User;
 
 public class GUI extends Application {
 
@@ -21,14 +24,28 @@ public class GUI extends Application {
 //			e.printStackTrace();
 //		}
 //	}
+	
+//	private void changeScene(String filename, ActionEvent event) throws IOException {
+//        // parent takes in the file
+//        Parent parent = FXMLLoader.load(getClass().getResource(filename));
+//        // makes new scene based on parent
+//        Scene scene = new Scene(parent);
+//        // takes in the stage of this class
+//        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        // sets the scene
+//        window.setScene(scene);
+//        // displays the scene
+//        window.show();
+//    }
 
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("SwipeyPage.fxml"));
 			AnchorPane root = (AnchorPane) loader.load();
-			LoginPageController controller = loader.getController();
+			SwipeyPageController controller = loader.getController();
 			controller.setPrimaryStage(primaryStage);
+			
 			Scene scene = new Scene(root, 450, 700);
 			primaryStage.setScene(scene);
 			primaryStage.show();
