@@ -35,6 +35,7 @@ public class MainController {
 		System.out.println("test animals by   " + dbController.getAnimalsBy("gender", "Female"));
 	
 		System.out.println("test pet search   " + petSearch("gender", "Female"));
+
 		*/
 		
 		Animal[] animals = dbController.createAnimalObjects(dbController.getAnimalById(45201542));
@@ -42,6 +43,8 @@ public class MainController {
 			System.out.println(animal.toString());
 		}
 		System.out.println("done");
+
+    
 	}
 	
 	private static String petSearch(String petInfo, String value) {

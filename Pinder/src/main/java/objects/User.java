@@ -4,29 +4,42 @@ import java.util.HashMap;
 
 public class User {
 
-	private String username;
+	private String firstName;
+	private String lastName;
 	private String password;
 	private String location;
+	private String email;
+	private AnimalPref pref;
 	private HashMap<Integer, String> matchedMap;
 	private HashMap<Integer, String> maybeMap;
 	private HashMap<Integer, String> noMap;
 	
-	User(){
+	public User(){
 		
 	}
 	
-	User(String username, String password, String location){
-		setUsername(username);
+	public User(String firstName, String lastName, String password, String email, String location){
+		setFirstName(firstName);
+		setLastName(lastName);
 		setPassword(password);
+		setEmail(email);
 		setLocation(location);
 	}
-
-	public String getUsername() {
-		return username;
+	
+	public String getFirstName() {
+		return firstName;
 	}
-
-	public void setUsername(String username) {
-		this.username = username;
+	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getPassword() {
@@ -43,6 +56,22 @@ public class User {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public AnimalPref getAnimalPref() {
+		return pref;
+	}
+	
+	public void setAnimalPref(AnimalPref pref) {
+		this.pref = pref;
 	}
 	
 	public void addAnimalToMatched(int id, String animalName) {
@@ -68,8 +97,5 @@ public class User {
 	public HashMap<Integer, String> getNoMap(){
 		return noMap;
 	}
-	
-	
-	
 	
 }
