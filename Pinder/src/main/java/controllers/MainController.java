@@ -31,8 +31,9 @@ public class MainController {
 		System.out.println("animal by org   " + dbController.getAnimalsByOrganization("UT202"));
 		System.out.println("animal by org val   " + dbController.getAnimalsByOrganizationValue("address.postcode", "84660"));
 		System.out.println("test animals by   " + dbController.getAnimalsBy("gender", "Female"));
-		*/
+
 		System.out.println("test pet search   " + petSearch("gender", "Female"));
+
 	}
 	
 	private static String petSearch(String petInfo, String value) {
