@@ -1,26 +1,51 @@
+
 package controllers;
+
+import views.GUI;
 
 public class MainController {
 
-	public static void main(String[] args) {
-		DatabaseController dc = new DatabaseController();
-		APIController.GetAccessToken();
-//		String info = APIController.animalRequest();
-//		dc.insertAnimalRecords(info);
-//		System.out.println("Done");
-//		System.out.println(dc.getAnimalById(45189636));
-		APIController.organizationRequest();
-		System.out.println(dc.getOrganizationById("UT189"));
+	static DatabaseController dbController = new DatabaseController();
+	
+	enum petInfo{
+		SpayedNeutered,
+		Status,
+		Size,
+		Type,
+		Age,
+		Distance
+	}
 
-		DatabaseController dbController = new DatabaseController();
+	public static void main(String[] args) {
 		//APIController.GetAccessToken();
 		//String info = APIController.animalRequest();
 		//dbController.insertAnimalRecords(info);
 		//info = APIController.organizationRequest();
 		//dbController.insertOrganizationRecords(info);
-		System.out.println("org by id   " + dbController.getOrganizationById("UT189"));
-		System.out.println("animal by org   " + dbController.getAnimalsByOrganization("UT189"));
-		System.out.println("animal by org val   " + dbController.getAnimalsByOrganizationValue("postcode", "84660"));
-
+		/*
+		System.out.println("org by id   " + dbController.getOrganizationById("UT202"));
+		System.out.println("animal by org   " + dbController.getAnimalsByOrganization("UT202"));
+		System.out.println("animal by org val   " + dbController.getAnimalsByOrganizationValue("address.postcode", "84660"));
+		System.out.println("test animals by   " + dbController.getAnimalsBy("gender", "Female"));
+		*/
+		petSearch(petInfo.SpayedNeutered, "false");
 	}
+	
+	private static String petSearch(petInfo petinfo, String value) {
+		String key = "";
+		
+		switch (petinfo) {
+		case Age:
+			key = "";
+			break;
+		default:
+			System.out.println("invalid");
+			break;
+		}
+		
+		dbController.getAnimalsBy(key, value);
+		
+		return null;
+	}
+	
 }
