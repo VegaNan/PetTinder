@@ -23,13 +23,10 @@ public class LoginPageController {
 	}
 	
 	public void signUpPage(ActionEvent e) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-//		loader.setLocation(getClass().getResource("SignUp.fxml"));
-//		Parent newContactParent = loader.load();
-		Parent parent = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("SwipeyPage.fxml"));
+		Parent newContactParent = loader.load();
 		
-		Scene newContactScene = new Scene(parent);
-//		SignUpController controller = loader.getController();
+		Scene newContactScene = new Scene(newContactParent);
 		
 		Stage window = (Stage)((Node)e.getSource()).getScene().getWindow();
 		window.setScene(newContactScene);

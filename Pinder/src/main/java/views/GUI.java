@@ -41,9 +41,9 @@ public class GUI extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("SwipeyPage.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
 			AnchorPane root = (AnchorPane) loader.load();
-			SwipeyPageController controller = loader.getController();
+			LoginPageController controller = loader.getController();
 			controller.setPrimaryStage(primaryStage);
 			
 			Scene scene = new Scene(root, 450, 700);
