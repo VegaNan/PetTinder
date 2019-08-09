@@ -9,23 +9,14 @@ import javafx.stage.Stage;
 
 public class GUI extends Application {
 
-//	private void changeScene(String filename, Stage window) {
-//		// parent takes in the file
-//		Parent parent;
-//		try {
-//			parent = FXMLLoader.load(getClass().getResource(filename));
-//			Scene scene = new Scene(parent);
-//			window.setScene(scene);
-//			window.show();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
+	
+	public static Stage primaryStage;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginPage.fxml"));
+			GUI.primaryStage = primaryStage;
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginPage.fxml"));
 			AnchorPane root = (AnchorPane) loader.load();
 			LoginPageController controller = loader.getController();
 			controller.setPrimaryStage(primaryStage);

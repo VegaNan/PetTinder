@@ -1,3 +1,4 @@
+
 package objects;
 
 import java.util.HashMap;
@@ -9,10 +10,10 @@ public class User {
 	private String password;
 	private String location;
 	private String email;
-	private AnimalPref pref;
-	private HashMap<Integer, String> matchedMap;
-	private HashMap<Integer, String> maybeMap;
-	private HashMap<Integer, String> noMap;
+	private String pref;
+	private HashMap<Integer, String> matchedMap = new HashMap<Integer, String>();
+	private HashMap<Integer, String> maybeMap = new HashMap<Integer, String>();
+	private HashMap<Integer, String> noMap = new HashMap<Integer, String>();
 	
 	public User(){
 		
@@ -66,11 +67,11 @@ public class User {
 		this.email = email;
 	}
 	
-	public AnimalPref getAnimalPref() {
+	public String getAnimalPref() {
 		return pref;
 	}
 	
-	public void setAnimalPref(AnimalPref pref) {
+	public void setAnimalPref(String pref) {
 		this.pref = pref;
 	}
 	
