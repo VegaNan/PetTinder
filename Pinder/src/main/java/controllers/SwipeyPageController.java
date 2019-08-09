@@ -13,7 +13,6 @@ public class SwipeyPageController {
 	
 	private Stage primaryStage = GUI.primaryStage;
 	DatabaseController dbc = new DatabaseController();
-	
 	Animal currentAnimal;
 	User currentUser;
 	int inArraySlot = 0;
