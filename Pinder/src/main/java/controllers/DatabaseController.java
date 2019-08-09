@@ -1,16 +1,18 @@
 package controllers;
 
+import java.util.ArrayList;
+
 import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoIterable;
+
+import objects.Animal;
 
 public class DatabaseController {
 	private static MongoDatabase database;
@@ -70,7 +72,7 @@ public class DatabaseController {
 		return  cursor.first().toString();
 	}
 	
-	public String getAnimalsByOrganization(String id) {
+	public Animal[] getAnimalsByOrganization(String id) {
 		String animals = "";
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
@@ -78,11 +80,14 @@ public class DatabaseController {
 		Iterable<Document> cursor = collectionResults.find(fields);
 		for(Document doc: cursor) {
 			animals+=doc.toJson();
+			animals+=doc.toJson() + "~";
+
 		}
-		return animals;
+		Animal[] animalArr = createAnimalObjects(animals);
+		return animalArr;
 	}
 	
-	public String getAnimalsBy(String key, String value) {
+	public Animal[] getAnimalsBy(String key, String value) {
 		String animals = "";
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
@@ -94,10 +99,11 @@ public class DatabaseController {
 			animals+=doc.toJson() + "~";
 
 		}
-		return animals;
+		Animal[] animalArr = createAnimalObjects(animals);
+		return animalArr;
 	}
 	
-	public String getAnimalsByOrganizationValue(String orgKey, String orgValue) {
+	public Animal[] getAnimalsByOrganizationValue(String orgKey, String orgValue) {
 
 		MongoCollection<Document> organizationResults = organizationCollection;
 		BasicDBObject fields = new BasicDBObject();
