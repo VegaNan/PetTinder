@@ -89,7 +89,10 @@ public class DatabaseController {
 		fields.put(key, value);
 		Iterable<Document> cursor = collectionResults.find(fields);
 		for(Document doc: cursor) {
-			animals+=doc.toJson();
+
+			System.out.println(doc.toString());
+			animals+=doc.toJson() + "~";
+
 		}
 		return animals;
 	}
@@ -114,6 +117,53 @@ public class DatabaseController {
 				animals+=doc2.toJson();
 			}
 		}
+		
+		Animal[] animalsObj =  createAnimalObjects(animals);
+		return animalsObj;
+	}
+	
+	public Animal[] createAnimalObjects(String dbString) {
+		String[] dbAnimals = dbString.split("~");
+		System.out.println(dbString);
+		
+		int animalNum = dbAnimals.length;
+		Animal[] animals = new Animal[animalNum];
+		
+		for(int i = 0; i < animalNum; i++) {
+			System.out.println(dbAnimals[i]);
+			JSONObject jo = new JSONObject(dbAnimals[i]);
+
+			int id = Integer.parseInt(jo.get("id").toString());
+			String organizationId = jo.getString("organization_id");
+			String type = jo.getString("type"); 
+			String breed = jo.getJSONObject("breeds").getString("primary"); 
+			String size =  jo.getString("size"); 
+			String gender =  jo.getString("gender");
+			String age =  jo.getString("age");
+			String status =  jo.getString("status");
+			String name =  jo.getString("name");
+			String organization = jo.getString("organization_id");
+			boolean goodWithChildren = Boolean.parseBoolean( jo.getJSONObject("environment").get("children").toString()); 
+			boolean goodWithDogs = Boolean.parseBoolean( jo.getJSONObject("environment").get("dogs").toString());
+			boolean goodWithCats = Boolean.parseBoolean( jo.getJSONObject("environment").get("cats").toString()); 
+			String location =  jo.getJSONObject("contact").getJSONObject("address").getString("city") + jo.getJSONObject("contact").getJSONObject("address").getString("state") +  jo.getJSONObject("contact").getJSONObject("address").getString("postcode")  ; 
+			double distance = Double.parseDouble( jo.get("distance").toString()); 
+			boolean spayedNeutered = Boolean.parseBoolean( jo.getJSONObject("attributes").get("spayed_neutered").toString()); 
+			boolean houseTrained = Boolean.parseBoolean( jo.getJSONObject("attributes").get("house_trained").toString());
+			boolean declawed = Boolean.parseBoolean( jo.getJSONObject("attributes").get("declawed").toString()); 
+
+			
+			String photosUrl = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+			if(!jo.getJSONArray("photos").isEmpty()) {		
+				photosUrl = jo.getJSONArray("photos").getJSONObject(0).getString("full");
+			}
+			ArrayList<String> tags = null;
+	
+			animals[i] = new Animal(id, organizationId, type, breed, size, gender, age,
+					status, name, organization, goodWithChildren, goodWithDogs,
+					goodWithCats, location, distance, spayedNeutered, houseTrained,
+					declawed, photosUrl, tags);
+			}
 		return animals;
 	}
 	

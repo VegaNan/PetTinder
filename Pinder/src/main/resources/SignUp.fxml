@@ -15,7 +15,7 @@
       <Label layoutX="60.0" layoutY="245.0" prefHeight="30.0" prefWidth="80.0" text="email" />
       <TextField fx:id="firstNameField" layoutX="200.0" layoutY="115.0" />
       <TextField fx:id="lastNameField" layoutX="200.0" layoutY="180.0" />
-      <Label layoutX="150.0" layoutY="37.5" prefHeight="40.0" prefWidth="150.0" text="Profile" />
+      <Label layoutX="150.0" layoutY="37.5" prefHeight="40.0" prefWidth="150.0" text="Sign Up" />
       <Label layoutX="60.0" layoutY="310.0" prefHeight="30.0" prefWidth="80.0" text="Password" />
       <TextField fx:id="locationField" layoutX="200.0" layoutY="375.0" />
       <TextField fx:id="emailField" layoutX="200.0" layoutY="245.0" />
