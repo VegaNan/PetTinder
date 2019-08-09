@@ -1,37 +1,62 @@
 package views;
 
-import controllers.LoginPageController;
-import controllers.SignUpController;
-import controllers.SwipeyPageController;
+import java.io.IOException;
+
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import objects.User;
 
-public class GUI extends Application {
 
+	
+
+public class GUI extends Application{
 	
 	public static Stage primaryStage;
+	@FXML
+	Button signUpButton;
 	
-	@Override
-	public void start(Stage primaryStage) {
+	private void changeScene(String filename, Stage window) {
+		// parent takes in the file
+		Parent parent;
 		try {
-			GUI.primaryStage = primaryStage;
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginPage.fxml"));
-			AnchorPane root = (AnchorPane) loader.load();
-			LoginPageController controller = loader.getController();
-			controller.setPrimaryStage(primaryStage);
-			Scene scene = new Scene(root, 450, 700);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch (Exception e) {
+			parent = FXMLLoader.load(getClass().getResource(filename));
+			Scene scene = new Scene(parent);
+			window.setScene(scene);
+			window.show();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-		launch(args);
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		loginPage(primaryStage);
 	}
+	
+	private void matchesPage(Stage primaryStage) {
+		changeScene("/views/MatchesPage.fxml", primaryStage);
+	}
+	
+	private void SignUpPage(Stage primaryStage) {
+		changeScene("/views/Sign Up.fxml", primaryStage);
+	}
+
+	private void loginPage(Stage primaryStage) {
+		
+		
+		changeScene("/views/LoginPage.fxml", primaryStage);
+		
+		
+		
+		
+	}
+	
+	
+
+	
+
 }

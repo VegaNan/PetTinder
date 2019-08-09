@@ -1,19 +1,16 @@
 package controllers;
 
-import java.util.ArrayList;
-
 import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
-import objects.Animal;
-import objects.Organization;
+import com.mongodb.client.MongoIterable;
 
 public class DatabaseController {
 	private static MongoDatabase database;
@@ -36,7 +33,7 @@ public class DatabaseController {
 		JSONObject obj = new JSONObject(recordInfo);
 		JSONArray jsonArr = obj.getJSONArray("animals");
 		for(int i = 0; i < jsonArr.length(); i++) {
-			Document dbObject = Document.parse(jsonArr.toString(1));
+			Document dbObject = Document.parse(jsonArr.getJSONObject(i).toString(1));
 			if(dbObject != null) {
 				animalCollection.insertOne(dbObject);
 			}
@@ -48,7 +45,7 @@ public class DatabaseController {
 		JSONObject obj = new JSONObject(recordInfo);
 		JSONArray jsonArr = obj.getJSONArray("organizations");
 		for(int i = 0; i < jsonArr.length(); i++) {
-			Document dbObject = Document.parse(jsonArr.toString(1));
+			Document dbObject = Document.parse(jsonArr.getJSONObject(i).toString(1));
 			if(dbObject != null) {
 				organizationCollection.insertOne(dbObject);
 			}
@@ -57,58 +54,50 @@ public class DatabaseController {
 	
 	public String getAnimalById(int id) {
 		MongoCollection<Document> collectionResults = animalCollection;
-		String animals = "";
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
-		for(Document doc: cursor) {
-			animals+=doc.toJson() + "~";
-		}
-		return animals;
+		
+		return cursor.first().toString();
 	}
 	
 	public String getOrganizationById(String id) {
 		MongoCollection<Document> collectionResults = organizationCollection;
-		String org = "";
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
-
-		for(Document doc: cursor) {
-			org+=doc.toJson() + "~";
-		}
-		return org;
+		
+		return  cursor.first().toString();
 	}
 	
-	public Animal[] getAnimalsByOrganization(String id) {
+	public String getAnimalsByOrganization(String id) {
 		String animals = "";
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("organization_id", id);
 		Iterable<Document> cursor = collectionResults.find(fields);
 		for(Document doc: cursor) {
-			animals+=doc.toJson() + "~";
+			animals+=doc.toJson();
 		}
-		Animal[] animalsObj =  createAnimalObjects(animals);
-		return animalsObj;
+		return animals;
 	}
 	
-	public Animal[] getAnimalsBy(String key, String value) {
+	public String getAnimalsBy(String key, String value) {
 		String animals = "";
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put(key, value);
 		Iterable<Document> cursor = collectionResults.find(fields);
 		for(Document doc: cursor) {
+
 			System.out.println(doc.toString());
 			animals+=doc.toJson() + "~";
+
 		}
-		
-		Animal[] animalsObj =  createAnimalObjects(animals);
-		return animalsObj;
+		return animals;
 	}
 	
-	public Animal[] getAnimalsByOrganizationValue(String orgKey, String orgValue) {
+	public String getAnimalsByOrganizationValue(String orgKey, String orgValue) {
 
 		MongoCollection<Document> organizationResults = organizationCollection;
 		BasicDBObject fields = new BasicDBObject();
@@ -125,7 +114,7 @@ public class DatabaseController {
 			fields2.put("organization_id", id);
 			Iterable<Document> cursor2 = animalResults.find(fields2);
 			for(Document doc2: cursor2) {
-				animals+=doc2.toJson() + "~";
+				animals+=doc2.toJson();
 			}
 		}
 		
@@ -178,29 +167,4 @@ public class DatabaseController {
 		return animals;
 	}
 	
-	public Organization createOrganizationObjects(String dbString) {
-		JSONObject jo = new JSONObject(dbString);
-		String organizationId = jo.getString("id");
-		String name = jo.getString("name");
-		String location = jo.getJSONObject("address").getString("address1");
-		String state = jo.getJSONObject("address").getString("state");
-		String country = jo.getJSONObject("address").getString("country");
-		String contactEmail = jo.getString("email");
-		String contactPhone = jo.getString("phone");
-		String zipcode = jo.getJSONObject("address").getString("postcode");
-		boolean hasWebsite = false;
-		String websiteUrl = null;
-		
-		if(!jo.get("website").toString().contains("null")) {
-			hasWebsite = true;
-			websiteUrl = jo.get("website").toString();
-		}
-		
-		
-		Organization org = new Organization(organizationId, name, location, state, country,
-		contactEmail, contactPhone, zipcode, hasWebsite, websiteUrl);
-		
-		return org;
-	}
-
 }

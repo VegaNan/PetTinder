@@ -2,7 +2,7 @@ package objects;
 
 public class Organization {
 
-	private String organizationId;
+	private int organizationId;
 	private String name;
 	private String location;
 	private String state;
@@ -17,7 +17,7 @@ public class Organization {
 		
 	}
 
-	public Organization(String organizationId, String name, String location, String state, String country,
+	public Organization(int organizationId, String name, String location, String state, String country,
 			String contactEmail, String contactPhone, String zipcode, boolean hasWebsite, String websiteUrl) {
 		super();
 		this.organizationId = organizationId;
@@ -32,14 +32,13 @@ public class Organization {
 		this.websiteUrl = websiteUrl;
 	}
 
-	public String getOrganizationId() {
+	public int getOrganizationId() {
 		return organizationId;
 	}
 
-	public void setOrganizationId(String organizationId) {
+	public void setOrganizationId(int organizationId) {
 		this.organizationId = organizationId;
 	}
-
 
 	public String getName() {
 		return name;
@@ -111,14 +110,6 @@ public class Organization {
 
 	public void setWebsiteUrl(String websiteUrl) {
 		this.websiteUrl = websiteUrl;
-	}
-	
-	@Override
-	public String toString() {
-		return "Organization [organizationId=" + organizationId + ", name=" + name + ", location=" + location
-				+ ", state=" + state + ", country=" + country + ", contactEmail=" + contactEmail + ", contactPhone="
-				+ contactPhone + ", zipcode=" + zipcode + ", hasWebsite=" + hasWebsite + ", websiteUrl=" + websiteUrl
-				+ "]";
 	}
 	
 }
