@@ -11,9 +11,9 @@ public class User {
 	private String location;
 	private String email;
 	private String pref;
-	private HashMap<Integer, String> matchedMap;
-	private HashMap<Integer, String> maybeMap;
-	private HashMap<Integer, String> noMap;
+	private HashMap<Integer, String> matchedMap = new HashMap<Integer, String>();
+	private HashMap<Integer, String> maybeMap = new HashMap<Integer, String>();
+	private HashMap<Integer, String> noMap = new HashMap<Integer, String>();
 	
 	public User(){
 		
