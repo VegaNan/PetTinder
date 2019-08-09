@@ -1,16 +1,23 @@
 package controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import objects.Animal;
 import objects.User;
+import views.GUI;
 
 public class SwipeyPageController {
 	
+	private Stage primaryStage = GUI.primaryStage;
+	DatabaseController dbc = new DatabaseController();
+	
+	Animal currentAnimal;
 	User currentUser;
-	private Stage primaryStage;
+	int inArraySlot = 0;
+	Animal[] currentAnimalArray;
 	
 	@FXML
 	ImageView animalView;
@@ -20,26 +27,44 @@ public class SwipeyPageController {
 
 	public void setUser(User user) {
 		this.currentUser = user;
+		currentAnimalArray = dbc.getAnimalsBy("species", currentUser.getAnimalPref());
+		currentAnimal = currentAnimalArray[inArraySlot];
+		String url = currentAnimal.getPhotosUrl();
+		Image image = new Image(url);
 	}
 	
-	public void profilePage(ActionEvent e) {
+	public void profilePage() {
 		
 	}
 	
-	public void matchesPage(ActionEvent e) {
+	public void matchesPage() {
 		
 	}
 	
-	public void yesAction(ActionEvent e) {
-		
+	public void yesAction() {
+		currentUser.addAnimalToMatched(currentAnimal.getId(), currentAnimal.getName());
+		newPet();
 	}
 	
-	public void maybeAction(ActionEvent e) {
-		
+	public void maybeAction() {
+		currentUser.addAnimalToMaybe(currentAnimal.getId(), currentAnimal.getName());
+		newPet();
 	}
 	
-	public void noAction(ActionEvent e) {
-		
+	public void noAction() {
+		currentUser.addAnimalToNo(currentAnimal.getId(), currentAnimal.getName());
+		newPet();
+	}
+	
+	public void newPet() {
+		inArraySlot++;
+		if(inArraySlot < currentAnimalArray.length) {
+			currentAnimal = currentAnimalArray[inArraySlot];
+			String url = currentAnimal.getPhotosUrl();
+			Image image = new Image(url);
+			animalView.setImage(image);
+			primaryStage.show();
+		}
 	}
 	
 	public Stage getPrimaryStage() {

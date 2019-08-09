@@ -2,24 +2,22 @@ package controllers;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import objects.AnimalPref;
 import objects.User;
+import views.GUI;
 
 public class SignUpController {
 
-	private Stage primaryStage;
+	private Stage primaryStage = GUI.primaryStage;
 	private User newUser;
 
 	@FXML
@@ -34,44 +32,26 @@ public class SignUpController {
 	@FXML
 	Button submitButton;
 
-	private void changeScene(String filename, ActionEvent event) throws IOException {
+	private void changeScene(String filename) throws IOException {
 		// parent takes in the file
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource(filename));
-		Parent parent = loader.load();
+		Parent parent = FXMLLoader.load(getClass().getResource(filename));
 		Scene scene = new Scene(parent);
+		Stage window = primaryStage;
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(filename));
+		SwipeyPageController controller = new SwipeyPageController();
+		loader.setController(controller);
+		
+		System.out.println(controller);
+		controller.setPrimaryStage(primaryStage);
 
-		SwipeyPageController controller = loader.getController();
 		controller.setUser(newUser);
-
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		
 		window.setScene(scene);
 		window.show();
 	}
 
-//	FXMLLoader loader = new FXMLLoader();loader.setLocation(getClass().getResource("SwipeyPage.fxml"));
-//	Parent swipeyParent = loader.load();
-//	
-//	Scene swipeyScene = new Scene(swipeyParent);
-//	SwipeyPageController controller = loader.getController();
-//	controller.setUser(newUser);
-//	
-//	Stage window = (Stage)((Node)e.getSource()).getScene().getWindow();
-//	window.setScene(swipeyScene);
-//	window.show();
-	
-//	// parent takes in the file
-//  Parent parent = FXMLLoader.load(getClass().getResource(filename));
-//  // makes new scene based on parent
-//  Scene scene = new Scene(parent);
-//  // takes in the stage of this class
-//  Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//  // sets the scene
-//  window.setScene(scene);
-//  // displays the scene
-//  window.show();
-
-	public void submitUser(ActionEvent e) throws IOException {
+	public void submitUser() throws IOException {
 		if(!firstNameField.getText().trim().isEmpty() & 
 				!lastNameField.getText().trim().isEmpty() & 
 				!locationField.getText().trim().isEmpty() & 
@@ -87,14 +67,13 @@ public class SignUpController {
 			newUser.setPassword(passwordField.getText().trim());
 			
 			if(dogRadioButton.isSelected()) {
-				newUser.setAnimalPref(AnimalPref.DOGS);
+				newUser.setAnimalPref("Dog");
 			} else if(catRadioButton.isSelected()) {
-				newUser.setAnimalPref(AnimalPref.CATS);
+				newUser.setAnimalPref("Cat");
 			} else {
-				newUser.setAnimalPref(AnimalPref.OTHER);
+				newUser.setAnimalPref("");
 			}
-			
-			changeScene("SwipeyPage.fxml", e);
+			changeScene("/SwipeyPage.fxml");
 		}
 	}
 

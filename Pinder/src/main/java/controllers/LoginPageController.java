@@ -3,6 +3,8 @@ package controllers;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,23 +20,18 @@ public class LoginPageController {
 	@FXML
 	Button loginButton, signUpButton;
 	
-	public void loginPage(ActionEvent e) {
-		
+	
+	
+	public void loginPage() throws IOException {
+
 	}
 	
-	public void signUpPage(ActionEvent e) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-//		loader.setLocation(getClass().getResource("SignUp.fxml"));
-//		Parent newContactParent = loader.load();
-		Parent parent = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
-		
+	public void signUpPage() throws IOException {
+		Parent parent = FXMLLoader.load(getClass().getResource("/SignUp.fxml"));
 		Scene newContactScene = new Scene(parent);
-//		SignUpController controller = loader.getController();
-		
-		Stage window = (Stage)((Node)e.getSource()).getScene().getWindow();
+		Stage window = primaryStage;
 		window.setScene(newContactScene);
-		window.show();	
-		
+		window.show();
 	}
 
 	public Stage getPrimaryStage() {

@@ -9,7 +9,7 @@ public class User {
 	private String password;
 	private String location;
 	private String email;
-	private AnimalPref pref;
+	private String pref;
 	private HashMap<Integer, String> matchedMap;
 	private HashMap<Integer, String> maybeMap;
 	private HashMap<Integer, String> noMap;
@@ -66,11 +66,11 @@ public class User {
 		this.email = email;
 	}
 	
-	public AnimalPref getAnimalPref() {
+	public String getAnimalPref() {
 		return pref;
 	}
 	
-	public void setAnimalPref(AnimalPref pref) {
+	public void setAnimalPref(String pref) {
 		this.pref = pref;
 	}
 	

@@ -100,6 +100,7 @@ public class DatabaseController {
 		fields.put(key, value);
 		Iterable<Document> cursor = collectionResults.find(fields);
 		for(Document doc: cursor) {
+			System.out.println(doc.toString());
 			animals+=doc.toJson() + "~";
 		}
 		
@@ -134,11 +135,13 @@ public class DatabaseController {
 	
 	public Animal[] createAnimalObjects(String dbString) {
 		String[] dbAnimals = dbString.split("~");
+		System.out.println(dbString);
 		
 		int animalNum = dbAnimals.length;
 		Animal[] animals = new Animal[animalNum];
 		
 		for(int i = 0; i < animalNum; i++) {
+			System.out.println(dbAnimals[i]);
 			JSONObject jo = new JSONObject(dbAnimals[i]);
 
 			int id = Integer.parseInt(jo.get("id").toString());
@@ -159,7 +162,12 @@ public class DatabaseController {
 			boolean spayedNeutered = Boolean.parseBoolean( jo.getJSONObject("attributes").get("spayed_neutered").toString()); 
 			boolean houseTrained = Boolean.parseBoolean( jo.getJSONObject("attributes").get("house_trained").toString());
 			boolean declawed = Boolean.parseBoolean( jo.getJSONObject("attributes").get("declawed").toString()); 
-			String photosUrl = jo.getJSONArray("photos").toString(); 
+
+			
+			String photosUrl = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+			if(!jo.getJSONArray("photos").isEmpty()) {		
+				photosUrl = jo.getJSONArray("photos").getJSONObject(0).getString("full");
+			}
 			ArrayList<String> tags = null;
 	
 			animals[i] = new Animal(id, organizationId, type, breed, size, gender, age,
@@ -167,7 +175,6 @@ public class DatabaseController {
 					goodWithCats, location, distance, spayedNeutered, houseTrained,
 					declawed, photosUrl, tags);
 			}
-		
 		return animals;
 	}
 	

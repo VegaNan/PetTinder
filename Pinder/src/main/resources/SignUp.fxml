@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
+   <children>
+      <Label layoutX="60.0" layoutY="115.0" prefHeight="30.0" prefWidth="80.0" text="First Name" />
+      <Label layoutX="60.0" layoutY="180.0" prefHeight="30.0" prefWidth="80.0" text="Last Name" />
+      <Label layoutX="60.0" layoutY="375.0" prefHeight="30.0" prefWidth="80.0" text="Location" />
+      <Label layoutX="60.0" layoutY="245.0" prefHeight="30.0" prefWidth="80.0" text="email" />
+      <TextField fx:id="firstNameField" layoutX="200.0" layoutY="115.0" />
+      <TextField fx:id="lastNameField" layoutX="200.0" layoutY="180.0" />
+      <Label layoutX="150.0" layoutY="37.5" prefHeight="40.0" prefWidth="150.0" text="Sign Up" />
+      <Label layoutX="60.0" layoutY="310.0" prefHeight="30.0" prefWidth="80.0" text="Password" />
+      <TextField fx:id="locationField" layoutX="200.0" layoutY="375.0" />
+      <TextField fx:id="emailField" layoutX="200.0" layoutY="245.0" />
+      <PasswordField fx:id="passwordField" layoutX="200.0" layoutY="310.0" />
+      <Label layoutX="60.0" layoutY="475.0" prefHeight="30.0" prefWidth="125.0" text="Perferred Animal" />
+      <Button fx:id="submitButton" layoutX="185.0" layoutY="620.0" mnemonicParsing="false" onAction="#submitUser" prefHeight="30.0" prefWidth="80.0" text="Submit" />
+      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Back" />
+      <RadioButton fx:id="dogRadioButton" layoutX="250.0" layoutY="475.0" mnemonicParsing="false" prefHeight="30.0" text="Dogs" />
+      <RadioButton fx:id="catRadioButton" layoutX="250.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" text="Cats" />
+      <RadioButton fx:id="otherRadioButton" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" prefHeight="30.0" text="Other" />
+
+   </children>
+</AnchorPane>
