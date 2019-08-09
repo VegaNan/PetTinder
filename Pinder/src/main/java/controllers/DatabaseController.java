@@ -1,16 +1,18 @@
 package controllers;
 
+import java.util.ArrayList;
+
 import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoIterable;
+
+import objects.Animal;
 
 public class DatabaseController {
 	private static MongoDatabase database;
@@ -70,7 +72,7 @@ public class DatabaseController {
 		return  cursor.first().toString();
 	}
 	
-	public String getAnimalsByOrganization(String id) {
+	public Animal[] getAnimalsByOrganization(String id) {
 		String animals = "";
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
@@ -78,23 +80,30 @@ public class DatabaseController {
 		Iterable<Document> cursor = collectionResults.find(fields);
 		for(Document doc: cursor) {
 			animals+=doc.toJson();
+			animals+=doc.toJson() + "~";
+
 		}
-		return animals;
+		Animal[] animalArr = createAnimalObjects(animals);
+		return animalArr;
 	}
 	
-	public String getAnimalsBy(String key, String value) {
+	public Animal[] getAnimalsBy(String key, String value) {
 		String animals = "";
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put(key, value);
 		Iterable<Document> cursor = collectionResults.find(fields);
 		for(Document doc: cursor) {
-			animals+=doc.toJson();
+
+			System.out.println(doc.toString());
+			animals+=doc.toJson() + "~";
+
 		}
-		return animals;
+		Animal[] animalArr = createAnimalObjects(animals);
+		return animalArr;
 	}
 	
-	public String getAnimalsByOrganizationValue(String orgKey, String orgValue) {
+	public Animal[] getAnimalsByOrganizationValue(String orgKey, String orgValue) {
 
 		MongoCollection<Document> organizationResults = organizationCollection;
 		BasicDBObject fields = new BasicDBObject();
@@ -114,6 +123,53 @@ public class DatabaseController {
 				animals+=doc2.toJson();
 			}
 		}
+		
+		Animal[] animalsObj =  createAnimalObjects(animals);
+		return animalsObj;
+	}
+	
+	public Animal[] createAnimalObjects(String dbString) {
+		String[] dbAnimals = dbString.split("~");
+		System.out.println(dbString);
+		
+		int animalNum = dbAnimals.length;
+		Animal[] animals = new Animal[animalNum];
+		
+		for(int i = 0; i < animalNum; i++) {
+			System.out.println(dbAnimals[i]);
+			JSONObject jo = new JSONObject(dbAnimals[i]);
+
+			int id = Integer.parseInt(jo.get("id").toString());
+			String organizationId = jo.getString("organization_id");
+			String type = jo.getString("type"); 
+			String breed = jo.getJSONObject("breeds").getString("primary"); 
+			String size =  jo.getString("size"); 
+			String gender =  jo.getString("gender");
+			String age =  jo.getString("age");
+			String status =  jo.getString("status");
+			String name =  jo.getString("name");
+			String organization = jo.getString("organization_id");
+			boolean goodWithChildren = Boolean.parseBoolean( jo.getJSONObject("environment").get("children").toString()); 
+			boolean goodWithDogs = Boolean.parseBoolean( jo.getJSONObject("environment").get("dogs").toString());
+			boolean goodWithCats = Boolean.parseBoolean( jo.getJSONObject("environment").get("cats").toString()); 
+			String location =  jo.getJSONObject("contact").getJSONObject("address").getString("city") + jo.getJSONObject("contact").getJSONObject("address").getString("state") +  jo.getJSONObject("contact").getJSONObject("address").getString("postcode")  ; 
+			double distance = Double.parseDouble( jo.get("distance").toString()); 
+			boolean spayedNeutered = Boolean.parseBoolean( jo.getJSONObject("attributes").get("spayed_neutered").toString()); 
+			boolean houseTrained = Boolean.parseBoolean( jo.getJSONObject("attributes").get("house_trained").toString());
+			boolean declawed = Boolean.parseBoolean( jo.getJSONObject("attributes").get("declawed").toString()); 
+
+			
+			String photosUrl = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+			if(!jo.getJSONArray("photos").isEmpty()) {		
+				photosUrl = jo.getJSONArray("photos").getJSONObject(0).getString("full");
+			}
+			ArrayList<String> tags = null;
+	
+			animals[i] = new Animal(id, organizationId, type, breed, size, gender, age,
+					status, name, organization, goodWithChildren, goodWithDogs,
+					goodWithCats, location, distance, spayedNeutered, houseTrained,
+					declawed, photosUrl, tags);
+			}
 		return animals;
 	}
 	
