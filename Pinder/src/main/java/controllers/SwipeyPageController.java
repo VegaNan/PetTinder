@@ -28,9 +28,6 @@ public class SwipeyPageController {
 		SwipeyPageController.currentUser = user;
 		currentAnimalArray = dbc.getAnimalsBy("species", currentUser.getAnimalPref());
 		currentAnimal = currentAnimalArray[inArraySlot];
-
-		System.out.println(currentAnimal.toString());
-		
 	}
 	
 	public void profilePage() {
@@ -65,6 +62,11 @@ public class SwipeyPageController {
 		if(inArraySlot < currentAnimalArray.length) {
 			currentAnimal = currentAnimalArray[inArraySlot];
 			String url = currentAnimal.getPhotosUrl();
+			Image image = new Image(url);
+			animalView.setImage(image);
+			primaryStage.show();
+		}else {
+			String url = "https://www.nomore.org.au/sites/all/themes/nomore/img/noMore.jpg";
 			Image image = new Image(url);
 			animalView.setImage(image);
 			primaryStage.show();
