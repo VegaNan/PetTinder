@@ -43,8 +43,8 @@ public class APIController {
 	
 	public static String animalRequest() {
 		int page = 1;
-		int pages = 5;
-		String command = "curl -H \"Authorization: Bearer " + accessToken + "\" GET https://api.petfinder.com/v2/animals?location=" + location +"&page=" + page + "&limit=100";
+		int pages = 4;
+		String command = "curl -H \"Authorization: Bearer " + accessToken + "\" GET https://api.petfinder.com/v2/animals?location=" + location +"&page=" + page + "&limit=100&status=adoptable";
 		Process process = null;
 		String response = new String();
 		try {
