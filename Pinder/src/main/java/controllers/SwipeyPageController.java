@@ -15,7 +15,7 @@ public class SwipeyPageController {
 	DatabaseController dbc = new DatabaseController();
 	static Animal currentAnimal;
 	static User currentUser;
-	int inArraySlot = 0;
+	static int inArraySlot = 0;
 	static Animal[] currentAnimalArray;
 	
 	@FXML
@@ -39,28 +39,25 @@ public class SwipeyPageController {
 	}
 	
 	public void yesAction() {
-		System.out.println(currentAnimal.toString());
 		currentUser.addAnimalToMatched(currentAnimal.getId(), currentAnimal.getName());
 		newPet();
 	}
 	
 	public void maybeAction() {
-		System.out.println(currentAnimal.toString());
 		currentUser.addAnimalToMaybe(currentAnimal.getId(), currentAnimal.getName());
 		newPet();
 	}
 	
 	public void noAction() {
-		System.out.println(currentAnimal.toString());
 		currentUser.addAnimalToNo(currentAnimal.getId(), currentAnimal.getName());
 		newPet();
 	}
 	
 	public void newPet() {
-		System.out.println(currentAnimal.toString());
 		inArraySlot++;
 		if(inArraySlot < currentAnimalArray.length) {
 			currentAnimal = currentAnimalArray[inArraySlot];
+			System.out.println(currentAnimal.toString());
 			String url = currentAnimal.getPhotosUrl();
 			Image image = new Image(url);
 			animalView.setImage(image);
