@@ -55,12 +55,14 @@ public class SwipeyPageController {
 	}
 	
 	public void newPet() {
+
 		imageNum = 0;
 		System.out.println(currentAnimal.toString());
 		inArraySlot++;
 		if(inArraySlot < currentAnimalArray.length) {
 			currentAnimal = currentAnimalArray[inArraySlot];
 			Image image = new Image(currentAnimalArray[inArraySlot].getPhotosUrl()[0]);
+			System.out.println(currentAnimal.toString());
 			animalView.setImage(image);
 			primaryStage.show();
 		}else {
