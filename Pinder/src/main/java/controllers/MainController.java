@@ -1,20 +1,9 @@
 
 package controllers;
 
-import views.GUI;
-
 public class MainController {
 
 	static DatabaseController dbController = new DatabaseController();
-	
-	enum petInfo{
-		SpayedNeutered,
-		Status,
-		Size,
-		Type,
-		Age,
-		Distance
-	}
 
 	public static void main(String[] args) {
 		APIController.GetAccessToken();
@@ -27,24 +16,13 @@ public class MainController {
 		System.out.println("animal by org   " + dbController.getAnimalsByOrganization("UT202"));
 		System.out.println("animal by org val   " + dbController.getAnimalsByOrganizationValue("address.postcode", "84660"));
 		System.out.println("test animals by   " + dbController.getAnimalsBy("gender", "Female"));
+<<<<<<< HEAD
 		*/
+=======
+		*/
+
+>>>>>>> branch 'Brooke' of https://github.com/VegaNan/PetTinder.git
 	}
 	
-	private static String petSearch(petInfo petinfo, String value) {
-		String key = "";
-		
-		switch (petinfo) {
-		case Age:
-			key = "";
-			break;
-		default:
-			System.out.println("invalid");
-			break;
-		}
-		
-		dbController.getAnimalsBy(key, value);
-		
-		return null;
-	}
 	
 }
