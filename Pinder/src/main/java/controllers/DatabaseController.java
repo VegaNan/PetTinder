@@ -1,23 +1,28 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import objects.Animal;
+import objects.User;
 
 public class DatabaseController {
 	private static MongoDatabase database;
 	private static MongoCollection<Document> animalCollection;
 	private static MongoCollection<Document> organizationCollection;
+	private static MongoCollection<Document> userCollection;
 	private String databaseName;
 	private MongoClient mongoClient;
 	
@@ -27,6 +32,7 @@ public class DatabaseController {
 		database = mongoClient.getDatabase(databaseName);
 		animalCollection = database.getCollection("animals");
 		organizationCollection = database.getCollection("organizations");
+		userCollection = database.getCollection("users");
 		System.out.println("---if you got here, it got database correctly :) ---");
 	}
 
@@ -172,5 +178,46 @@ public class DatabaseController {
 			}
 		return animals;
 	}
+	
+	public void storeUser(User user) {
+		Document document = new Document("firstName", user.getFirstName())
+				.append("lastName", user.getLastName())
+				.append("password", user.getPassword())
+				.append("location", user.getLocation())
+				.append("email", user.getEmail())
+				.append("pref", user.getAnimalPref());
+		
+		List<Document> matchedArr = new ArrayList<>();
+		List<Document> maybeArr = new ArrayList<>();
+		List<Document> noArr = new ArrayList<>();
+		
+		for(Map.Entry<Integer, String> matchedMap : user.getMatchedMap().entrySet()) {
+			Document documentMatched = new Document();
+			documentMatched.append("\"" + matchedMap.getKey() + "\"", (Object)matchedMap.getValue());
+			matchedArr.add(documentMatched);
+		}
+		
+		document.append("matchedMap", matchedArr);
+		
+		for(Map.Entry<Integer, String> maybeMap : user.getMatchedMap().entrySet()) {
+			Document documentMaybe = new Document();
+			documentMaybe.append("\"" + maybeMap.getKey() + "\"", (Object)maybeMap.getValue());
+			maybeArr.add(documentMaybe);
+		}
+
+		document.append("maybeMap", maybeArr);
+		
+		for(Map.Entry<Integer, String> noMap : user.getMatchedMap().entrySet()) {
+			Document documentNo = new Document();
+			documentNo.append("\"" + noMap.getKey() + "\"", (Object)noMap.getValue());
+			noArr.add(documentNo);
+		}
+		
+		document.append("noMap", noArr);
+		
+		userCollection.insertOne(document);
+		System.out.println("Document inserted successfully"); 
+	}
+	
 	
 }
