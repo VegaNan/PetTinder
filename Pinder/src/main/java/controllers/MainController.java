@@ -17,7 +17,6 @@ public class MainController {
 		System.out.println("animal by org val   " + dbController.getAnimalsByOrganizationValue("address.postcode", "84660"));
 		System.out.println("test animals by   " + dbController.getAnimalsBy("gender", "Female"));
 		*/
-
 	}
 	
 	
