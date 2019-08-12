@@ -159,9 +159,14 @@ public class DatabaseController {
 			boolean declawed = Boolean.parseBoolean( jo.getJSONObject("attributes").get("declawed").toString()); 
 
 			
-			String photosUrl = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
-			if(!jo.getJSONArray("photos").isEmpty()) {		
-				photosUrl = jo.getJSONArray("photos").getJSONObject(0).getString("full");
+			String photosUrl[] = new String[jo.getJSONArray("photos").length()];
+			if(!jo.getJSONArray("photos").isEmpty()) {	
+				for(int j = 0; j < jo.getJSONArray("photos").length(); j++) {
+					photosUrl[j] = jo.getJSONArray("photos").getJSONObject(j).getString("full");
+				}
+			}else {
+				photosUrl = new String[1];
+				photosUrl[0] = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
 			}
 			ArrayList<String> tags = null;
 	
@@ -172,5 +177,8 @@ public class DatabaseController {
 			}
 		return animals;
 	}
+	
+	
+	
 	
 }
