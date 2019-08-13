@@ -5,6 +5,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
@@ -23,9 +24,12 @@
       <Label layoutX="60.0" layoutY="475.0" prefHeight="30.0" prefWidth="125.0" text="Perferred Animal" />
       <Button fx:id="submitButton" layoutX="185.0" layoutY="620.0" mnemonicParsing="false" onAction="#submitUser" prefHeight="30.0" prefWidth="80.0" text="Submit" />
       <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Back" />
-      <RadioButton fx:id="dogRadioButton" layoutX="250.0" layoutY="475.0" mnemonicParsing="false" prefHeight="30.0" text="Dogs" />
-      <RadioButton fx:id="catRadioButton" layoutX="250.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" text="Cats" />
-      <RadioButton fx:id="otherRadioButton" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" prefHeight="30.0" text="Other" />
+      <RadioButton fx:id="dogRadioButton" layoutX="250.0" layoutY="475.0" mnemonicParsing="false" prefHeight="30.0" text="Dogs">
+         <toggleGroup>
+            <ToggleGroup fx:id="prefAnimal" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="catRadioButton" layoutX="250.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" text="Cats" toggleGroup="$prefAnimal" />
+      <RadioButton fx:id="otherRadioButton" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" prefHeight="30.0" text="Other" toggleGroup="$prefAnimal" />
 
    </children>
 </AnchorPane>
