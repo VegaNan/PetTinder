@@ -9,13 +9,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import objects.Animal;
+import objects.Organization;
 import objects.User;
 
 public class DatabaseController {
@@ -60,22 +60,25 @@ public class DatabaseController {
 		}
 	}
 	
-	public String getAnimalById(int id) {
+	public Animal getAnimalById(int id) {
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
+		String dbString = cursor.first().toString();
 		
-		return cursor.first().toString();
+		Animal animal = createAnimalObjects(dbString)[0];
+		return animal;
 	}
 	
-	public String getOrganizationById(String id) {
+	public Organization getOrganizationById(String id) {
 		MongoCollection<Document> collectionResults = organizationCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
-		
-		return  cursor.first().toString();
+		String dbString = cursor.first().toString();
+		Organization org = createOrganizationObjects(dbString)[0];
+		return org;
 	}
 	
 	public Animal[] getAnimalsByOrganization(String id) {
@@ -183,6 +186,41 @@ public class DatabaseController {
 			}
 		return animals;
 	}
+
+	public Organization[] createOrganizationObjects(String dbString){
+		String[] dbOrgs = dbString.split("~");
+		System.out.println(dbString);
+		
+		int dbLength = dbOrgs.length;
+		Organization[] orgArr = new Organization[dbLength];
+		
+		
+		for(int i = 0; i < dbLength; i++) {
+			System.out.println(dbOrgs[i]);
+			JSONObject jo = new JSONObject(dbOrgs[i]);
+
+			String organizationId = jo.getString("id"); 
+			String name = jo.getString("name");
+			String location = jo.getString("address1");
+			String state = jo.getString("state");
+			String zipcode = jo.getString("postcode");
+			String country = jo.getString("country");
+			String contactEmail = jo.getString("email");
+			String contactPhone = jo.getString("phone");
+			String websiteUrl = jo.getString("website");
+	
+			orgArr[i] = new Organization(organizationId, name, location, state, country, contactEmail, contactPhone, zipcode, websiteUrl);
+		}
+		
+		return orgArr;
+	}
+	
+	public User userLogin(String username, String password) {
+		User user = new User();
+		
+		
+		return user;
+	}
 	
 	public void storeUser(User user) {
 		Document document = new Document("firstName", user.getFirstName())
@@ -223,6 +261,5 @@ public class DatabaseController {
 		userCollection.insertOne(document);
 		System.out.println("Document inserted successfully"); 
 	}
-	
 	
 }
