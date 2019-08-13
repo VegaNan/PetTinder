@@ -2,6 +2,9 @@
 package objects;
 
 import java.util.HashMap;
+import java.util.List;
+
+import org.w3c.dom.Document;
 
 public class User {
 
@@ -83,6 +86,12 @@ public class User {
 		return matchedMap;
 	}
 	
+	public void setMatchedMap(List<Document> matchedArr) {
+		for(int i = 0; i < matchedArr.size(); i++) {
+			
+		}
+	}
+	
 	public void addAnimalToMaybe(int id, String animalName) {
 		maybeMap.put(id, animalName);
 	}
@@ -91,12 +100,24 @@ public class User {
 		return maybeMap;
 	}
 	
+	public void setMaybeMap(List<Document> maybeArr) {
+		for(int i = 0; i < maybeArr.size(); i++) {
+			
+		}
+	}
+	
 	public void addAnimalToNo(int id, String animalName) {
 		noMap.put(id, animalName);
 	}
 	
 	public HashMap<Integer, String> getNoMap(){
 		return noMap;
+	}
+	
+	public void setNoMap(List<Document> noArr) {
+		for(int i = 0; i< noArr.size(); i++) {
+			
+		}
 	}
 	
 }

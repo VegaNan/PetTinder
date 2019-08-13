@@ -27,6 +27,7 @@ public class SwipeyPageController {
 
 	public void setUser(User user) {
 		SwipeyPageController.currentUser = user;
+		dbc.storeUser(currentUser);
 		currentAnimalArray = dbc.getAnimalsBy("species", currentUser.getAnimalPref());
 		currentAnimal = currentAnimalArray[inArraySlot];
 	}
@@ -41,16 +42,19 @@ public class SwipeyPageController {
 	
 	public void yesAction() {
 		currentUser.addAnimalToMatched(currentAnimal.getId(), currentAnimal.getName());
+		dbc.updateUser(currentUser);
 		newPet();
 	}
 	
 	public void maybeAction() {
 		currentUser.addAnimalToMaybe(currentAnimal.getId(), currentAnimal.getName());
+		dbc.updateUser(currentUser);
 		newPet();
 	}
 	
 	public void noAction() {
 		currentUser.addAnimalToNo(currentAnimal.getId(), currentAnimal.getName());
+		dbc.updateUser(currentUser);
 		newPet();
 	}
 	
