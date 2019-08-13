@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.bson.Document;
 import org.json.JSONArray;
@@ -13,6 +14,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import objects.Animal;
+import objects.User;
 
 public class DatabaseController {
 	private static MongoDatabase database;
@@ -176,6 +178,38 @@ public class DatabaseController {
 					declawed, photosUrl, tags);
 			}
 		return animals;
+	}
+	
+	public void insertUser(User user) {
+		String firstName = user.getFirstName();
+		String lastName = user.getLastName();
+		String password = user.getPassword();
+		String location = user.getLocation();
+		String email = user.getEmail();
+		String pref = user.getAnimalPref();
+		HashMap<Integer, String> matched = user.getMatchedMap();
+		HashMap<Integer, String> maybe = user.getMaybeMap();
+		HashMap<Integer, String> no = user.getNoMap();
+		
+		String recordInfo = "";
+		
+		JSONObject obj = new JSONObject(recordInfo);
+		JSONArray jsonArr = obj.getJSONArray("animals");
+		for(int i = 0; i < jsonArr.length(); i++) {
+			Document dbObject = Document.parse(jsonArr.getJSONObject(i).toString(1));
+			if(dbObject != null) {
+				animalCollection.insertOne(dbObject);
+			}
+		}
+		
+		
+		
+	}
+	
+	public User userLogin(String username, String password) {
+		User user = new User();
+		
+		return user;
 	}
 	
 	
