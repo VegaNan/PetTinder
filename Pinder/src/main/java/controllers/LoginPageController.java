@@ -51,7 +51,7 @@ public class LoginPageController {
 			User user = dbc.userLogin(username.getText(), password.getText());
 			
 			if(user == null) {
-				//TODO this
+				//TODO show this on the GUI
 				System.out.println("incorrect login credentials");
 			}else {
 				changeScene("/SwipeyPage.fxml", user);

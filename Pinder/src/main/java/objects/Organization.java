@@ -2,7 +2,7 @@ package objects;
 
 public class Organization {
 
-	private int organizationId;
+	private String organizationId;
 	private String name;
 	private String location;
 	private String state;
@@ -10,15 +10,14 @@ public class Organization {
 	private String contactEmail;
 	private String contactPhone;
 	private String zipcode;
-	private boolean hasWebsite;
 	private String websiteUrl;
 	
 	public Organization(){
 		
 	}
 
-	public Organization(int organizationId, String name, String location, String state, String country,
-			String contactEmail, String contactPhone, String zipcode, boolean hasWebsite, String websiteUrl) {
+	public Organization(String organizationId, String name, String location, String state, String country,
+			String contactEmail, String contactPhone, String zipcode,String websiteUrl) {
 		super();
 		this.organizationId = organizationId;
 		this.name = name;
@@ -28,15 +27,14 @@ public class Organization {
 		this.contactEmail = contactEmail;
 		this.contactPhone = contactPhone;
 		this.zipcode = zipcode;
-		this.hasWebsite = hasWebsite;
 		this.websiteUrl = websiteUrl;
 	}
 
-	public int getOrganizationId() {
+	public String getOrganizationId() {
 		return organizationId;
 	}
 
-	public void setOrganizationId(int organizationId) {
+	public void setOrganizationId(String organizationId) {
 		this.organizationId = organizationId;
 	}
 
@@ -94,14 +92,6 @@ public class Organization {
 
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
-	}
-
-	public boolean isHasWebsite() {
-		return hasWebsite;
-	}
-
-	public void setHasWebsite(boolean hasWebsite) {
-		this.hasWebsite = hasWebsite;
 	}
 
 	public String getWebsiteUrl() {
