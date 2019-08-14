@@ -72,6 +72,7 @@ public class SignUpController {
 			} else {
 				newUser.setAnimalPref("");
 			}
+			
 			changeScene("/SwipeyPage.fxml");
 		}
 	}
