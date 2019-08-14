@@ -22,7 +22,7 @@ public class Animal {
 	private boolean houseTrained;
 	private boolean declawed;
 	private String photosUrl;
-	private ArrayList<String> tags = new ArrayList<>();
+	private ArrayList<String> tags = new ArrayList<String>();
 	
 	
 	public Animal() {
