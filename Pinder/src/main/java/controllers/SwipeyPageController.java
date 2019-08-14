@@ -58,6 +58,7 @@ public class SwipeyPageController {
 	public void yesAction() {
 		if(currentAnimal !=null) {
 			currentUser.addAnimalToMatched(currentAnimal.getId(), currentAnimal.getName());
+      dbc.updateUser(currentUser);
 		}
 		newPet();
 	}
@@ -65,6 +66,7 @@ public class SwipeyPageController {
 	public void maybeAction() {
 		if(currentAnimal !=null) {
 			currentUser.addAnimalToMaybe(currentAnimal.getId(), currentAnimal.getName());
+      dbc.updateUser(currentUser);
 		}
 		newPet();
 	}
@@ -73,6 +75,7 @@ public class SwipeyPageController {
 		if(currentAnimal !=null) {
 			currentUser.addAnimalToNo(currentAnimal.getId(), currentAnimal.getName());
 		}
+		dbc.updateUser(currentUser);
 		newPet();
 	}
 	
