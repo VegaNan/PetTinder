@@ -247,6 +247,50 @@ public class DatabaseController {
 			documentMaybe.append("\"" + maybeMap.getKey() + "\"", (Object)maybeMap.getValue());
 			maybeArr.add(documentMaybe);
 		}
+		
+		document.append("maybeMap", maybeArr);
+
+		for(Map.Entry<Integer, String> noMap : user.getNoMap().entrySet()) {
+			Document documentNo = new Document();
+			documentNo.append("\"" + noMap.getKey() + "\"", (Object)noMap.getValue());
+			noArr.add(documentNo);
+		}
+
+		document.append("noMap", noArr);
+		
+		userCollection.insertOne(document);
+		System.out.println("Document inserted successfully"); 
+	}
+	
+	public void updateUser(User user) {
+		BasicDBObject documentDelete = new BasicDBObject();
+		documentDelete.put("email", user.getEmail());
+		userCollection.deleteOne(documentDelete);
+		
+		Document document = new Document("firstName", user.getFirstName())
+				.append("lastName", user.getLastName())
+				.append("password", user.getPassword())
+				.append("location", user.getLocation())
+				.append("email", user.getEmail())
+				.append("pref", user.getAnimalPref());
+		
+		List<Document> matchedArr = new ArrayList<>();
+		List<Document> maybeArr = new ArrayList<>();
+		List<Document> noArr = new ArrayList<>();
+		
+		for(Map.Entry<Integer, String> matchedMap : user.getMatchedMap().entrySet()) {
+			Document documentMatched = new Document();
+			documentMatched.append("\"" + matchedMap.getKey() + "\"", (Object)matchedMap.getValue());
+			matchedArr.add(documentMatched);
+		}
+		
+		document.append("matchedMap", matchedArr);
+		
+		for(Map.Entry<Integer, String> maybeMap : user.getMaybeMap().entrySet()) {
+			Document documentMaybe = new Document();
+			documentMaybe.append("\"" + maybeMap.getKey() + "\"", (Object)maybeMap.getValue());
+			maybeArr.add(documentMaybe);
+		}
 
 		document.append("maybeMap", maybeArr);
 		
@@ -259,55 +303,7 @@ public class DatabaseController {
 		document.append("noMap", noArr);
 		
 		userCollection.insertOne(document);
-		System.out.println("Document inserted successfully"); 
-	}
-	
-	public void updateUser(User user) {
-		List<Document> matchedArr = new ArrayList<>();
-		List<Document> maybeArr = new ArrayList<>();
-		List<Document> noArr = new ArrayList<>();
-		
-		for(Map.Entry<Integer, String> matchedMap : user.getMatchedMap().entrySet()) {
-			Document documentMatched = new Document();
-			documentMatched.append("\"" + matchedMap.getKey() + "\"", (Object)matchedMap.getValue());
-			matchedArr.add(documentMatched);
-		}
-		
-		for(Map.Entry<Integer, String> maybeMap : user.getMaybeMap().entrySet()) {
-			Document documentMaybe = new Document();
-			documentMaybe.append("\"" + maybeMap.getKey() + "\"", (Object)maybeMap.getValue());
-			maybeArr.add(documentMaybe);
-		}
-		
-		for(Map.Entry<Integer, String> noMap : user.getNoMap().entrySet()) {
-			Document documentNo = new Document();
-			documentNo.append("\"" + noMap.getKey() + "\"", (Object)noMap.getValue());
-			noArr.add(documentNo);
-		}
-//		System.out.println(matchedArr);
-		
-		
-//		BasicDBObject matchedDocument = new BasicDBObject();
-//		matchedDocument.append("$set", new BasicDBObject().append("matchedMap", matchedArr));		
-//		
-//		BasicDBObject searchQuery = new BasicDBObject().append("matchedArr", matchedArr);
-//		
-//		userCollection.updateOne(searchQuery, matchedDocument);
-//		
-//		BasicDBObject maybeDocument = new BasicDBObject();
-//		maybeDocument.append("$set", new BasicDBObject().append("maybeMap", maybeArr));
-//		
-//		searchQuery = new BasicDBObject().append("maybeArr", maybeArr);
-//		
-//		userCollection.updateOne(searchQuery, maybeDocument);
-//		
-//		BasicDBObject noDocument = new BasicDBObject();
-//		noDocument.append("$set", new BasicDBObject().append("noMap", noArr));
-//		
-//		searchQuery = new BasicDBObject().append("noArr", noArr);
-//		
-//		userCollection.updateOne(searchQuery, noDocument);
-		
+		System.out.println("Document inserted successfully");	
 	}
 	
 	public User getUser(String email, String password) {
