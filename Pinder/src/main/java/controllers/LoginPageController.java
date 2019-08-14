@@ -11,19 +11,52 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import objects.User;
 
 public class LoginPageController {
 
 	private Stage primaryStage;
+	DatabaseController dbc = new DatabaseController();
+	
+	@FXML
+	TextField username, password;
 	
 	@FXML
 	Button loginButton, signUpButton;
-	
-	
-	
-	public void loginPage() throws IOException {
 
+	private void changeScene(String filename, User newUser) throws IOException {
+		// parent takes in the file
+		Parent parent = FXMLLoader.load(getClass().getResource(filename));
+		Scene scene = new Scene(parent);
+		Stage window = primaryStage;
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(filename));
+		SwipeyPageController controller = new SwipeyPageController();
+		loader.setController(controller);
+		
+		System.out.println(controller);
+		controller.setPrimaryStage(primaryStage);
+
+		controller.setUser(newUser);
+		
+		window.setScene(scene);
+		window.show();
+	}
+	
+	public void login() throws IOException{
+		if(!username.getText().trim().isEmpty() & !password.getText().trim().isEmpty()) {
+			//check that username and password are in database and match
+			User user = dbc.userLogin(username.getText(), password.getText());
+			
+			if(user == null) {
+				//TODO show this on the GUI
+				System.out.println("incorrect login credentials");
+			}else {
+				changeScene("/SwipeyPage.fxml", user);
+			}
+		}
 	}
 	
 	public void signUpPage() throws IOException {

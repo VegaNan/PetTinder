@@ -15,7 +15,8 @@ public class SwipeyPageController {
 	DatabaseController dbc = new DatabaseController();
 	static Animal currentAnimal;
 	static User currentUser;
-	static int inArraySlot = 0;
+	int inArraySlot = 0;
+	int imageNum = 0;
 	static Animal[] currentAnimalArray;
 	
 	@FXML
@@ -54,17 +55,27 @@ public class SwipeyPageController {
 	}
 	
 	public void newPet() {
+
+		imageNum = 0;
+		System.out.println(currentAnimal.toString());
 		inArraySlot++;
 		if(inArraySlot < currentAnimalArray.length) {
 			currentAnimal = currentAnimalArray[inArraySlot];
+			Image image = new Image(currentAnimalArray[inArraySlot].getPhotosUrl()[0]);
 			System.out.println(currentAnimal.toString());
-			String url = currentAnimal.getPhotosUrl();
-			Image image = new Image(url);
 			animalView.setImage(image);
 			primaryStage.show();
 		}else {
 			String url = "https://www.nomore.org.au/sites/all/themes/nomore/img/noMore.jpg";
 			Image image = new Image(url);
+			animalView.setImage(image);
+			primaryStage.show();
+		}
+	}
+	
+	public void changeImage(int imageNum) {
+		if (currentAnimal.getPhotosUrl().length > imageNum) {
+			Image image = new Image(currentAnimalArray[inArraySlot].getPhotosUrl()[imageNum]);
 			animalView.setImage(image);
 			primaryStage.show();
 		}

@@ -1,6 +1,8 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.bson.Document;
 import org.json.JSONArray;
@@ -13,11 +15,14 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import objects.Animal;
+import objects.Organization;
+import objects.User;
 
 public class DatabaseController {
 	private static MongoDatabase database;
 	private static MongoCollection<Document> animalCollection;
 	private static MongoCollection<Document> organizationCollection;
+	private static MongoCollection<Document> userCollection;
 	private String databaseName;
 	private MongoClient mongoClient;
 	
@@ -27,6 +32,7 @@ public class DatabaseController {
 		database = mongoClient.getDatabase(databaseName);
 		animalCollection = database.getCollection("animals");
 		organizationCollection = database.getCollection("organizations");
+		userCollection = database.getCollection("users");
 		System.out.println("---if you got here, it got database correctly :) ---");
 	}
 
@@ -54,22 +60,25 @@ public class DatabaseController {
 		}
 	}
 	
-	public String getAnimalById(int id) {
+	public Animal getAnimalById(int id) {
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
+		String dbString = cursor.first().toString();
 		
-		return cursor.first().toString();
+		Animal animal = createAnimalObjects(dbString)[0];
+		return animal;
 	}
 	
-	public String getOrganizationById(String id) {
+	public Organization getOrganizationById(String id) {
 		MongoCollection<Document> collectionResults = organizationCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		FindIterable<Document> cursor = collectionResults.find(fields);
-		
-		return  cursor.first().toString();
+		String dbString = cursor.first().toString();
+		Organization org = createOrganizationObjects(dbString)[0];
+		return org;
 	}
 	
 	public Animal[] getAnimalsByOrganization(String id) {
@@ -159,9 +168,14 @@ public class DatabaseController {
 			boolean declawed = Boolean.parseBoolean( jo.getJSONObject("attributes").get("declawed").toString()); 
 
 			
-			String photosUrl = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
-			if(!jo.getJSONArray("photos").isEmpty()) {		
-				photosUrl = jo.getJSONArray("photos").getJSONObject(0).getString("full");
+			String photosUrl[] = new String[jo.getJSONArray("photos").length()];
+			if(!jo.getJSONArray("photos").isEmpty()) {	
+				for(int j = 0; j < jo.getJSONArray("photos").length(); j++) {
+					photosUrl[j] = jo.getJSONArray("photos").getJSONObject(j).getString("full");
+				}
+			}else {
+				photosUrl = new String[1];
+				photosUrl[0] = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
 			}
 			ArrayList<String> tags = null;
 	
@@ -171,6 +185,81 @@ public class DatabaseController {
 					declawed, photosUrl, tags);
 			}
 		return animals;
+	}
+
+	public Organization[] createOrganizationObjects(String dbString){
+		String[] dbOrgs = dbString.split("~");
+		System.out.println(dbString);
+		
+		int dbLength = dbOrgs.length;
+		Organization[] orgArr = new Organization[dbLength];
+		
+		
+		for(int i = 0; i < dbLength; i++) {
+			System.out.println(dbOrgs[i]);
+			JSONObject jo = new JSONObject(dbOrgs[i]);
+
+			String organizationId = jo.getString("id"); 
+			String name = jo.getString("name");
+			String location = jo.getString("address1");
+			String state = jo.getString("state");
+			String zipcode = jo.getString("postcode");
+			String country = jo.getString("country");
+			String contactEmail = jo.getString("email");
+			String contactPhone = jo.getString("phone");
+			String websiteUrl = jo.getString("website");
+	
+			orgArr[i] = new Organization(organizationId, name, location, state, country, contactEmail, contactPhone, zipcode, websiteUrl);
+		}
+		
+		return orgArr;
+	}
+	
+	public User userLogin(String username, String password) {
+		User user = new User();
+		
+		
+		return user;
+	}
+	
+	public void storeUser(User user) {
+		Document document = new Document("firstName", user.getFirstName())
+				.append("lastName", user.getLastName())
+				.append("password", user.getPassword())
+				.append("location", user.getLocation())
+				.append("email", user.getEmail())
+				.append("pref", user.getAnimalPref());
+		
+		List<Document> matchedArr = new ArrayList<>();
+		List<Document> maybeArr = new ArrayList<>();
+		List<Document> noArr = new ArrayList<>();
+		
+		for(Map.Entry<Integer, String> matchedMap : user.getMatchedMap().entrySet()) {
+			Document documentMatched = new Document();
+			documentMatched.append("\"" + matchedMap.getKey() + "\"", (Object)matchedMap.getValue());
+			matchedArr.add(documentMatched);
+		}
+		
+		document.append("matchedMap", matchedArr);
+		
+		for(Map.Entry<Integer, String> maybeMap : user.getMatchedMap().entrySet()) {
+			Document documentMaybe = new Document();
+			documentMaybe.append("\"" + maybeMap.getKey() + "\"", (Object)maybeMap.getValue());
+			maybeArr.add(documentMaybe);
+		}
+
+		document.append("maybeMap", maybeArr);
+		
+		for(Map.Entry<Integer, String> noMap : user.getMatchedMap().entrySet()) {
+			Document documentNo = new Document();
+			documentNo.append("\"" + noMap.getKey() + "\"", (Object)noMap.getValue());
+			noArr.add(documentNo);
+		}
+		
+		document.append("noMap", noArr);
+		
+		userCollection.insertOne(document);
+		System.out.println("Document inserted successfully"); 
 	}
 	
 }

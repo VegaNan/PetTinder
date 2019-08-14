@@ -21,8 +21,8 @@ public class Animal {
 	private boolean spayedNeutered;
 	private boolean houseTrained;
 	private boolean declawed;
-	private String photosUrl;
-	private ArrayList<String> tags = new ArrayList<String>();
+	private String[] photosUrl;
+	private ArrayList<String> tags = new ArrayList<>();
 	
 	
 	public Animal() {
@@ -32,7 +32,7 @@ public class Animal {
 	public Animal(int id, String organizationId, String type, String breed, String size, String gender, String age,
 			String status, String name, String organization, boolean goodWithChildren, boolean goodWithDogs,
 			boolean goodWithCats, String location, double distance, boolean spayedNeutered, boolean houseTrained,
-			boolean declawed, String photosUrl, ArrayList<String> tags) {
+			boolean declawed, String[] photosUrl, ArrayList<String> tags) {
 		super();
 		this.id = id;
 		this.organizationId = organizationId;
@@ -202,11 +202,11 @@ public class Animal {
 		this.declawed = declawed;
 	}
 
-	public String getPhotosUrl() {
+	public String[] getPhotosUrl() {
 		return photosUrl;
 	}
 
-	public void setPhotosUrl(String photosUrl) {
+	public void setPhotosUrl(String[] photosUrl) {
 		this.photosUrl = photosUrl;
 	}
 
