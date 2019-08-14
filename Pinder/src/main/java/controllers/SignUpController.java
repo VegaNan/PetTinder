@@ -72,7 +72,8 @@ public class SignUpController {
 			} else {
 				newUser.setAnimalPref("");
 			}
-			
+			DatabaseController dbc = new DatabaseController();
+			dbc.storeUser(newUser);
 			changeScene("/SwipeyPage.fxml");
 		}
 	}
