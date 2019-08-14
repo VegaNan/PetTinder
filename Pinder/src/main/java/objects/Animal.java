@@ -22,6 +22,7 @@ public class Animal {
 	private boolean houseTrained;
 	private boolean declawed;
 	private String[] photosUrl;
+	private String description;
 	private ArrayList<String> tags = new ArrayList<>();
 	
 	
@@ -32,7 +33,7 @@ public class Animal {
 	public Animal(int id, String organizationId, String type, String breed, String size, String gender, String age,
 			String status, String name, String organization, boolean goodWithChildren, boolean goodWithDogs,
 			boolean goodWithCats, String location, double distance, boolean spayedNeutered, boolean houseTrained,
-			boolean declawed, String[] photosUrl, ArrayList<String> tags) {
+			boolean declawed, String[] photosUrl, ArrayList<String> tags, String description) {
 		super();
 		this.id = id;
 		this.organizationId = organizationId;
@@ -54,6 +55,7 @@ public class Animal {
 		this.declawed = declawed;
 		this.photosUrl = photosUrl;
 		this.tags = tags;
+		this.description = description;
 	}
 
 
@@ -225,7 +227,15 @@ public class Animal {
 				+ ", organization=" + organization + ", goodWithChildren=" + goodWithChildren + ", goodWithDogs="
 				+ goodWithDogs + ", goodWithCats=" + goodWithCats + ", location=" + location + ", distance=" + distance
 				+ ", spayedNeutered=" + spayedNeutered + ", houseTrained=" + houseTrained + ", declawed=" + declawed
-				+ ", photosUrl=" + photosUrl + ", tags=" + tags + "]";
+				+ ", photosUrl=" + photosUrl + ", tags=" + tags + ", description=" + description+ "]";
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

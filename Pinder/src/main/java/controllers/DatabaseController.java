@@ -166,6 +166,11 @@ public class DatabaseController {
 			boolean spayedNeutered = Boolean.parseBoolean( jo.getJSONObject("attributes").get("spayed_neutered").toString()); 
 			boolean houseTrained = Boolean.parseBoolean( jo.getJSONObject("attributes").get("house_trained").toString());
 			boolean declawed = Boolean.parseBoolean( jo.getJSONObject("attributes").get("declawed").toString()); 
+			
+			String description = "";
+			if(jo.get("description").toString() != null){
+				description = jo.get("description").toString();
+			}
 
 			
 			String photosUrl[] = new String[jo.getJSONArray("photos").length()];
@@ -182,7 +187,7 @@ public class DatabaseController {
 			animals[i] = new Animal(id, organizationId, type, breed, size, gender, age,
 					status, name, organization, goodWithChildren, goodWithDogs,
 					goodWithCats, location, distance, spayedNeutered, houseTrained,
-					declawed, photosUrl, tags);
+					declawed, photosUrl, tags, description);
 			}
 		return animals;
 	}
