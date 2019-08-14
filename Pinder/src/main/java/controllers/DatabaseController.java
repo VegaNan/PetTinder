@@ -284,28 +284,29 @@ public class DatabaseController {
 			documentNo.append("\"" + noMap.getKey() + "\"", (Object)noMap.getValue());
 			noArr.add(documentNo);
 		}
-//		System.out.println(matchedArr);		
+//		System.out.println(matchedArr);
 		
-		BasicDBObject matchedDocument = new BasicDBObject();
-		matchedDocument.append("$set", new BasicDBObject().append("matchedMap", matchedArr));		
 		
-		BasicDBObject searchQuery = new BasicDBObject().append("matchedArr", matchedArr);
-		
-		userCollection.updateOne(searchQuery, matchedDocument);
-		
-		BasicDBObject maybeDocument = new BasicDBObject();
-		maybeDocument.append("$set", new BasicDBObject().append("maybeMap", maybeArr));
-		
-		searchQuery = new BasicDBObject().append("maybeArr", maybeArr);
-		
-		userCollection.updateOne(searchQuery, maybeDocument);
-		
-		BasicDBObject noDocument = new BasicDBObject();
-		noDocument.append("$set", new BasicDBObject().append("noMap", noArr));
-		
-		searchQuery = new BasicDBObject().append("noArr", noArr);
-		
-		userCollection.updateOne(searchQuery, noDocument);
+//		BasicDBObject matchedDocument = new BasicDBObject();
+//		matchedDocument.append("$set", new BasicDBObject().append("matchedMap", matchedArr));		
+//		
+//		BasicDBObject searchQuery = new BasicDBObject().append("matchedArr", matchedArr);
+//		
+//		userCollection.updateOne(searchQuery, matchedDocument);
+//		
+//		BasicDBObject maybeDocument = new BasicDBObject();
+//		maybeDocument.append("$set", new BasicDBObject().append("maybeMap", maybeArr));
+//		
+//		searchQuery = new BasicDBObject().append("maybeArr", maybeArr);
+//		
+//		userCollection.updateOne(searchQuery, maybeDocument);
+//		
+//		BasicDBObject noDocument = new BasicDBObject();
+//		noDocument.append("$set", new BasicDBObject().append("noMap", noArr));
+//		
+//		searchQuery = new BasicDBObject().append("noArr", noArr);
+//		
+//		userCollection.updateOne(searchQuery, noDocument);
 		
 	}
 	

@@ -27,7 +27,6 @@ public class SwipeyPageController {
 
 	public void setUser(User user) {
 		SwipeyPageController.currentUser = user;
-		dbc.storeUser(currentUser);
 		currentAnimalArray = dbc.getAnimalsBy("species", currentUser.getAnimalPref());
 		currentAnimal = currentAnimalArray[inArraySlot];
 	}
