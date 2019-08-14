@@ -1,0 +1,25 @@
+AnchorPane {
+	-fx-background-color: linear-gradient(to bottom, #ffa500 0%, #ff0000 100%);
+}
+
+#Name {
+	-fx-text-alignment: center;
+	-fx-font-size: 60px;
+	-fx-font-family: "Letterpress", "Scrubby", "monospace";
+	-fx-font-weight: 500;
+	-fx-text-fill: #fff4f0;
+}
+
+#Memo {
+	-fx-wrap-text: true;
+	-fx-font-size: 16px;
+	-fx-text-alignment: center;
+	-fx-text-fill: #fff4f0;
+}
+
+Pane {
+	-fx-border-style: solid;
+	-fx-border-color: #fffaf0;
+	-fx-border-radius: 3.5px;
+	-fx-background-color: rgba(255, 250, 240, 0.25);
+}
