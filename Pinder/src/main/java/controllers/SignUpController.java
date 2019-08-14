@@ -64,6 +64,7 @@ public class SignUpController {
 			newUser.setLastName(lastNameField.getText().trim());
 			newUser.setEmail(emailField.getText().trim());
 			newUser.setPassword(passwordField.getText().trim());
+			newUser.setLocation(locationField.getText().trim());
 			
 			if(dogRadioButton.isSelected()) {
 				newUser.setAnimalPref("Dog");
