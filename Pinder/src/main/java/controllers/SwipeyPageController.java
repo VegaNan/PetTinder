@@ -106,18 +106,15 @@ public class SwipeyPageController{
 		inArraySlot++;
 		if(inArraySlot < currentAnimalArray.length) {
 			if(currentUser.getMatched().contains((currentAnimalArray)[inArraySlot])) {
-				System.out.println("skipping pet");
 				inArraySlot++;
 				newPet();
 			}else {
 				currentAnimal = currentAnimalArray[inArraySlot];
 				Image image = new Image(currentAnimalArray[inArraySlot].getPhotosUrl()[0]);
-				System.out.println(currentAnimal.toString());
 				animalView.setImage(image);
 				primaryStage.show();
 			}
 		}else {
-			System.out.println("out of pets");
 			Image image = new Image(url);
 			animalView.setImage(image);
 			primaryStage.show();

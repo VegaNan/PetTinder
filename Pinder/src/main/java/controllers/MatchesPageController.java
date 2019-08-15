@@ -36,7 +36,6 @@ public class MatchesPageController {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(filename));
 		SwipeyPageController controller = new SwipeyPageController();
 		loader.setController(controller);
-		System.out.println(controller);
 		
 		controller.setPrimaryStage(primaryStage);
 		controller.setUser(currentUser);
