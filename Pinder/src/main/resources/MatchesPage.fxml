@@ -20,7 +20,9 @@
             <Label layoutX="159.0" layoutY="54.0" text="Your Loved Animals"/>
 
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#backToSwipey" prefHeight="10.0" prefWidth="60.0" text="Back" />
-			<Button layoutX="300.0" layoutY="10.0" mnemonicParsing="false" onAction="#setPet" prefHeight="10.0" prefWidth="80.0" text="Next Page" />
+			<Button layoutX="300.0" layoutY="10.0" mnemonicParsing="false" onAction="#setPet" prefHeight="10.0" prefWidth="100.0" text="Next Page" />
+			<Button layoutX="200.0" layoutY="10.0" mnemonicParsing="false" onAction="#setPetBack" prefHeight="10.0" prefWidth="100.0" text="Last Page" />
+			
          </children>
       </Pane>
       <ScrollPane layoutY="150.0" prefHeight="550.0" prefWidth="450.0">

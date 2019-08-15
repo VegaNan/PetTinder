@@ -101,6 +101,7 @@ public class SwipeyPageController{
 	}
 	
 	public void newPet() {
+		//TODO fix this
 		imageNum = 0;
 		inArraySlot++;
 		if(inArraySlot < currentAnimalArray.length) {

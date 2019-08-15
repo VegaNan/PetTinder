@@ -2,7 +2,6 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.bson.Document;
 import org.json.JSONArray;
@@ -319,25 +318,25 @@ public class DatabaseController {
 	
 	public User getUser(String email, String password) {
 		User user = null;
-		String correctPassword = null;
-		
-		MongoCollection<Document> userResults = userCollection;
-		BasicDBObject fields = new BasicDBObject();
-		fields.put("email", email);
-		Iterable<Document> cursor = userResults.find(fields);
-		
-		for(Document doc : cursor) {
-			correctPassword = (String) doc.get("password");
-			if(password.equals(correctPassword)) {
-				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
-				user.setAnimalPref(doc.getString("pref"));
-				ArrayList<String> = doc.getList("matchedMap", ArrayList<Animal);
-				user.setMatched(doc.getString(matched));
-				user.setMaybe(doc.getString("maybeMap"));
-				user.setNo(doc.getString("noMap"));
-			}
-		}
-		
+//		String correctPassword = null;
+//		
+//		MongoCollection<Document> userResults = userCollection;
+//		BasicDBObject fields = new BasicDBObject();
+//		fields.put("email", email);
+//		Iterable<Document> cursor = userResults.find(fields);
+//		
+//		for(Document doc : cursor) {
+//			correctPassword = (String) doc.get("password");
+//			if(password.equals(correctPassword)) {
+//				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
+//				user.setAnimalPref(doc.getString("pref"));
+//				ArrayList<String> arrS= doc.getList("matchedMap", ArrayList<Animal>);
+//				user.setMatched(doc.getString(matched));
+//				user.setMaybe(doc.getString("maybeMap"));
+//				user.setNo(doc.getString("noMap"));
+//			}
+//		}
+//		
 		return user;
 	}
 	

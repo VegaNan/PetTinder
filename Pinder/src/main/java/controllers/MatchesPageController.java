@@ -74,15 +74,77 @@ public class MatchesPageController {
 		MatchesPageController.animals = animals;
 	}
 	
+
 	public void setPet() {
 		currentPage++;
 		int slot = 0;
-		for(int i = 0; i < animals.length; i ++) {
+		while(currentAnimal< animals.length && slot < 10) {
 			Animal animal = animals[currentAnimal];
 			String photo = animal.getPhotosUrl()[0];
 			String text = animal.getDescription();
 			Image photoImg = new Image(photo);
+			switch(slot){
+			case 0:
+				petimg0.setImage(photoImg);
+				pettxt0.setText(text);
+				break;
+			case 1:
+				petimg1.setImage(photoImg);
+				pettxt1.setText(animal.getDescription());
+				break;
+			case 2:
+				petimg2.setImage(photoImg);
+				pettxt2.setText(animal.getDescription());
+				break;
+			case 3:
+				petimg3.setImage(photoImg);
+				pettxt3.setText(animal.getDescription());
+				break;
+			case 4:		
+				petimg4.setImage(photoImg);
+				pettxt4.setText(animal.getDescription());
+				break;
+			case 5:
+				petimg5.setImage(photoImg);
+				pettxt5.setText(animal.getDescription());
+				break;
+			case 6:
+				petimg6.setImage(photoImg);
+				pettxt6.setText(animal.getDescription());
+				break;
+			case 7:
+				petimg7.setImage(photoImg);
+				pettxt7.setText(animal.getDescription());
+				break;
+			case 8:
+				petimg8.setImage(photoImg);
+				pettxt8.setText(animal.getDescription());
+				break;
+			case 9:
+				petimg9.setImage(photoImg);
+				pettxt9.setText(animal.getDescription());
+				break;
+				
+			}
+			currentAnimal++;
+			slot++;
 	
+		Stage window = primaryStage;
+		window.show();
+		}
+	}
+	public void setPetBack() {
+		currentPage--;
+		if(currentAnimal >= 20) {
+			currentAnimal -=20;
+		}
+		int slot = 0;
+		while(currentAnimal< animals.length && slot < 10) {
+			Animal animal = animals[currentAnimal];
+			String photo = animal.getPhotosUrl()[0];
+			String text = animal.getDescription();
+			Image photoImg = new Image(photo);
+			
 			switch(slot){
 			case 0:
 				petimg0.setImage(photoImg);
