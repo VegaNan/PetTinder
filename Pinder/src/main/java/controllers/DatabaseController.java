@@ -58,19 +58,17 @@ public class DatabaseController {
 	}
 	
 	public Animal getAnimalById(int id) {
+		String animal = "";
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
-		FindIterable<Document> cursor = collectionResults.find(fields);
-		String dbString = cursor.first().toString();
-		
-		Animal animal = createAnimalObjects(dbString)[0];
-		return animal;
+		Iterable<Document> cursor = collectionResults.find(fields);
+		for(Document doc: cursor) {
+			animal+=doc.toJson();
+		}
+		Animal finanimal = createAnimalObjects(animal)[0];
+		return finanimal;
 	}
-	
-	
-	
-	
 	
 	public Organization getOrganizationById(String id) {
 		MongoCollection<Document> collectionResults = organizationCollection;
@@ -275,32 +273,32 @@ public class DatabaseController {
 		List<Document> matchedArr = new ArrayList<>();
 		List<Document> maybeArr = new ArrayList<>();
 		List<Document> noArr = new ArrayList<>();
-		Animal[] animals = new Animal[user.getMatched().size()];
-		user.getMatched().toArray(animals);
-		for(Animal animal : animals) {
+		
+		String[] animalStr = new String[user.getMatched().size()];
+		user.getMatched().toArray(animalStr);
+		
+		for(int i = 0; i < user.getMatched().size(); i ++) {
 			Document documentMatched = new Document();
-			documentMatched.append("\""+ "\"", animal.getDbString());
+			documentMatched.append("\"ID"+ "\"", animalStr[i]);
 			matchedArr.add(documentMatched);
 		}
-		
 		document.append("matchedMap", matchedArr);
 		
-		animals = new Animal[user.getMaybe().size()];
-		user.getMaybe().toArray(animals);
-		for(Animal animal : animals) {
-			Document documentMaybe = new Document();
-			documentMaybe.append("\""+ "\"", animal.getDbString());
-			maybeArr.add(documentMaybe);
+		animalStr = new String[user.getMaybe().size()];
+		user.getMaybe().toArray(animalStr);
+		for(int i = 0; i < user.getMaybe().size(); i ++) {
+			Document documentMatched = new Document();
+			documentMatched.append("\"ID"+ "\"", animalStr[i]);
+			matchedArr.add(documentMatched);
 		}
-
 		document.append("maybeMap", maybeArr);
 		
-		animals = new Animal[user.getNo().size()];
-		user.getNo().toArray(animals);
-		for(Animal animal : animals) {
-			Document documentNo = new Document();
-			documentNo.append("\""+ "\"", animal.getDbString());
-			noArr.add(documentNo);
+		animalStr = new String[user.getNo().size()];
+		user.getNo().toArray(animalStr);
+		for(int i = 0; i < user.getNo().size(); i ++) {
+			Document documentMatched = new Document();
+			documentMatched.append("\"ID"+ "\"", animalStr[i]);
+			matchedArr.add(documentMatched);
 		}
 
 		document.append("noMap", noArr);
@@ -333,4 +331,4 @@ public class DatabaseController {
 //		
 		return user;
 	}
-	}
+}

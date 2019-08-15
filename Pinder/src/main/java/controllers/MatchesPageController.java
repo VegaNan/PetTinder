@@ -21,8 +21,9 @@ public class MatchesPageController {
 	private int inArraySlot;
 	private int currentPage = 0;
 	private int currentAnimal = 0;
-	private static Animal[] animals;
+	private static String[] animalIds;
 	
+
 	@FXML
 	ImageView petimg0, petimg1, petimg2, petimg3, petimg4, petimg5, petimg6, petimg7, petimg8, petimg9;
 	@FXML
@@ -57,6 +58,14 @@ public class MatchesPageController {
 		MatchesPageController.currentUser = user;
 	}
 	
+	public static String[] getAnimalIds() {
+		return animalIds;
+	}
+	
+	public static void setAnimalIds(String[] animalIds) {
+		MatchesPageController.animalIds = animalIds;
+	}
+	
 	public int getInArraySlot() {
 		return inArraySlot;
 	}
@@ -64,21 +73,13 @@ public class MatchesPageController {
 	public void setInArraySlot(int inArraySlot) {
 		this.inArraySlot = inArraySlot;
 	}
-	
-	public Animal[] getAnimals() {
-		return animals;
-	}
-
-	public void setAnimals(Animal[] animals) {
-		MatchesPageController.animals = animals;
-	}
-	
 
 	public void setPet() {
 		currentPage++;
 		int slot = 0;
-		while(currentAnimal< animals.length && slot < 10) {
-			Animal animal = animals[currentAnimal];
+		while(currentAnimal < animalIds.length && slot < 10) {
+			int id = Integer.parseInt(animalIds[currentAnimal]);
+			Animal animal = dbc.getAnimalById(id);
 			String photo = animal.getPhotosUrl()[0];
 			String text = animal.getDescription();
 			Image photoImg = new Image(photo);
@@ -138,8 +139,9 @@ public class MatchesPageController {
 			currentAnimal -=20;
 		}
 		int slot = 0;
-		while(currentAnimal< animals.length && slot < 10) {
-			Animal animal = animals[currentAnimal];
+		while(currentAnimal< animalIds.length && slot < 10) {
+			int id = Integer.parseInt(animalIds[currentAnimal]);
+			Animal animal = dbc.getAnimalById(id);
 			String photo = animal.getPhotosUrl()[0];
 			String text = animal.getDescription();
 			Image photoImg = new Image(photo);

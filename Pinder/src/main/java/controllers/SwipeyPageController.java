@@ -42,7 +42,7 @@ public class SwipeyPageController{
 	}
 	
 	public void matchesPage() throws IOException {
-		Animal[] animals = new Animal[currentUser.getMatched().size()];
+		String[] animals = new String[currentUser.getMatched().size()];
 		currentUser.getMatched().toArray(animals);
 		
 		Parent parent = FXMLLoader.load(getClass().getResource("/MatchesPage.fxml"));
@@ -53,7 +53,7 @@ public class SwipeyPageController{
 		MatchesPageController controller = new MatchesPageController();
 		
 		controller.setUser(currentUser);
-		controller.setAnimals(animals);
+		controller.setAnimalIds(animals);
 		controller.setPrimaryStage(primaryStage);
 		
 		loader.setController(controller);
