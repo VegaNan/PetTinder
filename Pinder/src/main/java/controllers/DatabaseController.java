@@ -1,5 +1,4 @@
 package controllers;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -327,7 +326,6 @@ public class DatabaseController {
 			correctPassword = (String) doc.get("password");
 			if(password.equals(correctPassword)) {
 				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
-//				user
 			}
 		}
 		
