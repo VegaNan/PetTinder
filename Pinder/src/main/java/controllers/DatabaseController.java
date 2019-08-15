@@ -331,8 +331,18 @@ public class DatabaseController {
 			if(password.equals(correctPassword)) {
 				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
 				user.setAnimalPref(doc.getString("pref"));
-				ArrayList<String> = doc.getList("matchedMap", ArrayList<Animal);
-				user.setMatched(doc.getString(matched));
+				Document document = doc.getList(key, clazz)
+				
+//				for(Object animal : user.getMatched().toArray()) {
+//					Document documentMatched = new Document();
+//					documentMatched.append("\""  + "\"", (Object)animal);
+//					matchedArr.add(documentMatched);
+//				}
+				
+				for(int i = 0; i < animals.size(); i++) {
+					System.out.println(animals.get(i).toString());
+				}
+				user.setMatched(doc.getString("matchedMap").toString());
 				user.setMaybe(doc.getString("maybeMap"));
 				user.setNo(doc.getString("noMap"));
 			}
