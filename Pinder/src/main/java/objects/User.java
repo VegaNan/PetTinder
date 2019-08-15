@@ -1,6 +1,7 @@
 
 package objects;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class User {
 	private String location;
 	private String email;
 	private String pref;
-	private HashMap<Integer, String> matchedMap = new HashMap<>();
+	private ArrayList<Animal> matchedArr = new ArrayList<Animal>();
 	private HashMap<Integer, String> maybeMap = new HashMap<>();
 	private HashMap<Integer, String> noMap = new HashMap<>();
 	
@@ -78,12 +79,12 @@ public class User {
 		this.pref = pref;
 	}
 	
-	public void addAnimalToMatched(int id, String animalName) {
-		matchedMap.put(id, animalName);
+	public void addAnimalToMatched(Animal animal) {
+		matchedArr.add(animal);
 	}
 	
-	public HashMap<Integer, String> getMatchedMap() {
-		return matchedMap;
+	public ArrayList<Animal> getMatched(){
+		return matchedArr;
 	}
 	
 	public void setMatchedMap(List<Document> matchedArr) {

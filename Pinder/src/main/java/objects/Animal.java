@@ -25,6 +25,8 @@ public class Animal {
 	private String description;
 	private ArrayList<String> tags = new ArrayList<>();
 	
+	private String dbString;
+	
 	
 	public Animal() {
 		
@@ -33,7 +35,7 @@ public class Animal {
 	public Animal(int id, String organizationId, String type, String breed, String size, String gender, String age,
 			String status, String name, String organization, boolean goodWithChildren, boolean goodWithDogs,
 			boolean goodWithCats, String location, double distance, boolean spayedNeutered, boolean houseTrained,
-			boolean declawed, String[] photosUrl, ArrayList<String> tags, String description) {
+			boolean declawed, String[] photosUrl, ArrayList<String> tags, String description, String dbString) {
 		super();
 		this.id = id;
 		this.organizationId = organizationId;
@@ -56,6 +58,7 @@ public class Animal {
 		this.photosUrl = photosUrl;
 		this.tags = tags;
 		this.description = description;
+		this.dbString = dbString;
 	}
 
 
@@ -236,6 +239,14 @@ public class Animal {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getDbString() {
+		return dbString;
+	}
+
+	public void setDbString(String dbString) {
+		this.dbString = dbString;
 	}
 	
 	
