@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.bson.Document;
 import org.json.JSONArray;
@@ -32,10 +33,11 @@ public class DatabaseController {
 		animalCollection = database.getCollection("animals");
 		organizationCollection = database.getCollection("organizations");
 		userCollection = database.getCollection("users");
-
+		System.out.println("---if you got here, it got database correctly :) ---");
 	}
 
 	public void insertAnimalRecords(String recordInfo) {
+		System.out.println("inserting record page");
 		JSONObject obj = new JSONObject(recordInfo);
 		JSONArray jsonArr = obj.getJSONArray("animals");
 		for(int i = 0; i < jsonArr.length(); i++) {
@@ -47,6 +49,7 @@ public class DatabaseController {
 	}
 	
 	public void insertOrganizationRecords(String recordInfo) {
+		System.out.println("inserting record page");
 		JSONObject obj = new JSONObject(recordInfo);
 		JSONArray jsonArr = obj.getJSONArray("organizations");
 		for(int i = 0; i < jsonArr.length(); i++) {
@@ -58,16 +61,14 @@ public class DatabaseController {
 	}
 	
 	public Animal getAnimalById(int id) {
-		String animal = "";
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
-		Iterable<Document> cursor = collectionResults.find(fields);
-		for(Document doc: cursor) {
-			animal+=doc.toJson();
-		}
-		Animal finanimal = createAnimalObjects(animal)[0];
-		return finanimal;
+		FindIterable<Document> cursor = collectionResults.find(fields);
+		String dbString = cursor.first().toString();
+		
+		Animal animal = createAnimalObjects(dbString)[0];
+		return animal;
 	}
 	
 	public Organization getOrganizationById(String id) {
@@ -89,6 +90,7 @@ public class DatabaseController {
 		for(Document doc: cursor) {
 			animals+=doc.toJson();
 			animals+=doc.toJson() + "~";
+
 		}
 		Animal[] animalArr = createAnimalObjects(animals);
 		return animalArr;
@@ -101,6 +103,8 @@ public class DatabaseController {
 		fields.put(key, value);
 		Iterable<Document> cursor = collectionResults.find(fields);
 		for(Document doc: cursor) {
+
+			System.out.println(doc.toString());
 			animals+=doc.toJson() + "~";
 
 		}
@@ -119,6 +123,7 @@ public class DatabaseController {
 		
 		for(Document doc: cursor) {
 			String id = doc.getString("id");
+			System.out.println(id);
 			MongoCollection<Document> animalResults = animalCollection;
 			BasicDBObject fields2 = new BasicDBObject();
 			fields2.put("organization_id", id);
@@ -134,14 +139,16 @@ public class DatabaseController {
 	
 	public Animal[] createAnimalObjects(String dbString) {
 		String[] dbAnimals = dbString.split("~");
+		System.out.println(dbString);
 		
 		int animalNum = dbAnimals.length;
 		Animal[] animals = new Animal[animalNum];
 		
 		for(int i = 0; i < animalNum; i++) {
+			System.out.println(dbAnimals[i]);
 			JSONObject jo = new JSONObject(dbAnimals[i]);
 
-			String id = jo.get("id").toString();
+			int id = Integer.parseInt(jo.get("id").toString());
 			String organizationId = jo.getString("organization_id");
 			String type = jo.getString("type"); 
 			String breed = jo.getJSONObject("breeds").getString("primary"); 
@@ -187,12 +194,14 @@ public class DatabaseController {
 
 	public Organization[] createOrganizationObjects(String dbString){
 		String[] dbOrgs = dbString.split("~");
+		System.out.println(dbString);
 		
 		int dbLength = dbOrgs.length;
 		Organization[] orgArr = new Organization[dbLength];
 		
 		
 		for(int i = 0; i < dbLength; i++) {
+			System.out.println(dbOrgs[i]);
 			JSONObject jo = new JSONObject(dbOrgs[i]);
 
 			String organizationId = jo.getString("id"); 
@@ -273,32 +282,32 @@ public class DatabaseController {
 		List<Document> matchedArr = new ArrayList<>();
 		List<Document> maybeArr = new ArrayList<>();
 		List<Document> noArr = new ArrayList<>();
-		
-		String[] animalStr = new String[user.getMatched().size()];
-		user.getMatched().toArray(animalStr);
-		
-		for(int i = 0; i < user.getMatched().size(); i ++) {
+		Animal[] animals = new Animal[user.getMatched().size()];
+		user.getMatched().toArray(animals);
+		for(Animal animal : animals) {
 			Document documentMatched = new Document();
-			documentMatched.append("\"ID"+ "\"", animalStr[i]);
+			documentMatched.append("\""+ "\"", animal.getDbString());
 			matchedArr.add(documentMatched);
 		}
+		
 		document.append("matchedMap", matchedArr);
 		
-		animalStr = new String[user.getMaybe().size()];
-		user.getMaybe().toArray(animalStr);
-		for(int i = 0; i < user.getMaybe().size(); i ++) {
-			Document documentMatched = new Document();
-			documentMatched.append("\"ID"+ "\"", animalStr[i]);
-			matchedArr.add(documentMatched);
+		animals = new Animal[user.getMaybe().size()];
+		user.getMaybe().toArray(animals);
+		for(Animal animal : animals) {
+			Document documentMaybe = new Document();
+			documentMaybe.append("\""+ "\"", animal.getDbString());
+			maybeArr.add(documentMaybe);
 		}
+
 		document.append("maybeMap", maybeArr);
 		
-		animalStr = new String[user.getNo().size()];
-		user.getNo().toArray(animalStr);
-		for(int i = 0; i < user.getNo().size(); i ++) {
-			Document documentMatched = new Document();
-			documentMatched.append("\"ID"+ "\"", animalStr[i]);
-			matchedArr.add(documentMatched);
+		animals = new Animal[user.getNo().size()];
+		user.getNo().toArray(animals);
+		for(Animal animal : animals) {
+			Document documentNo = new Document();
+			documentNo.append("\""+ "\"", animal.getDbString());
+			noArr.add(documentNo);
 		}
 
 		document.append("noMap", noArr);
@@ -310,25 +319,36 @@ public class DatabaseController {
 	
 	public User getUser(String email, String password) {
 		User user = null;
-//		String correctPassword = null;
-//		
-//		MongoCollection<Document> userResults = userCollection;
-//		BasicDBObject fields = new BasicDBObject();
-//		fields.put("email", email);
-//		Iterable<Document> cursor = userResults.find(fields);
-//		
-//		for(Document doc : cursor) {
-//			correctPassword = (String) doc.get("password");
-//			if(password.equals(correctPassword)) {
-//				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
-//				user.setAnimalPref(doc.getString("pref"));
-//				ArrayList<String> arrS= doc.getList("matchedMap", ArrayList<Animal>);
-//				user.setMatched(doc.getString(matched));
-//				user.setMaybe(doc.getString("maybeMap"));
-//				user.setNo(doc.getString("noMap"));
-//			}
-//		}
-//		
+		String correctPassword = null;
+		
+		MongoCollection<Document> userResults = userCollection;
+		BasicDBObject fields = new BasicDBObject();
+		fields.put("email", email);
+		Iterable<Document> cursor = userResults.find(fields);
+		
+		for(Document doc : cursor) {
+			correctPassword = (String) doc.get("password");
+			if(password.equals(correctPassword)) {
+				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
+				user.setAnimalPref(doc.getString("pref"));
+				Document document = doc.getList(key, clazz)
+				
+//				for(Object animal : user.getMatched().toArray()) {
+//					Document documentMatched = new Document();
+//					documentMatched.append("\""  + "\"", (Object)animal);
+//					matchedArr.add(documentMatched);
+//				}
+				
+				for(int i = 0; i < animals.size(); i++) {
+					System.out.println(animals.get(i).toString());
+				}
+				user.setMatched(doc.getString("matchedMap").toString());
+				user.setMaybe(doc.getString("maybeMap"));
+				user.setNo(doc.getString("noMap"));
+			}
+		}
+		
 		return user;
 	}
+	
 }

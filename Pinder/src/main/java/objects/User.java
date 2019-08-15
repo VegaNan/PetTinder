@@ -16,9 +16,9 @@ public class User {
 	private String location;
 	private String email;
 	private String pref;
-	private ArrayList<String> matchedArr = new ArrayList<String>();
-	private ArrayList<String> maybeMap = new ArrayList<String>();
-	private ArrayList<String> noMap = new ArrayList<String>();
+	private ArrayList<String> matchedArr = new ArrayList<>();
+	private ArrayList<String> maybeMap = new ArrayList<>();
+	private ArrayList<String> noMap = new ArrayList<>();
 	
 	public User(){
 		
@@ -80,15 +80,15 @@ public class User {
 		this.pref = pref;
 	}
 	
-	public void addAnimalToMatched(Animal animal) {
-		matchedArr.add(animal.getId());
+	public void addAnimalToMatched(String id) {
+		matchedArr.add(id);
 	}
 	
 	public ArrayList<String> getMatched(){
 		return matchedArr;
 	}
 	
-	public void setMatched(String dbString) {
+	public void setMatched(String id) {
 		Animal[] animals = this.createAnimalObjects(dbString);
 		
 		for(int i = 0; i < animals.length; i++) {
