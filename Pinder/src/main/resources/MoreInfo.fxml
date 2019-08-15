@@ -14,7 +14,7 @@
    <children>
       <Pane prefHeight="100.0" prefWidth="450.0">
          <children>
-            <Label fx:id="animalNameLabel" layoutX="200.0" layoutY="42.5" prefHeight="25.0" prefWidth="50.0" text="Name" />
+            <Label fx:id="animalNameLabel" alignment="CENTER" layoutX="150.0" layoutY="20.0" prefHeight="60.0" prefWidth="150.0" text="Name" />
             <Button fx:id="backButton" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#backAction" prefHeight="15.0" prefWidth="60.0" text="Back" />
          </children> 
       </Pane>
@@ -43,5 +43,7 @@
             <TextArea prefHeight="175.0" prefWidth="450.0" />
          </children>
       </Pane>
+      <Button layoutX="5.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="Button" />
+      <Button layoutX="405.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="Button" />
    </children>
 </AnchorPane>

@@ -19,5 +19,7 @@
             <Button fx:id="noButton" layoutX="60.0" layoutY="47.5" mnemonicParsing="false" onAction="#noAction" prefHeight="30.0" prefWidth="60.0" text="No" />
          </children>
       </Pane>
+      <Button layoutX="5.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="Button" />
+      <Button layoutX="405.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="Button" />
    </children>
 </AnchorPane>

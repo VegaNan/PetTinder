@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -49,16 +50,24 @@ public class SwipeyPageController {
 		MatchesPageController controller = new MatchesPageController();
 		controller.setUser(currentUser);
 		loader.setController(controller);
+		Animal[] animals = new Animal[currentUser.getMatched().size()];
+		
+		currentUser.getMatched().toArray(animals);
+		
 		
 		controller.setPrimaryStage(primaryStage);
+		controller.setPet(animals);
+		
 		window.setScene(scene);
+		
+		
 		window.show();		
 	}
 	
 	public void yesAction() {
 		if(currentAnimal !=null) {
-			currentUser.addAnimalToMatched(currentAnimal.getId(), currentAnimal.getName());
-      dbc.updateUser(currentUser);
+			currentUser.addAnimalToMatched(currentAnimal);
+			dbc.updateUser(currentUser);
 		}
 		newPet();
 	}
@@ -91,7 +100,7 @@ public class SwipeyPageController {
 		imageNum = 0;
 		inArraySlot++;
 		if(inArraySlot < currentAnimalArray.length) {
-			if(currentUser.getMatchedMap().get(currentAnimalArray[inArraySlot].getId()) != null) {
+			if(currentUser.getMatched().contains((currentAnimalArray)[inArraySlot])) {
 				System.out.println("skipping pet");
 				inArraySlot++;
 				newPet();
