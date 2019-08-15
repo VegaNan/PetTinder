@@ -1,0 +1,8 @@
+AnchorPane {
+	-fx-background-color: #fcfaf7;
+}
+
+#animalNameLabel {
+	-fx-text-fill: #e62e00;
+	-fx-font-size: 35px;
+}
