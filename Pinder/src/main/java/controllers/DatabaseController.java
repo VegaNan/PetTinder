@@ -333,5 +333,4 @@ public class DatabaseController {
 //		
 		return user;
 	}
-	
-}
+	}
