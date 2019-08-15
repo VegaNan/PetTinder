@@ -17,7 +17,7 @@
          <children>
 
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" text="Back" />
-            <Label layoutX="159.0" layoutY="54.0" text="Your Loved Animals" />
+            <Label alignment="CENTER" layoutY="55.0" prefHeight="50.0" prefWidth="450.0" text="Your Loved Animals" />
 
             <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#backToSwipey" prefHeight="10.0" prefWidth="60.0" text="Back" />
 
