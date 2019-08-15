@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
@@ -21,7 +20,8 @@
             <Label fx:id="Title" alignment="CENTER" layoutX="75.0" layoutY="55.0" prefWidth="300.0" text="Your Loved Animals" />
 
             <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#backToSwipey" prefHeight="10.0" prefWidth="60.0" text="Back" />
-
+			<Button layoutX="100.0" layoutY="10.0" mnemonicParsing="false" onAction="#setPetBack" prefHeight="10.0" prefWidth="100.0" text="Back"/>
+			<Button layoutX="200.0" layoutY="10.0" mnemonicParsing="false" onAction="#setPet" prefHeight="10.0" prefWidth="100.0" text="Forward"/>
          </children>
       </Pane>
       <ScrollPane layoutY="150.0" prefHeight="550.0" prefWidth="450.0">

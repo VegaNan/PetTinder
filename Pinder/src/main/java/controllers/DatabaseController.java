@@ -64,11 +64,18 @@ public class DatabaseController {
 		MongoCollection<Document> collectionResults = animalCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
-		FindIterable<Document> cursor = collectionResults.find(fields);
-		String dbString = cursor.first().toString();
+		String animal = "";
 		
-		Animal animal = createAnimalObjects(dbString)[0];
-		return animal;
+		Iterable<Document> cursor = collectionResults.find(fields);
+		for(Document doc: cursor) {
+			animal+=doc.toJson();
+			animal+=doc.toJson() + "~";
+		}
+		
+		Animal animalFin = createAnimalObjects(animal)[0];
+		return animalFin;
+		
+
 	}
 	
 	public Organization getOrganizationById(String id) {
@@ -284,22 +291,22 @@ public class DatabaseController {
 		List<Document> matchedArr = new ArrayList<>();
 		List<Document> maybeArr = new ArrayList<>();
 		List<Document> noArr = new ArrayList<>();
-		Animal[] animals = new Animal[user.getMatched().size()];
+		String[] animals = new String[user.getMatched().size()];
 		user.getMatched().toArray(animals);
-		for(Animal animal : animals) {
+		for(String id : animals) {
 			Document documentMatched = new Document();
-			documentMatched.append("\""+ "\"", animal.getDbString());
+			documentMatched.append("\"ID"+ "\"", id);
 			matchedArr.add(documentMatched);
 		}
 		
 		document.append("matchedMap", matchedArr);
 		
 
-		animals = new Animal[user.getMaybe().size()];
+		animals = new String[user.getMaybe().size()];
 		user.getMaybe().toArray(animals);
-		for(Animal animal : animals) {
+		for(String id: animals) {
 			Document documentMaybe = new Document();
-			documentMaybe.append("\""+ "\"", animal.getDbString());
+			documentMaybe.append("\"ID"+ "\"", id);
 
 			maybeArr.add(documentMaybe);
 		}
@@ -307,11 +314,11 @@ public class DatabaseController {
 		document.append("maybeMap", maybeArr);
 		
 
-		animals = new Animal[user.getNo().size()];
+		animals = new String[user.getNo().size()];
 		user.getNo().toArray(animals);
-		for(Animal animal : animals) {
+		for(String id : animals) {
 			Document documentNo = new Document();
-			documentNo.append("\""+ "\"", animal.getDbString());
+			documentNo.append("\"ID"+ "\"", id);
 			noArr.add(documentNo);
 		}
 		document.append("noMap", noArr);
