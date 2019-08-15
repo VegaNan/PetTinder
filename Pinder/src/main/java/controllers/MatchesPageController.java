@@ -22,7 +22,6 @@ public class MatchesPageController {
 	private int currentPage = 0;
 	private int currentAnimal = 0;
 	private static String[] animalIds;
-	
 
 	@FXML
 	ImageView petimg0, petimg1, petimg2, petimg3, petimg4, petimg5, petimg6, petimg7, petimg8, petimg9;
@@ -37,11 +36,9 @@ public class MatchesPageController {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(filename));
 		SwipeyPageController controller = new SwipeyPageController();
 		loader.setController(controller);
-		
 		controller.setPrimaryStage(primaryStage);
 		controller.setUser(currentUser);
 		controller.inArraySlot = inArraySlot;
-		
 		window.setScene(scene);
 		window.show();
 	}

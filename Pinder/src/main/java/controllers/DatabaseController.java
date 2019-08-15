@@ -66,17 +66,13 @@ public class DatabaseController {
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
 		String animal = "";
-		
 		Iterable<Document> cursor = collectionResults.find(fields);
 		for(Document doc: cursor) {
 			animal+=doc.toJson();
 			animal+=doc.toJson() + "~";
 		}
-		
 		Animal animalFin = createAnimalObjects(animal)[0];
 		return animalFin;
-		
-
 	}
 	
 	public Organization getOrganizationById(String id) {
