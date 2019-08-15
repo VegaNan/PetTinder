@@ -252,15 +252,15 @@ public class DatabaseController {
 			documentMaybe.append("\"" + maybeMap.getKey() + "\"", (Object)maybeMap.getValue());
 			maybeArr.add(documentMaybe);
 		}
-
-		document.append("maybeMap", maybeArr);
 		
+		document.append("maybeMap", maybeArr);
+
 		for(Map.Entry<Integer, String> noMap : user.getNoMap().entrySet()) {
 			Document documentNo = new Document();
 			documentNo.append("\"" + noMap.getKey() + "\"", (Object)noMap.getValue());
 			noArr.add(documentNo);
 		}
-		
+
 		document.append("noMap", noArr);
 		
 		userCollection.insertOne(document);
@@ -268,6 +268,17 @@ public class DatabaseController {
 	}
 	
 	public void updateUser(User user) {
+		BasicDBObject documentDelete = new BasicDBObject();
+		documentDelete.put("email", user.getEmail());
+		userCollection.deleteOne(documentDelete);
+		
+		Document document = new Document("firstName", user.getFirstName())
+				.append("lastName", user.getLastName())
+				.append("password", user.getPassword())
+				.append("location", user.getLocation())
+				.append("email", user.getEmail())
+				.append("pref", user.getAnimalPref());
+		
 		List<Document> matchedArr = new ArrayList<>();
 		List<Document> maybeArr = new ArrayList<>();
 		List<Document> noArr = new ArrayList<>();
@@ -279,17 +290,27 @@ public class DatabaseController {
 			matchedArr.add(documentMatched);
 		}
 		
+		document.append("matchedMap", matchedArr);
+		
 		for(Map.Entry<Integer, String> maybeMap : user.getMaybeMap().entrySet()) {
 			Document documentMaybe = new Document();
 			documentMaybe.append("\"" + maybeMap.getKey() + "\"", (Object)maybeMap.getValue());
 			maybeArr.add(documentMaybe);
 		}
+
+		document.append("maybeMap", maybeArr);
 		
 		for(Map.Entry<Integer, String> noMap : user.getNoMap().entrySet()) {
 			Document documentNo = new Document();
 			documentNo.append("\"" + noMap.getKey() + "\"", (Object)noMap.getValue());
 			noArr.add(documentNo);
 		}
+
+		
+		document.append("noMap", noArr);
+		
+		userCollection.insertOne(document);
+		System.out.println("Document inserted successfully");	
 
 	}
 	
