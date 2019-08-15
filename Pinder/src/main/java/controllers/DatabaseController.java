@@ -166,6 +166,11 @@ public class DatabaseController {
 			boolean spayedNeutered = Boolean.parseBoolean( jo.getJSONObject("attributes").get("spayed_neutered").toString()); 
 			boolean houseTrained = Boolean.parseBoolean( jo.getJSONObject("attributes").get("house_trained").toString());
 			boolean declawed = Boolean.parseBoolean( jo.getJSONObject("attributes").get("declawed").toString()); 
+			
+			String description = "";
+			if(jo.get("description").toString() != null){
+				description = jo.get("description").toString();
+			}
 
 			
 			String photosUrl[] = new String[jo.getJSONArray("photos").length()];
@@ -182,7 +187,7 @@ public class DatabaseController {
 			animals[i] = new Animal(id, organizationId, type, breed, size, gender, age,
 					status, name, organization, goodWithChildren, goodWithDogs,
 					goodWithCats, location, distance, spayedNeutered, houseTrained,
-					declawed, photosUrl, tags);
+					declawed, photosUrl, tags, description, dbString);
 			}
 		return animals;
 	}
@@ -234,9 +239,9 @@ public class DatabaseController {
 		List<Document> maybeArr = new ArrayList<>();
 		List<Document> noArr = new ArrayList<>();
 		
-		for(Map.Entry<Integer, String> matchedMap : user.getMatchedMap().entrySet()) {
+		for(Object animal : user.getMatched().toArray()) {
 			Document documentMatched = new Document();
-			documentMatched.append("\"" + matchedMap.getKey() + "\"", (Object)matchedMap.getValue());
+			documentMatched.append("\""  + "\"", (Object)animal);
 			matchedArr.add(documentMatched);
 		}
 		
@@ -277,10 +282,11 @@ public class DatabaseController {
 		List<Document> matchedArr = new ArrayList<>();
 		List<Document> maybeArr = new ArrayList<>();
 		List<Document> noArr = new ArrayList<>();
-		
-		for(Map.Entry<Integer, String> matchedMap : user.getMatchedMap().entrySet()) {
+		Animal[] animals = new Animal[user.getMatched().size()];
+		user.getMatched().toArray(animals);
+		for(Animal animal : animals) {
 			Document documentMatched = new Document();
-			documentMatched.append("\"" + matchedMap.getKey() + "\"", (Object)matchedMap.getValue());
+			documentMatched.append("\""+ "\"", animal.getDbString());
 			matchedArr.add(documentMatched);
 		}
 		
@@ -299,11 +305,13 @@ public class DatabaseController {
 			documentNo.append("\"" + noMap.getKey() + "\"", (Object)noMap.getValue());
 			noArr.add(documentNo);
 		}
+
 		
 		document.append("noMap", noArr);
 		
 		userCollection.insertOne(document);
 		System.out.println("Document inserted successfully");	
+
 	}
 	
 	public User getUser(String email, String password) {
