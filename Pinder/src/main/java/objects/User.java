@@ -88,7 +88,7 @@ public class User {
 		return matchedArr;
 	}
 	
-	public void setMatchedMap(String dbString) {
+	public void setMatched(String dbString) {
 		Animal[] animals = this.createAnimalObjects(dbString);
 		
 		for(int i = 0; i < animals.length; i++) {
@@ -100,27 +100,31 @@ public class User {
 		maybeMap.add(animal);
 	}
 	
-	public ArrayList<Animal> getMaybeMap(){
+	public ArrayList<Animal> getMaybe(){
 		return maybeMap;
 	}
 	
-	public void setMaybeMap(List<Document> maybeArr) {
-		for(int i = 0; i < maybeArr.size(); i++) {
-			
+	public void setMaybe(String dbString) {
+		Animal[] animals = this.createAnimalObjects(dbString);
+		
+		for(int i = 0; i < animals.length; i++) {
+			matchedArr.add(animals[i]);
 		}
 	}
 	
-	public void addAnimalToNo(int id, String animalName) {
-		noMap.put(id, animalName);
+	public void addAnimalToNo(Animal animal) {
+		noMap.add(animal);
 	}
 	
-	public ArrayList<Animal> getNoMap(){
+	public ArrayList<Animal> getNo(){
 		return noMap;
 	}
 	
-	public void setNoMap(List<Document> noArr) {
-		for(int i = 0; i< noArr.size(); i++) {
-			
+	public void setNo(String dbString) {
+		Animal[] animals = this.createAnimalObjects(dbString);
+		
+		for(int i = 0; i < animals.length; i++) {
+			matchedArr.add(animals[i]);
 		}
 	}
 	

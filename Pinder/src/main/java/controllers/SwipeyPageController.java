@@ -74,17 +74,17 @@ public class SwipeyPageController {
 	
 	public void maybeAction() {
 		if(currentAnimal !=null) {
-			currentUser.addAnimalToMaybe(currentAnimal.getId(), currentAnimal.getName());
-      dbc.updateUser(currentUser);
+			currentUser.addAnimalToMaybe(currentAnimal);
+			dbc.updateUser(currentUser);
 		}
 		newPet();
 	}
 	
 	public void noAction() {
 		if(currentAnimal !=null) {
-			currentUser.addAnimalToNo(currentAnimal.getId(), currentAnimal.getName());
+			currentUser.addAnimalToNo(currentAnimal);
+			dbc.updateUser(currentUser);
 		}
-		dbc.updateUser(currentUser);
 		newPet();
 	}
 	
