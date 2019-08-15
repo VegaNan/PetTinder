@@ -3,6 +3,29 @@ AnchorPane {
 }
 
 #animalNameLabel {
-	-fx-text-fill: #e62e00;
-	-fx-font-size: 35px;
+	-fx-text-fill: #bd2222;
+	-fx-font-size: 32px;
+}
+
+Button {
+	-fx-text-fill: #bd2222;
+	-fx-background-color: #fcfaf7;
+	-fx-border-style: solid;
+	-fx-border-color: #bd2222;
+	-fx-border-radius: 3px;
+	
+}
+
+TextArea {
+	-fx-border-radius: 3px;
+	-fx-border-style: none;
+	-fx-text-fill: #21262c;
+	-fx-wrap-text: true;
+}
+
+GridPane {
+	-fx-font-size: 18px;
+	-fx-wrap-text: true;
+	-fx-display: flex;
+	-fx-align-items: center;
 }

@@ -221,6 +221,7 @@ public class DatabaseController {
 	}
 	
 	public User userLogin(String email, String password) {
+
 		User user = new User();
 		
 		
@@ -246,7 +247,7 @@ public class DatabaseController {
 		}
 		
 		document.append("matchedMap", matchedArr);
-		
+
 		for(Object animal : user.getMaybe().toArray()) {
 			Document documentMatched = new Document();
 			documentMatched.append("\""  + "\"", (Object)animal);
@@ -254,6 +255,7 @@ public class DatabaseController {
 		}
 		
 		document.append("maybeMap", maybeArr);
+
 
 		for(Object animal : user.getNo().toArray()) {
 			Document documentMatched = new Document();
@@ -292,16 +294,19 @@ public class DatabaseController {
 		
 		document.append("matchedMap", matchedArr);
 		
+
 		animals = new Animal[user.getMaybe().size()];
 		user.getMaybe().toArray(animals);
 		for(Animal animal : animals) {
 			Document documentMaybe = new Document();
 			documentMaybe.append("\""+ "\"", animal.getDbString());
+
 			maybeArr.add(documentMaybe);
 		}
 
 		document.append("maybeMap", maybeArr);
 		
+
 		animals = new Animal[user.getNo().size()];
 		user.getNo().toArray(animals);
 		for(Animal animal : animals) {
@@ -309,7 +314,6 @@ public class DatabaseController {
 			documentNo.append("\""+ "\"", animal.getDbString());
 			noArr.add(documentNo);
 		}
-
 		document.append("noMap", noArr);
 		
 		userCollection.insertOne(document);
@@ -330,6 +334,7 @@ public class DatabaseController {
 			correctPassword = (String) doc.get("password");
 			if(password.equals(correctPassword)) {
 				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
+
 				user.setAnimalPref(doc.getString("pref"));
 				Document document = doc.getList(key, clazz)
 				

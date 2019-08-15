@@ -3,24 +3,27 @@ AnchorPane {
 }
 
 #backButton {
-	-fx-text-fill: #ff0000;
+	-fx-text-fill: #bd2222;
 	-fx-background-color: #fcfaf7;
 	-fx-border-style: solid;
-	-fx-border-color: #ff0000;
+	-fx-border-color: #bd2222;
+	-fx-border-radius: 3px;
+	
 	
 }
 
-TextArea {
-	-fx-background-color: #fcfaf7;
+Label {
 	-fx-border-radius: 3px;
 	-fx-border-style: none;
 	-fx-text-fill: #21262c;
+	-fx-wrap-text: true;
 }
 
 ImageView {
-	-fx-border-radius: 50%;
+	-fx-background-radius: 50%;
 }
-Label {
+#Title {
 	-fx-font-size: 32px;
 	-fx-text-alignment: center;
+	-fx-text-fill: #bd2222;
 }

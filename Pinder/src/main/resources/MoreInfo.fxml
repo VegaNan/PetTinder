@@ -15,7 +15,7 @@
       <Pane prefHeight="100.0" prefWidth="450.0">
          <children>
             <Label fx:id="animalNameLabel" alignment="CENTER" layoutX="150.0" layoutY="20.0" prefHeight="60.0" prefWidth="150.0" text="Name" />
-            <Button fx:id="backButton" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" onAction="#backAction" prefHeight="15.0" prefWidth="60.0" text="Back" />
+            <Button fx:id="backButton" layoutX="10.0" layoutY="25.0" mnemonicParsing="false" onAction="#backAction" prefHeight="15.0" prefWidth="60.0" text="Back" />
          </children> 
       </Pane>
       <ImageView fitHeight="350.0" fitWidth="350.0" layoutX="50.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
