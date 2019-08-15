@@ -36,7 +36,6 @@ public class SwipeyPageController{
 		currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
 	}
 	
-	
 	public void profilePage() {
 		
 	}
@@ -104,12 +103,17 @@ public class SwipeyPageController{
 		//TODO fix this
 		imageNum = 0;
 		inArraySlot++;
+		
 		if(inArraySlot < currentAnimalArray.length) {
-			if(currentUser.getMatched().contains((currentAnimalArray)[inArraySlot])) {
+			if(currentUser.getMatched().contains((currentAnimalArray)[inArraySlot].getId()) 
+					|| currentUser.getMaybe().contains((currentAnimalArray)[inArraySlot].getId())
+					|| currentUser.getNo().contains((currentAnimalArray)[inArraySlot].getId())) {
+				System.out.println("skipping");
 				inArraySlot++;
 				newPet();
 			}else {
 				currentAnimal = currentAnimalArray[inArraySlot];
+				System.out.println(currentAnimal.getName());
 				Image image = new Image(currentAnimalArray[inArraySlot].getPhotosUrl()[0]);
 				animalView.setImage(image);
 				primaryStage.show();

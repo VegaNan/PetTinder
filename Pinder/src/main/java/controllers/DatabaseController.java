@@ -150,7 +150,6 @@ public class DatabaseController {
 		for(int i = 0; i < animalNum; i++) {
 			System.out.println(dbAnimals[i]);
 			JSONObject jo = new JSONObject(dbAnimals[i]);
-
 			String id = jo.get("id").toString();
 			String organizationId = jo.getString("organization_id");
 			String type = jo.getString("type"); 
