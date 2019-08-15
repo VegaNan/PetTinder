@@ -48,7 +48,7 @@ public class LoginPageController {
 	public void login() throws IOException{
 		if(!username.getText().trim().isEmpty() & !password.getText().trim().isEmpty()) {
 			//check that username and password are in database and match
-			User user = dbc.userLogin(username.getText(), password.getText());
+			User user = dbc.getUser(username.getText(), password.getText());
 			
 			if(user == null) {
 				//TODO show this on the GUI
