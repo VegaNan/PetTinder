@@ -2,7 +2,8 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.bson.Document;
 import org.json.JSONArray;
@@ -325,37 +326,84 @@ public class DatabaseController {
 	
 	public User getUser(String email, String password) {
 		User user = null;
-//		String correctPassword = null;
-//		
-//		MongoCollection<Document> userResults = userCollection;
-//		BasicDBObject fields = new BasicDBObject();
-//		fields.put("email", email);
-//		Iterable<Document> cursor = userResults.find(fields);
-//		
-//		for(Document doc : cursor) {
-//			correctPassword = (String) doc.get("password");
-//			if(password.equals(correctPassword)) {
-//				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
-//
-//				user.setAnimalPref(doc.getString("pref"));
-//				Document document = doc.getList(key, clazz)
-//				
-////				for(Object animal : user.getMatched().toArray()) {
-////					Document documentMatched = new Document();
-////					documentMatched.append("\""  + "\"", (Object)animal);
-////					matchedArr.add(documentMatched);
-////				}
-//				
-//				for(int i = 0; i < animals.size(); i++) {
-//					System.out.println(animals.get(i).toString());
+		String correctPassword = null;
+		
+		MongoCollection<Document> userResults = userCollection;
+		BasicDBObject fields = new BasicDBObject();
+		fields.put("email", email);
+		Iterable<Document> cursor = userResults.find(fields);
+		
+		for(Document doc : cursor) {
+			correctPassword = (String) doc.get("password");
+			if(password.equals(correctPassword)) {
+				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
+
+				ArrayList<String> matchedArr = (ArrayList<String>) doc.get("matchedMap");
+				createAnimalList(matchedArr);
+				user.setMatched(matchedArr);
+				
+				ArrayList<String> maybeArr = (ArrayList<String>) doc.get("maybeArr");
+				createAnimalList(maybeArr);
+				user.setMatched(maybeArr);
+				
+				ArrayList<String> noArr = (ArrayList<String>) doc.get("noArr");
+				createAnimalList(noArr);
+				user.setMatched(noArr);
+				
+//				for(Object animal : user.getMatched().toArray()) {
+//					Document documentMatched = new Document();
+//					documentMatched.append("\""  + "\"", (Object)animal);
+//					matchedArr.add(documentMatched);
 //				}
-//				user.setMatched(doc.getString("matchedMap").toString());
-//				user.setMaybe(doc.getString("maybeMap"));
-//				user.setNo(doc.getString("noMap"));
-//			}
-//		}
+			}
+		}
 		
 		return user;
+	}
+	
+	public ArrayList<String> createAnimalList(ArrayList<String> array){
+		final String idRegEx = "^\\{\"ID\"=([\\d]*)\\}$";
+		Pattern p = Pattern.compile(idRegEx);
+		System.out.println(array);
+		String result = "";
+//		for(int i = 0; i< array.size(); i++) {
+//			JSONObject jo = new JSONObject(array.get(i).toString());
+//			System.out.println(jo.toString());
+//		}
+		
+		System.out.println(result);
+		Matcher m = p.matcher(result);
+		
+		ArrayList<String> animals = new ArrayList<>();
+		while(m.find()) {
+			
+			animals.add(m.group(1));
+		}
+		
+//		System.out.println(dbAnimals[i]);
+//		JSONObject jo = new JSONObject(dbAnimals[i]);
+//
+//		String id = jo.get("id").toString();
+//		String organizationId = jo.getString("organization_id");
+//		String type = jo.getString("type"); 
+//		String breed = jo.getJSONObject("breeds").getString("primary"); 
+//		String size =  jo.getString("size"); 
+//		String gender =  jo.getString("gender");
+//		String age =  jo.getString("age");
+//		String status =  jo.getString("status");
+//		String name =  jo.getString("name");
+//		String organization = jo.getString("organization_id");
+//		boolean goodWithChildren = Boolean.parseBoolean( jo.getJSONObject("environment").get("children").toString()); 
+//		boolean goodWithDogs = Boolean.parseBoolean( jo.getJSONObject("environment").get("dogs").toString());
+//		boolean goodWithCats = Boolean.parseBoolean( jo.getJSONObject("environment").get("cats").toString()); 
+//		String location =  jo.getJSONObject("contact").getJSONObject("address").getString("city") + jo.getJSONObject("contact").getJSONObject("address").getString("state") +  jo.getJSONObject("contact").getJSONObject("address").getString("postcode")  ; 
+//		double distance = Double.parseDouble( jo.get("distance").toString()); 
+//		boolean spayedNeutered = Boolean.parseBoolean( jo.getJSONObject("attributes").get("spayed_neutered").toString()); 
+//		boolean houseTrained = Boolean.parseBoolean( jo.getJSONObject("attributes").get("house_trained").toString());
+//		boolean declawed = 
+		
+		
+		return animals;
 	}
 	
 }
