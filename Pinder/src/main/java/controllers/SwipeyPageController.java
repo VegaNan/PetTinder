@@ -56,12 +56,12 @@ public class SwipeyPageController {
 		
 		
 		controller.setPrimaryStage(primaryStage);
-		controller.setPet(animals);
+		//controller.setPet(animals);
 		
 		window.setScene(scene);
-		
-		
 		window.show();		
+		
+		
 	}
 	
 	public void yesAction() {
