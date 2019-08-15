@@ -16,9 +16,9 @@ public class User {
 	private String location;
 	private String email;
 	private String pref;
-	private ArrayList<Animal> matchedArr = new ArrayList<Animal>();
-	private ArrayList<Animal> maybeMap = new ArrayList<Animal>();
-	private ArrayList<Animal> noMap = new ArrayList<Animal>();
+	private ArrayList<String> matchedArr = new ArrayList<String>();
+	private ArrayList<String> maybeMap = new ArrayList<String>();
+	private ArrayList<String> noMap = new ArrayList<String>();
 	
 	public User(){
 		
@@ -81,10 +81,10 @@ public class User {
 	}
 	
 	public void addAnimalToMatched(Animal animal) {
-		matchedArr.add(animal);
+		matchedArr.add(animal.getId());
 	}
 	
-	public ArrayList<Animal> getMatched(){
+	public ArrayList<String> getMatched(){
 		return matchedArr;
 	}
 	
@@ -92,15 +92,15 @@ public class User {
 		Animal[] animals = this.createAnimalObjects(dbString);
 		
 		for(int i = 0; i < animals.length; i++) {
-			matchedArr.add(animals[i]);
+			matchedArr.add(animals[i].getId());
 		}
 	}
 	
 	public void addAnimalToMaybe(Animal animal) {
-		maybeMap.add(animal);
+		maybeMap.add(animal.getId());
 	}
 	
-	public ArrayList<Animal> getMaybe(){
+	public ArrayList<String> getMaybe(){
 		return maybeMap;
 	}
 	
@@ -108,15 +108,15 @@ public class User {
 		Animal[] animals = this.createAnimalObjects(dbString);
 		
 		for(int i = 0; i < animals.length; i++) {
-			matchedArr.add(animals[i]);
+			matchedArr.add(animals[i].getId());
 		}
 	}
 	
 	public void addAnimalToNo(Animal animal) {
-		noMap.add(animal);
+		noMap.add(animal.getId());
 	}
 	
-	public ArrayList<Animal> getNo(){
+	public ArrayList<String> getNo(){
 		return noMap;
 	}
 	
@@ -124,7 +124,7 @@ public class User {
 		Animal[] animals = this.createAnimalObjects(dbString);
 		
 		for(int i = 0; i < animals.length; i++) {
-			matchedArr.add(animals[i]);
+			matchedArr.add(animals[i].getId());
 		}
 	}
 	
@@ -139,7 +139,7 @@ public class User {
 			System.out.println(dbAnimals[i]);
 			JSONObject jo = new JSONObject(dbAnimals[i]);
 
-			int id = Integer.parseInt(jo.get("id").toString());
+			String id = jo.get("id").toString();
 			String organizationId = jo.getString("organization_id");
 			String type = jo.getString("type"); 
 			String breed = jo.getJSONObject("breeds").getString("primary"); 

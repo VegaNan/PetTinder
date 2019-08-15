@@ -3,7 +3,7 @@ package objects;
 import java.util.ArrayList;
 
 public class Animal {
-	private int id;
+	private String id;
 	private String organizationId;
 	private String type;
 	private String breed;
@@ -32,7 +32,7 @@ public class Animal {
 		
 	}
 	
-	public Animal(int id, String organizationId, String type, String breed, String size, String gender, String age,
+	public Animal(String id, String organizationId, String type, String breed, String size, String gender, String age,
 			String status, String name, String organization, boolean goodWithChildren, boolean goodWithDogs,
 			boolean goodWithCats, String location, double distance, boolean spayedNeutered, boolean houseTrained,
 			boolean declawed, String[] photosUrl, ArrayList<String> tags, String description, String dbString) {
@@ -63,11 +63,11 @@ public class Animal {
 
 
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

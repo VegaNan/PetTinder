@@ -17,10 +17,12 @@
          <children>
 
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" text="Back" />
-            <Label layoutX="159.0" layoutY="54.0" text="Your Loved Animals" />
+            <Label layoutX="159.0" layoutY="54.0" text="Your Loved Animals"/>
 
-            <Button fx:id="backToSwipey" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#backToSwipey" prefHeight="10.0" prefWidth="60.0" text="Back" />
-
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#backToSwipey" prefHeight="10.0" prefWidth="60.0" text="Back" />
+			<Button layoutX="300.0" layoutY="10.0" mnemonicParsing="false" onAction="#setPet" prefHeight="10.0" prefWidth="100.0" text="Next Page" />
+			<Button layoutX="200.0" layoutY="10.0" mnemonicParsing="false" onAction="#setPetBack" prefHeight="10.0" prefWidth="100.0" text="Last Page" />
+			
          </children>
       </Pane>
       <ScrollPane layoutY="150.0" prefHeight="550.0" prefWidth="450.0">
@@ -55,7 +57,6 @@
                         <ImageView fx:id="petimg7" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7" />
                         <ImageView fx:id="petimg8" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8" />
                         <ImageView fx:id="petimg9" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="9" />
-                        
                         
                         <TextArea fx:id="pettxt0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                         <TextArea fx:id="pettxt1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />

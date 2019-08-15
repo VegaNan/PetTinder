@@ -14,7 +14,7 @@ import objects.Animal;
 import objects.User;
 import views.GUI;
 
-public class SwipeyPageController {
+public class SwipeyPageController{
 	
 	private Stage primaryStage = GUI.primaryStage;
 	DatabaseController dbc = new DatabaseController();
@@ -42,26 +42,24 @@ public class SwipeyPageController {
 	}
 	
 	public void matchesPage() throws IOException {
+		String[] animals = new String[currentUser.getMatched().size()];
+		currentUser.getMatched().toArray(animals);
+		
 		Parent parent = FXMLLoader.load(getClass().getResource("/MatchesPage.fxml"));
 		Scene scene = new Scene(parent);
 		Stage window = primaryStage;
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/MatchesPage.fxml"));
 		MatchesPageController controller = new MatchesPageController();
+		
 		controller.setUser(currentUser);
-		loader.setController(controller);
-		Animal[] animals = new Animal[currentUser.getMatched().size()];
-		
-		currentUser.getMatched().toArray(animals);
-		
-		
+		controller.setAnimalIds(animals);
 		controller.setPrimaryStage(primaryStage);
-		//controller.setPet(animals);
 		
+		loader.setController(controller);
+				
 		window.setScene(scene);
 		window.show();		
-		
-		
 	}
 	
 	public void yesAction() {
@@ -89,30 +87,34 @@ public class SwipeyPageController {
 	}
 	
 	public void rightPicture() {
-		changeImage(imageNum + 1);
+		if (currentAnimal.getPhotosUrl().length - 1 > imageNum && 0 <= imageNum) {
+			imageNum ++;
+		}
+		changeImage(imageNum);
 	}
 	
 	public void leftPicture() {
-		changeImage(imageNum - 1);
+		if (currentAnimal.getPhotosUrl().length > imageNum && 0 < imageNum) {
+			imageNum-=1;
+		}
+		changeImage(imageNum);
 	}
 	
 	public void newPet() {
+		//TODO fix this
 		imageNum = 0;
 		inArraySlot++;
 		if(inArraySlot < currentAnimalArray.length) {
 			if(currentUser.getMatched().contains((currentAnimalArray)[inArraySlot])) {
-				System.out.println("skipping pet");
 				inArraySlot++;
 				newPet();
 			}else {
 				currentAnimal = currentAnimalArray[inArraySlot];
 				Image image = new Image(currentAnimalArray[inArraySlot].getPhotosUrl()[0]);
-				System.out.println(currentAnimal.toString());
 				animalView.setImage(image);
 				primaryStage.show();
 			}
 		}else {
-			System.out.println("out of pets");
 			Image image = new Image(url);
 			animalView.setImage(image);
 			primaryStage.show();
