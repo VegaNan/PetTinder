@@ -220,7 +220,7 @@ public class DatabaseController {
 		return orgArr;
 	}
 	
-	public User userLogin(String username, String password) {
+	public User userLogin(String email, String password) {
 		User user = new User();
 		
 		
@@ -327,7 +327,8 @@ public class DatabaseController {
 			correctPassword = (String) doc.get("password");
 			if(password.equals(correctPassword)) {
 				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
-//				user
+				user.setAnimalPref(doc.getString("pref"));
+				System.out.println(doc.get("matchedMap"));
 			}
 		}
 		
