@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -17,7 +16,7 @@
          <children>
 
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" text="Back" />
-            <Label alignment="CENTER" layoutX="75.0" layoutY="55.0" prefWidth="300.0" text="Your Loved Animals" />
+            <Label fx:id="Title" alignment="CENTER" layoutX="75.0" layoutY="55.0" prefWidth="300.0" text="Your Loved Animals" />
 
             <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#backToSwipey" prefHeight="10.0" prefWidth="60.0" text="Back" />
 
@@ -55,17 +54,16 @@
                         <ImageView fx:id="petimg7" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7" />
                         <ImageView fx:id="petimg8" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8" />
                         <ImageView fx:id="petimg9" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="9" />
-                        
-                        <TextArea fx:id="pettxt0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                        <TextArea fx:id="pettxt1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextArea fx:id="pettxt2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextArea fx:id="pettxt3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextArea fx:id="pettxt4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextArea fx:id="pettxt5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextArea fx:id="pettxt6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <TextArea fx:id="pettxt7" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <TextArea fx:id="pettxt8" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <TextArea fx:id="pettxt9" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label fx:id="pettxt0" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" />
+                        <Label fx:id="pettxt1" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="pettxt2" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="pettxt3" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="pettxt4" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="pettxt5" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="pettxt6" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="pettxt7" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="pettxt8" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="pettxt9" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                      </children>
                   </GridPane>
                </children>
