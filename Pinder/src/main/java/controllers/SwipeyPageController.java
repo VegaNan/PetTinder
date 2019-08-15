@@ -46,6 +46,7 @@ public class SwipeyPageController{
 		
 		Parent parent = FXMLLoader.load(getClass().getResource("/MatchesPage.fxml"));
 		Scene scene = new Scene(parent);
+		scene.getStylesheets().add("MatchesPageStyle.css");
 		Stage window = primaryStage;
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/MatchesPage.fxml"));
