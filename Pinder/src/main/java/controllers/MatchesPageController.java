@@ -19,6 +19,9 @@ public class MatchesPageController {
 	DatabaseController dbc = new DatabaseController();
 	private static User currentUser;
 	private int inArraySlot;
+	private int currentPage = 0;
+	private int currentAnimal = 0;
+	private static Animal[] animals;
 	
 	@FXML
 	ImageView petimg0, petimg1, petimg2, petimg3, petimg4, petimg5, petimg6, petimg7, petimg8, petimg9;
@@ -63,61 +66,79 @@ public class MatchesPageController {
 		this.inArraySlot = inArraySlot;
 	}
 	
-	public void setPet(Animal[] animals) {
-		for(int slot = 0; slot < 10; slot++) {
-			for(Animal animal : animals) {
-				String photo = animal.getPhotosUrl()[0];
-				String text = animal.getDescription();
-				Image photoImg = new Image(photo);
+	public Animal[] getAnimals() {
+		return animals;
+	}
 
-				switch(slot){
-				case 0:
-					petimg0.setImage(photoImg);
-					pettxt0.setText(text);
-					break;
-				case 1:
-					petimg1.setImage(photoImg);
-					pettxt1.setText(animal.getDescription());
-					break;
-				case 2:
-					petimg2.setImage(photoImg);
-					pettxt2.setText(animal.getDescription());
-					break;
-				case 3:
-					petimg3.setImage(photoImg);
-					pettxt3.setText(animal.getDescription());
-					break;
-				case 4:		
-					petimg4.setImage(photoImg);
-					pettxt4.setText(animal.getDescription());
-					break;
-				case 5:
-					petimg5.setImage(photoImg);
-					pettxt5.setText(animal.getDescription());
-					break;
-				case 6:
-					petimg6.setImage(photoImg);
-					pettxt6.setText(animal.getDescription());
-					break;
-				case 7:
-					petimg7.setImage(photoImg);
-					pettxt7.setText(animal.getDescription());
-					break;
-				case 8:
-					petimg8.setImage(photoImg);
-					pettxt8.setText(animal.getDescription());
-					break;
-				case 9:
-					petimg9.setImage(photoImg);
-					pettxt9.setText(animal.getDescription());
-					break;
-				}
+	public void setAnimals(Animal[] animals) {
+		MatchesPageController.animals = animals;
+	}
+	
+	public void setPet() {
+		currentPage++;
+		int slot = 0;
+		for(int i = 0; i < animals.length; i ++) {
+			Animal animal = animals[currentAnimal];
+			String photo = animal.getPhotosUrl()[0];
+			String text = animal.getDescription();
+			Image photoImg = new Image(photo);
+	
+			switch(slot){
+			case 0:
+				petimg0.setImage(photoImg);
+				pettxt0.setText(text);
+				break;
+			case 1:
+				petimg1.setImage(photoImg);
+				pettxt1.setText(animal.getDescription());
+				break;
+			case 2:
+				petimg2.setImage(photoImg);
+				pettxt2.setText(animal.getDescription());
+				break;
+			case 3:
+				petimg3.setImage(photoImg);
+				pettxt3.setText(animal.getDescription());
+				break;
+			case 4:		
+				petimg4.setImage(photoImg);
+				pettxt4.setText(animal.getDescription());
+				break;
+			case 5:
+				petimg5.setImage(photoImg);
+				pettxt5.setText(animal.getDescription());
+				break;
+			case 6:
+				petimg6.setImage(photoImg);
+				pettxt6.setText(animal.getDescription());
+				break;
+			case 7:
+				petimg7.setImage(photoImg);
+				pettxt7.setText(animal.getDescription());
+				break;
+			case 8:
+				petimg8.setImage(photoImg);
+				pettxt8.setText(animal.getDescription());
+				break;
+			case 9:
+				petimg9.setImage(photoImg);
+				pettxt9.setText(animal.getDescription());
+				break;
+				
 			}
-
+			currentAnimal++;
+			slot++;
+	
 		Stage window = primaryStage;
 		window.show();
 		}
 	}
-	
-	
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
 }
