@@ -148,7 +148,7 @@ public class DatabaseController {
 			System.out.println(dbAnimals[i]);
 			JSONObject jo = new JSONObject(dbAnimals[i]);
 
-			int id = Integer.parseInt(jo.get("id").toString());
+			String id = jo.get("id").toString();
 			String organizationId = jo.getString("organization_id");
 			String type = jo.getString("type"); 
 			String breed = jo.getJSONObject("breeds").getString("primary"); 
@@ -323,35 +323,35 @@ public class DatabaseController {
 	
 	public User getUser(String email, String password) {
 		User user = null;
-		String correctPassword = null;
-		
-		MongoCollection<Document> userResults = userCollection;
-		BasicDBObject fields = new BasicDBObject();
-		fields.put("email", email);
-		Iterable<Document> cursor = userResults.find(fields);
-		
-		for(Document doc : cursor) {
-			correctPassword = (String) doc.get("password");
-			if(password.equals(correctPassword)) {
-				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
-
-				user.setAnimalPref(doc.getString("pref"));
-				Document document = doc.getList(key, clazz)
-				
-//				for(Object animal : user.getMatched().toArray()) {
-//					Document documentMatched = new Document();
-//					documentMatched.append("\""  + "\"", (Object)animal);
-//					matchedArr.add(documentMatched);
+//		String correctPassword = null;
+//		
+//		MongoCollection<Document> userResults = userCollection;
+//		BasicDBObject fields = new BasicDBObject();
+//		fields.put("email", email);
+//		Iterable<Document> cursor = userResults.find(fields);
+//		
+//		for(Document doc : cursor) {
+//			correctPassword = (String) doc.get("password");
+//			if(password.equals(correctPassword)) {
+//				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
+//
+//				user.setAnimalPref(doc.getString("pref"));
+//				Document document = doc.getList(key, clazz)
+//				
+////				for(Object animal : user.getMatched().toArray()) {
+////					Document documentMatched = new Document();
+////					documentMatched.append("\""  + "\"", (Object)animal);
+////					matchedArr.add(documentMatched);
+////				}
+//				
+//				for(int i = 0; i < animals.size(); i++) {
+//					System.out.println(animals.get(i).toString());
 //				}
-				
-				for(int i = 0; i < animals.size(); i++) {
-					System.out.println(animals.get(i).toString());
-				}
-				user.setMatched(doc.getString("matchedMap").toString());
-				user.setMaybe(doc.getString("maybeMap"));
-				user.setNo(doc.getString("noMap"));
-			}
-		}
+//				user.setMatched(doc.getString("matchedMap").toString());
+//				user.setMaybe(doc.getString("maybeMap"));
+//				user.setNo(doc.getString("noMap"));
+//			}
+//		}
 		
 		return user;
 	}

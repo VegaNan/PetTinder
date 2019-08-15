@@ -88,7 +88,7 @@ public class User {
 		return matchedArr;
 	}
 	
-	public void setMatched(String id) {
+	public void setMatched(String dbString) {
 		Animal[] animals = this.createAnimalObjects(dbString);
 		
 		for(int i = 0; i < animals.length; i++) {
@@ -96,8 +96,8 @@ public class User {
 		}
 	}
 	
-	public void addAnimalToMaybe(Animal animal) {
-		maybeMap.add(animal.getId());
+	public void addAnimalToMaybe(String id) {
+		maybeMap.add(id);
 	}
 	
 	public ArrayList<String> getMaybe(){
@@ -112,8 +112,8 @@ public class User {
 		}
 	}
 	
-	public void addAnimalToNo(Animal animal) {
-		noMap.add(animal.getId());
+	public void addAnimalToNo(String id) {
+		noMap.add(id);
 	}
 	
 	public ArrayList<String> getNo(){
