@@ -43,5 +43,7 @@
             <TextArea prefHeight="175.0" prefWidth="450.0" />
          </children>
       </Pane>
+      <Button layoutX="5.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="Button" />
+      <Button layoutX="405.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="Button" />
    </children>
 </AnchorPane>
