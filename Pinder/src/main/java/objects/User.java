@@ -88,12 +88,8 @@ public class User {
 		return matchedArr;
 	}
 	
-	public void setMatched(String dbString) {
-		Animal[] animals = this.createAnimalObjects(dbString);
-		
-		for(int i = 0; i < animals.length; i++) {
-			matchedArr.add(animals[i].getId());
-		}
+	public void setMatched(ArrayList<String> matchedArr) {
+		this.matchedArr = matchedArr;
 	}
 	
 	public void addAnimalToMaybe(String id) {
@@ -104,12 +100,8 @@ public class User {
 		return maybeMap;
 	}
 	
-	public void setMaybe(String dbString) {
-		Animal[] animals = this.createAnimalObjects(dbString);
-		
-		for(int i = 0; i < animals.length; i++) {
-			matchedArr.add(animals[i].getId());
-		}
+	public void setMaybe(ArrayList<String> maybeArr) {
+		this.maybeMap = maybeArr;
 	}
 	
 	public void addAnimalToNo(String id) {
@@ -120,12 +112,8 @@ public class User {
 		return noMap;
 	}
 	
-	public void setNo(String dbString) {
-		Animal[] animals = this.createAnimalObjects(dbString);
-		
-		for(int i = 0; i < animals.length; i++) {
-			matchedArr.add(animals[i].getId());
-		}
+	public void setNo(ArrayList<String> noArr) {
+		this.noMap = noArr;
 	}
 	
 	public Animal[] createAnimalObjects(String dbString) {
