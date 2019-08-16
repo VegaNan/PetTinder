@@ -55,16 +55,16 @@
                         <ImageView fx:id="petimg7" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="7" />
                         <ImageView fx:id="petimg8" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="8" />
                         <ImageView fx:id="petimg9" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="9" />
-                        <Label fx:id="pettxt0" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" />
-                        <Label fx:id="pettxt1" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="pettxt2" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="pettxt3" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="pettxt4" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="pettxt5" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label fx:id="pettxt6" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label fx:id="pettxt7" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label fx:id="pettxt8" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <Label fx:id="pettxt9" prefHeight="110.0" prefWidth="343.0" text="petTxt" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label fx:id="pettxt0" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" />
+                        <Label fx:id="pettxt1" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="pettxt2" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="pettxt3" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="pettxt4" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="pettxt5" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="pettxt6" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="pettxt7" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="pettxt8" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="pettxt9" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                      </children>
                   </GridPane>
                </children>

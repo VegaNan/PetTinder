@@ -17,12 +17,22 @@ public class MoreInfoController {
 		Parent parent = FXMLLoader.load(getClass().getResource("/MoreInfoPage.fxml"));
 		Scene scene = new Scene(parent);
 		Stage window = primaryStage;
-
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/MoreInfoPage.fxml"));
-
 		window.setScene(scene);
 		window.show();
 
+	}
+	public void backAction() throws IOException {
+		String filename = "/SwipeyPage.fxml";
+		Parent parent = FXMLLoader.load(getClass().getResource(filename));
+		Scene scene = new Scene(parent);
+		Stage window = primaryStage;
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(filename));
+		SwipeyPageController controller = new SwipeyPageController();
+		loader.setController(controller);
+		controller.setPrimaryStage(primaryStage);
+		window.setScene(scene);
+		window.show();
 	}
 
 }

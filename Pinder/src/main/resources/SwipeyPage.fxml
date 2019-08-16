@@ -21,5 +21,6 @@
       </Pane>
       <Button onAction="#leftPicture" layoutX="5.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="previous" />
       <Button onAction="#rightPicture" layoutX="405.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="next" />
+   	  <Button onAction="#moreInfo" layoutX="185.0" layoutY="500.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" text="more info" />
    </children>
 </AnchorPane>

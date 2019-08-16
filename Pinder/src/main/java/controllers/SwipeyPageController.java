@@ -22,7 +22,7 @@ public class SwipeyPageController{
 	private static User currentUser;
 	public static int inArraySlot = 0;
 	private int imageNum = 0;
-	private static Animal[] currentAnimalArray;
+	public static Animal[] currentAnimalArray;
 	private String url = "https://thumbs.dreamstime.com/z/no-animals-sign-allowed-white-background-86517013.jpg";
 
 	@FXML
@@ -51,6 +51,18 @@ public class SwipeyPageController{
 	
 	public void profilePage() {
 		
+	}
+	
+	public void moreInfo() throws IOException {
+		Parent parent = FXMLLoader.load(getClass().getResource("/MoreInfo.fxml"));
+		Scene scene = new Scene(parent);
+		scene.getStylesheets().add("MoreInfo.css");
+		Stage window = primaryStage;
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/MoreInfo.fxml"));
+
+		window.setScene(scene);
+		window.show();
 	}
 	
 	public void matchesPage() throws IOException {
