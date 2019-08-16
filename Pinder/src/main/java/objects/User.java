@@ -24,12 +24,13 @@ public class User {
 		
 	}
 	
-	public User(String firstName, String lastName, String password, String email, String location){
+	public User(String firstName, String lastName, String password, String email, String location, String pref){
 		setFirstName(firstName);
 		setLastName(lastName);
 		setPassword(password);
 		setEmail(email);
 		setLocation(location);
+		setAnimalPref(pref);
 	}
 	
 	public String getFirstName() {
