@@ -17,7 +17,7 @@ import views.GUI;
 public class SignUpController {
 
 	private Stage primaryStage = GUI.primaryStage;
-	private User newUser;
+	public static User newUser;
 
 	@FXML
 	TextField firstNameField, lastNameField, locationField, emailField;

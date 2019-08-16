@@ -27,6 +27,13 @@ public class MatchesPageController {
 	ImageView petimg0, petimg1, petimg2, petimg3, petimg4, petimg5, petimg6, petimg7, petimg8, petimg9;
 	@FXML
 	Label pettxt0, pettxt1, pettxt2, pettxt3, pettxt4, pettxt5, pettxt6, pettxt7, pettxt8, pettxt9;
+	 @FXML
+     public void initialize() {
+		 currentUser = SwipeyPageController.getUser();
+		 animalIds= new String[currentUser.getMatched().size()];
+		 currentUser.getMatched().toArray(animalIds);
+		 setPet();
+     }
 	
 	public void backToSwipey() throws IOException {
 		String filename = "/SwipeyPage.fxml";
@@ -38,7 +45,7 @@ public class MatchesPageController {
 		loader.setController(controller);
 		controller.setPrimaryStage(primaryStage);
 		controller.setUser(currentUser);
-		controller.inArraySlot = inArraySlot;
+		controller.inArraySlot = inArraySlot - 1;
 		window.setScene(scene);
 		window.show();
 	}
@@ -55,11 +62,11 @@ public class MatchesPageController {
 		MatchesPageController.currentUser = user;
 	}
 	
-	public static String[] getAnimalIds() {
+	public String[] getAnimalIds() {
 		return animalIds;
 	}
 	
-	public static void setAnimalIds(String[] animalIds) {
+	public void setAnimalIds(String[] animalIds) {
 		MatchesPageController.animalIds = animalIds;
 	}
 	

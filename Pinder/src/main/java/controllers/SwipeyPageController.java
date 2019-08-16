@@ -20,7 +20,7 @@ public class SwipeyPageController{
 	DatabaseController dbc = new DatabaseController();
 	private static Animal currentAnimal;
 	private static User currentUser;
-	public int inArraySlot = 0;
+	public static int inArraySlot = 0;
 	private int imageNum = 0;
 	private static Animal[] currentAnimalArray;
 	private String url = "https://thumbs.dreamstime.com/z/no-animals-sign-allowed-white-background-86517013.jpg";
@@ -30,10 +30,20 @@ public class SwipeyPageController{
 	
 	@FXML
 	Button profileButton, matchesButton, yesButton, maybeButton, noButton;
+	 @FXML
+     public void initialize() {
+		 if(LoginPageController.user == null) {
+			 currentUser = SignUpController.newUser;
+		 }else {
+			 currentUser = LoginPageController.user;
+		 }
+		 currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
+		 currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
+		 newPet();
+     }
 
 	public void setUser(User user) {
 		currentUser = user;
-		currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
 	}
 	
 	public void profilePage() {
@@ -109,8 +119,7 @@ public class SwipeyPageController{
 			if(currentUser.getMatched().contains((currentAnimalArray)[inArraySlot].getId()) 
 					|| currentUser.getMaybe().contains((currentAnimalArray)[inArraySlot].getId())
 					|| currentUser.getNo().contains((currentAnimalArray)[inArraySlot].getId())) {
-				System.out.println("skipping");
-				inArraySlot++;
+				System.out.println("skipping " + currentAnimalArray[inArraySlot].getName());
 				newPet();
 			}else {
 				currentAnimal = currentAnimalArray[inArraySlot];
@@ -140,6 +149,10 @@ public class SwipeyPageController{
 
 	public void setPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
+	}
+
+	public static User getUser() {
+		return currentUser;
 	}
 	
 }

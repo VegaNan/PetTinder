@@ -33,7 +33,6 @@ public class DatabaseController {
 		animalCollection = database.getCollection("animals");
 		organizationCollection = database.getCollection("organizations");
 		userCollection = database.getCollection("users");
-		System.out.println("---if you got here, it got database correctly :) ---");
 	}
 
 	public void insertAnimalRecords(String recordInfo) {
@@ -107,7 +106,6 @@ public class DatabaseController {
 		Iterable<Document> cursor = collectionResults.find(fields);
 		for(Document doc: cursor) {
 
-			System.out.println(doc.toString());
 			animals+=doc.toJson() + "~";
 
 		}
@@ -126,7 +124,6 @@ public class DatabaseController {
 		
 		for(Document doc: cursor) {
 			String id = doc.getString("id");
-			System.out.println(id);
 			MongoCollection<Document> animalResults = animalCollection;
 			BasicDBObject fields2 = new BasicDBObject();
 			fields2.put("organization_id", id);
@@ -142,13 +139,11 @@ public class DatabaseController {
 	
 	public Animal[] createAnimalObjects(String dbString) {
 		String[] dbAnimals = dbString.split("~");
-		System.out.println(dbString);
 		
 		int animalNum = dbAnimals.length;
 		Animal[] animals = new Animal[animalNum];
 		
 		for(int i = 0; i < animalNum; i++) {
-			System.out.println(dbAnimals[i]);
 			JSONObject jo = new JSONObject(dbAnimals[i]);
 			String id = jo.get("id").toString();
 			String organizationId = jo.getString("organization_id");
@@ -196,14 +191,12 @@ public class DatabaseController {
 
 	public Organization[] createOrganizationObjects(String dbString){
 		String[] dbOrgs = dbString.split("~");
-		System.out.println(dbString);
 		
 		int dbLength = dbOrgs.length;
 		Organization[] orgArr = new Organization[dbLength];
 		
 		
 		for(int i = 0; i < dbLength; i++) {
-			System.out.println(dbOrgs[i]);
 			JSONObject jo = new JSONObject(dbOrgs[i]);
 
 			String organizationId = jo.getString("id"); 
