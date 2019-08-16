@@ -45,7 +45,7 @@ public class MatchesPageController {
 		loader.setController(controller);
 		controller.setPrimaryStage(primaryStage);
 		controller.setUser(currentUser);
-		controller.inArraySlot = inArraySlot - 1;
+		controller.inArraySlot = inArraySlot;
 		window.setScene(scene);
 		window.show();
 	}

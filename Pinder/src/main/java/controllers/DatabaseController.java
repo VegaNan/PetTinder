@@ -106,9 +106,7 @@ public class DatabaseController {
 		fields.put(key, value);
 		Iterable<Document> cursor = collectionResults.find(fields);
 		for(Document doc: cursor) {
-
-			animals+=doc.toJson() + "~";
-
+			animals+= doc.toJson() + "~";
 		}
 		Animal[] animalArr = createAnimalObjects(animals);
 		return animalArr;
@@ -145,6 +143,7 @@ public class DatabaseController {
 		Animal[] animals = new Animal[animalNum];
 		
 		for(int i = 0; i < animalNum; i++) {
+			System.out.println(dbAnimals[i]);
 			JSONObject jo = new JSONObject(dbAnimals[i]);
 			String id = jo.get("id").toString();
 			String organizationId = jo.getString("organization_id");
@@ -232,34 +231,28 @@ public class DatabaseController {
 				.append("email", user.getEmail())
 				.append("pref", user.getAnimalPref());
 		
-		List<Document> matchedArr = new ArrayList<>();
-		List<Document> maybeArr = new ArrayList<>();
-		List<Document> noArr = new ArrayList<>();
+		List<String> matchedArr = user.getMatched();
+		List<String> newMatchedArr = new ArrayList<>();
+		List<String> maybeArr = user.getMaybe();
+		List<String> newMaybeArr = new ArrayList<>();
+		List<String> noArr = user.getNo();
+		List<String> newNoArr = new ArrayList<>();
 		
-		for(Object animal : user.getMatched().toArray()) {
-			Document documentMatched = new Document();
-			documentMatched.append("\""  + "\"", (Object)animal);
-			matchedArr.add(documentMatched);
+		for(String animal : matchedArr) {
+			newMatchedArr.add(animal);
 		}
-		
-		document.append("matchedMap", matchedArr);
+		document.append("matchedArr", newMatchedArr);
 
-		for(Object animal : user.getMaybe().toArray()) {
-			Document documentMatched = new Document();
-			documentMatched.append("\""  + "\"", (Object)animal);
-			matchedArr.add(documentMatched);
+		for(String animal : maybeArr) {
+			newMaybeArr.add(animal);
 		}
-		
-		document.append("maybeMap", maybeArr);
+		document.append("maybeArr", newMaybeArr);
 
 
-		for(Object animal : user.getNo().toArray()) {
-			Document documentMatched = new Document();
-			documentMatched.append("\""  + "\"", (Object)animal);
-			matchedArr.add(documentMatched);
+		for(String animal : noArr) {
+			newNoArr.add(animal);
 		}
-
-		document.append("noMap", noArr);
+		document.append("noArr", noArr);
 		
 		userCollection.insertOne(document);
 		System.out.println("Document inserted successfully"); 
@@ -277,40 +270,29 @@ public class DatabaseController {
 				.append("email", user.getEmail())
 				.append("pref", user.getAnimalPref());
 		
-		List<Document> matchedArr = new ArrayList<>();
-		List<Document> maybeArr = new ArrayList<>();
-		List<Document> noArr = new ArrayList<>();
-		String[] animals = new String[user.getMatched().size()];
-		user.getMatched().toArray(animals);
-		for(String id : animals) {
-			Document documentMatched = new Document();
-			documentMatched.append("\"ID"+ "\"", id);
-			matchedArr.add(documentMatched);
-		}
+		List<String> matchedArr = user.getMatched();
+		List<String> newMatchedArr = new ArrayList<>();
+		List<String> maybeArr = user.getMaybe();
+		List<String> newMaybeArr = new ArrayList<>();
+		List<String> noArr = user.getNo();
+		List<String> newNoArr = new ArrayList<>();
 		
-		document.append("matchedMap", matchedArr);
 		
-
-		animals = new String[user.getMaybe().size()];
-		user.getMaybe().toArray(animals);
-		for(String id: animals) {
-			Document documentMaybe = new Document();
-			documentMaybe.append("\"ID"+ "\"", id);
-
-			maybeArr.add(documentMaybe);
+		for(String animal : matchedArr) {
+			newMatchedArr.add(animal);
 		}
+		document.append("matchedArr", newMatchedArr);
 
-		document.append("maybeMap", maybeArr);
-		
-
-		animals = new String[user.getNo().size()];
-		user.getNo().toArray(animals);
-		for(String id : animals) {
-			Document documentNo = new Document();
-			documentNo.append("\"ID"+ "\"", id);
-			noArr.add(documentNo);
+		for(String animal : maybeArr) {
+			newMaybeArr.add(animal);
 		}
-		document.append("noMap", noArr);
+		document.append("maybeArr", newMaybeArr);
+
+
+		for(String animal : noArr) {
+			newNoArr.add(animal);
+		}
+		document.append("noArr", noArr);
 		
 		userCollection.insertOne(document);
 		System.out.println("Document inserted successfully");	
@@ -329,25 +311,11 @@ public class DatabaseController {
 		for(Document doc : cursor) {
 			correctPassword = (String) doc.get("password");
 			if(password.equals(correctPassword)) {
-				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"));
+				user = new User(doc.getString("firstName"), doc.getString("lastName"), doc.getString("password"), doc.getString("email"), doc.getString("location"), doc.getString("pref"));
 
-				ArrayList<String> matchedArr = (ArrayList<String>) doc.get("matchedMap");
-				createAnimalList(matchedArr);
-				user.setMatched(matchedArr);
-				
-				ArrayList<String> maybeArr = (ArrayList<String>) doc.get("maybeArr");
-				createAnimalList(maybeArr);
-				user.setMatched(maybeArr);
-				
-				ArrayList<String> noArr = (ArrayList<String>) doc.get("noArr");
-				createAnimalList(noArr);
-				user.setMatched(noArr);
-				
-//				for(Object animal : user.getMatched().toArray()) {
-//					Document documentMatched = new Document();
-//					documentMatched.append("\""  + "\"", (Object)animal);
-//					matchedArr.add(documentMatched);
-//				}
+				user.setMatched((ArrayList<String>) doc.get("matchedArr"));
+				user.setMaybe((ArrayList<String>) doc.get("maybeArr"));
+				user.setNo((ArrayList<String>) doc.get("noArr")); 
 			}
 		}
 		

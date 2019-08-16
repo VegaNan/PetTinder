@@ -34,12 +34,15 @@ public class SwipeyPageController{
      public void initialize() {
 		 if(LoginPageController.user == null) {
 			 currentUser = SignUpController.newUser;
+			 currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
+			 currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
+			 newPet();
 		 }else {
 			 currentUser = LoginPageController.user;
+			 currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
+			 currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
+			 newPet();
 		 }
-		 currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
-		 currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
-		 newPet();
      }
 
 	public void setUser(User user) {
