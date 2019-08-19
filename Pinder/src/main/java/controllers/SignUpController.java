@@ -57,8 +57,8 @@ public class SignUpController {
 				!emailField.getText().trim().isEmpty() & 
 				!passwordField.getText().trim().isEmpty() & 
 				(dogRadioButton.isSelected() | 
-						catRadioButton.isSelected() | 
-						otherRadioButton.isSelected())) {
+						catRadioButton.isSelected())) // | otherRadioButton.isSelected())) 
+		{
 			newUser = new User();
 			newUser.setFirstName(firstNameField.getText().trim());
 			newUser.setLastName(lastNameField.getText().trim());

@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -33,6 +34,10 @@ public class SwipeyPageController{
 	
 	@FXML
 	Button profileButton, matchesButton, yesButton, maybeButton, noButton;
+	
+	@FXML 
+	Label animalName;
+	
 	@FXML
     public void initialize() {
 		inArraySlot = 0;
@@ -88,14 +93,16 @@ public class SwipeyPageController{
 		window.show();		
 	}
 	
-	public void keyPress(KeyEvent key) {
+	public void keyPress(KeyEvent key) throws IOException {
 		if(key.getCode() == KeyCode.RIGHT) {
 			yesAction();
 		} else if(key.getCode() == KeyCode.LEFT) {
 			noAction();
 		} else if(key.getCode() == KeyCode.DOWN) {
 			maybeAction();
-		} else {
+		} else if(key.getCode() == KeyCode.UP){
+			moreInfo();
+		}else {
 			
 		}
 	}
@@ -149,9 +156,9 @@ public class SwipeyPageController{
 				newPet();
 			}else {
 				currentAnimal = currentAnimalArray[inArraySlot];
-				System.out.println(currentAnimal.getName());
 				Image image = new Image(currentAnimalArray[inArraySlot].getPhotosUrl()[0]);
 				animalView.setImage(image);
+				animalName.setText(currentAnimal.getName());
 				primaryStage.show();
 			}
 		}else {
