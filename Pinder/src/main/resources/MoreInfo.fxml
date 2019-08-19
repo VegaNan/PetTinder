@@ -18,7 +18,7 @@
             <Button fx:id="backButton" layoutX="10.0" layoutY="25.0" mnemonicParsing="false" onAction="#backAction" prefHeight="15.0" prefWidth="60.0" text="Back" />
          </children> 
       </Pane>
-      <ImageView fitHeight="350.0" fitWidth="350.0" layoutX="50.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="animalImage" fitHeight="350.0" fitWidth="350.0" layoutX="50.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
       <Pane layoutY="450.0" prefHeight="75.0" prefWidth="450.0">
          <children>
             <GridPane prefHeight="75.0" prefWidth="450.0">
@@ -32,7 +32,7 @@
               </rowConstraints>
                <children>
                   <Label fx:id="typeAnimalLabel" text="Type of Animal" />
-                  <Label text="Miles Away" GridPane.columnIndex="1" />
+                  <Label fx:id="milesAwayLabel" text="Miles Away" GridPane.columnIndex="1" />
                   <Label fx:id="organizationLabel" text="Organization" GridPane.columnIndex="2" />
                </children>
             </GridPane>
