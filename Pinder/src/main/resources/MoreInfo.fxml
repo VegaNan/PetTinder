@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MoreInfoController">
+<AnchorPane prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MoreInfoController" onKeyPressed="#keyPress">
    <children>
       <Pane prefHeight="100.0" prefWidth="450.0">
          <children>
@@ -43,7 +43,7 @@
             <TextArea prefHeight="175.0" prefWidth="450.0" />
          </children>
       </Pane>
-      <Button layoutX="5.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="Button" />
-      <Button layoutX="405.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="Button" />
+      <Button fx:id="leftImage" onAction="#leftPicture" layoutX="5.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="Button" />
+      <Button fx:id="rightImage" onAction="#rightPicture" layoutX="405.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="Button" />
    </children>
 </AnchorPane>
