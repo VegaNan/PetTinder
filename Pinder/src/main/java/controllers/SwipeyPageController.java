@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import objects.Animal;
 import objects.User;
@@ -30,20 +32,20 @@ public class SwipeyPageController{
 	
 	@FXML
 	Button profileButton, matchesButton, yesButton, maybeButton, noButton;
-	 @FXML
-     public void initialize() {
-		 if(LoginPageController.user == null) {
-			 currentUser = SignUpController.newUser;
-			 currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
-			 currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
-			 newPet();
-		 }else {
-			 currentUser = LoginPageController.user;
-			 currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
-			 currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
-			 newPet();
-		 }
-     }
+	@FXML
+    public void initialize() {
+		if(LoginPageController.user == null) {
+			currentUser = SignUpController.newUser;
+			currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
+			currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
+			newPet();
+		}else {
+			currentUser = LoginPageController.user;
+			currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
+			currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
+			newPet();
+		}
+    }
 
 	public void setUser(User user) {
 		currentUser = user;
@@ -85,6 +87,18 @@ public class SwipeyPageController{
 				
 		window.setScene(scene);
 		window.show();		
+	}
+	
+	public void keyPress(KeyEvent key) {
+		if(key.getCode() == KeyCode.RIGHT) {
+			yesAction();
+		} else if(key.getCode() == KeyCode.LEFT) {
+			noAction();
+		} else if(key.getCode() == KeyCode.DOWN) {
+			maybeAction();
+		} else {
+			
+		}
 	}
 	
 	public void yesAction() {
