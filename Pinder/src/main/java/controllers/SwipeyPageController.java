@@ -33,7 +33,7 @@ public class SwipeyPageController{
 	ImageView animalView;
 	
 	@FXML
-	Button profileButton, matchesButton, yesButton, maybeButton, noButton;
+	Button profileButton, matchesButton, yesButton, maybeButton, noButton, leftImage, rightImage;
 	
 	@FXML 
 	Label animalName;
@@ -158,6 +158,10 @@ public class SwipeyPageController{
 				currentAnimal = currentAnimalArray[inArraySlot];
 				Image image = new Image(currentAnimalArray[inArraySlot].getPhotosUrl()[0]);
 				animalView.setImage(image);
+				leftImage.setVisible(false);
+				if(currentAnimal.getPhotosUrl().length < 2) {
+					rightImage.setVisible(false);
+				}
 				animalName.setText(currentAnimal.getName());
 				primaryStage.show();
 			}
@@ -169,8 +173,20 @@ public class SwipeyPageController{
 	}
 	
 	public void changeImage(int imageNum) {
+		if(imageNum <= 0) {
+			leftImage.setVisible(false);
+		}else {
+			leftImage.setVisible(true);
+		}
+		
+		if(imageNum >= currentAnimal.getPhotosUrl().length - 1) {
+			rightImage.setVisible(false);
+		}else {
+			rightImage.setVisible(true);
+		}
+		
 		if (currentAnimal.getPhotosUrl().length > imageNum && 0 <= imageNum) {
-			Image image = new Image(currentAnimalArray[inArraySlot].getPhotosUrl()[imageNum]);
+			Image image = new Image(currentAnimal.getPhotosUrl()[imageNum]);
 			animalView.setImage(image);
 			primaryStage.show();
 		}

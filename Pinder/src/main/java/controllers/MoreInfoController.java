@@ -49,9 +49,7 @@ public class MoreInfoController {
 		} else if(key.getCode() == KeyCode.LEFT) {
 			leftPicture();
 		} else if(key.getCode() == KeyCode.DOWN) {
-			backAction();
-		} else if(key.getCode() == KeyCode.UP){
-			
+			backAction();	
 		}else {
 			
 		}
@@ -72,19 +70,18 @@ public class MoreInfoController {
 	}
 	
 	public void changeImage(int imageNum) {
+		if(0 > imageNum) {
+			leftImage.setVisible(false);
+		}else {
+			leftImage.setVisible(true);
+		}
+		if(animal.getPhotosUrl().length <= imageNum) {
+			rightImage.setVisible(false);
+		}else {
+			rightImage.setVisible(true);
+		}
+		
 		if (animal.getPhotosUrl().length > imageNum && 0 <= imageNum) {
-			
-			if(0 < imageNum) {
-				leftImage.setVisible(false);
-			}else {
-				leftImage.setVisible(true);
-			}
-			if(animal.getPhotosUrl().length > imageNum) {
-				rightImage.setVisible(false);
-			}else {
-				rightImage.setVisible(true);
-			}
-			
 			Image image = new Image(animal.getPhotosUrl()[imageNum]);
 			animalImage.setImage(image);
 			primaryStage.show();
