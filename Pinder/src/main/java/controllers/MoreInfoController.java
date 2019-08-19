@@ -17,6 +17,7 @@ public class MoreInfoController {
 
 	private Stage primaryStage = GUI.primaryStage;
 	DatabaseController dbc = new DatabaseController();
+	public static Animal animal;
 	@FXML
 	Label typeAnimalLabel, milesAwayLabel, organizationLabel, animalNameLabel;
 	@FXML
@@ -24,7 +25,7 @@ public class MoreInfoController {
 	
 	@FXML
 	public void initialize() {
-		Animal animal = SwipeyPageController.currentAnimalArray[SwipeyPageController.inArraySlot];
+		animal = SwipeyPageController.currentAnimalArray[SwipeyPageController.inArraySlot];
 		typeAnimalLabel.setText("Type: "+ animal.getType());
 		milesAwayLabel.setText("Location: " + animal.getLocation());
 		organizationLabel.setText("Organization: " + animal.getOrganization());
@@ -37,7 +38,6 @@ public class MoreInfoController {
 		Parent parent = FXMLLoader.load(getClass().getResource("/MoreInfoPage.fxml"));
 		Scene scene = new Scene(parent);
 		Stage window = primaryStage;
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/MoreInfoPage.fxml"));
 		window.setScene(scene);
 		window.show();
 

@@ -25,6 +25,7 @@ public class SwipeyPageController{
 	public static int inArraySlot = 0;
 	private int imageNum = 0;
 	public static Animal[] currentAnimalArray;
+
 	private String url = "https://thumbs.dreamstime.com/z/no-animals-sign-allowed-white-background-86517013.jpg";
 
 	@FXML
@@ -34,12 +35,13 @@ public class SwipeyPageController{
 	Button profileButton, matchesButton, yesButton, maybeButton, noButton;
 	@FXML
     public void initialize() {
-		if(LoginPageController.user == null) {
+		inArraySlot = 0;
+		if(SignUpController.newUser != null) {
 			currentUser = SignUpController.newUser;
 			currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
 			currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
 			newPet();
-		}else {
+		}else if(LoginPageController.user !=null ){
 			currentUser = LoginPageController.user;
 			currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
 			currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
@@ -60,9 +62,6 @@ public class SwipeyPageController{
 		Scene scene = new Scene(parent);
 		scene.getStylesheets().add("MoreInfo.css");
 		Stage window = primaryStage;
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/MoreInfo.fxml"));
-
 		window.setScene(scene);
 		window.show();
 	}
@@ -140,15 +139,13 @@ public class SwipeyPageController{
 	}
 	
 	public void newPet() {
-		//TODO fix this
 		imageNum = 0;
-		inArraySlot++;
+		inArraySlot ++;
 		
 		if(inArraySlot < currentAnimalArray.length) {
 			if(currentUser.getMatched().contains((currentAnimalArray)[inArraySlot].getId()) 
 					|| currentUser.getMaybe().contains((currentAnimalArray)[inArraySlot].getId())
 					|| currentUser.getNo().contains((currentAnimalArray)[inArraySlot].getId())) {
-				System.out.println("skipping " + currentAnimalArray[inArraySlot].getName());
 				newPet();
 			}else {
 				currentAnimal = currentAnimalArray[inArraySlot];
@@ -182,6 +179,14 @@ public class SwipeyPageController{
 
 	public static User getUser() {
 		return currentUser;
+	}
+	
+	public int getInArraySlot() {
+		return inArraySlot;
+	}
+
+	public void setInArraySlot(int inArraySlot) {
+		SwipeyPageController.inArraySlot = inArraySlot;
 	}
 	
 }
