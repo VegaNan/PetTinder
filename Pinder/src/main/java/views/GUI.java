@@ -7,8 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class GUI extends Application {
-	
+public class GUI extends Application {	
 	
 	public static Stage primaryStage;
 	
