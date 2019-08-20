@@ -1,0 +1,21 @@
+AnchorPane {
+	-fx-background-color: #fcfaf7;
+}
+
+Button {
+	-fx-text-fill: #bd2222;
+	-fx-background-color: #fcfaf7;
+	-fx-border-style: solid;
+	-fx-border-color: #bd2222;
+	-fx-border-radius: 3px;
+	
+}
+
+Label {
+	-fx-text-fill: #bd2222;
+	-fx-font-size: 32px;
+}
+
+Pane {
+	
+}

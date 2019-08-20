@@ -16,9 +16,7 @@ Button {
 	
 }
 
-TextArea {
-	-fx-border-radius: 3px;
-	-fx-border-style: none;
+Label {
 	-fx-text-fill: #21262c;
 	-fx-wrap-text: true;
 }
