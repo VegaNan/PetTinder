@@ -20,16 +20,12 @@
    	  		<Button layoutX="185.0" layoutY="575.0" mnemonicParsing="false" onAction="#moreInfo" prefHeight="30.0" prefWidth="80.0" text="more info" />
          </children>
       </Pane>
-<<<<<<< HEAD
-      <Button layoutX="5.0" layoutY="350.0" mnemonicParsing="false" onAction="#leftPicture" prefHeight="30.0" prefWidth="40.0" text="previous" />
-      <Button layoutX="405.0" layoutY="350.0" mnemonicParsing="false" onAction="#rightPicture" prefHeight="30.0" prefWidth="40.0" text="next" />
-=======
       
       <Label alignment="CENTER" fx:id="animalName" layoutX="150.0" layoutY="400.0" prefHeight="50.0" prefWidth="150.0"/>
       
       <Button fx:id="leftImage" layoutX="5.0" layoutY="350.0" mnemonicParsing="false" onAction="#leftPicture" prefHeight="30.0" prefWidth="40.0" text="previous" />
       <Button fx:id="rightImage" layoutX="405.0" layoutY="350.0" mnemonicParsing="false" onAction="#rightPicture" prefHeight="30.0" prefWidth="40.0" text="next" />
    	  <Button layoutX="185.0" layoutY="500.0" mnemonicParsing="false" onAction="#moreInfo" prefHeight="30.0" prefWidth="80.0" text="more info" />
->>>>>>> branch 'master' of https://github.com/VegaNan/PetTinder.git
+
    </children>
 </AnchorPane>
