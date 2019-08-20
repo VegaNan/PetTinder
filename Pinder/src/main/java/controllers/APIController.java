@@ -119,7 +119,7 @@ public class APIController {
 	private static void printProgress(int current, int total) {
 		total = total + 1;
 	    StringBuilder string = new StringBuilder();   
-	    int percent = (int) (current * 100 / total);
+	    int percent = current * 100 / total;
 	    string
 	        .append(String.join("", Collections.nCopies(percent == 0 ? 2 : 2 - (int) (Math.log10(percent)), " ")))
 	        .append(String.format(" %d%% [", percent))

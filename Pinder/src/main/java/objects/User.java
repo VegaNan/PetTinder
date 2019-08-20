@@ -1,11 +1,7 @@
 package objects;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import org.json.JSONObject;
-import org.w3c.dom.Document;
 
 public class User {
 
