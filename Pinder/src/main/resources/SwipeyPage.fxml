@@ -6,25 +6,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SwipeyPageController" onKeyPressed="#keyPress">
+<AnchorPane onKeyPressed="#keyPress" prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SwipeyPageController">
    <children>
-      <ImageView fx:id="animalView" fitHeight="450.0" fitWidth="300.0" layoutX="75.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="animalView" fitHeight="350.0" fitWidth="350.0" layoutX="50.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" />
       <Label alignment="CENTER" layoutX="150.0" layoutY="35.0" prefHeight="40.0" prefWidth="150.0" text="Pinder" />
       <Button fx:id="profileButton" layoutX="30.0" layoutY="50.0" mnemonicParsing="false" onAction="#profilePage" prefHeight="30.0" prefWidth="80.0" text="Profile" />
       <Button fx:id="matchesButton" layoutX="340.0" layoutY="50.0" mnemonicParsing="false" onAction="#matchesPage" prefHeight="30.0" prefWidth="80.0" text="Matches" />
       <Pane layoutY="575.0" prefHeight="125.0" prefWidth="450.0">
          <children>
             <Button fx:id="yesButton" layoutX="320.0" layoutY="47.5" mnemonicParsing="false" onAction="#yesAction" prefHeight="30.0" prefWidth="70.0" text="Yes!" />
-            <Button fx:id="maybeButton" layoutX="185.0" layoutY="47.5" mnemonicParsing="false" onAction="#maybeAction" prefHeight="30.0" prefWidth="80.0" text="Maybe" />
+            <Button fx:id="maybeButton" layoutX="185.0" layoutY="75.0" mnemonicParsing="false" onAction="#maybeAction" prefHeight="30.0" prefWidth="80.0" text="Maybe" />
             <Button fx:id="noButton" layoutX="60.0" layoutY="47.5" mnemonicParsing="false" onAction="#noAction" prefHeight="30.0" prefWidth="60.0" text="No" />
-   	  		<Button layoutX="185.0" layoutY="575.0" mnemonicParsing="false" onAction="#moreInfo" prefHeight="30.0" prefWidth="80.0" text="more info" />
+         	  <Button layoutX="175.0" layoutY="20.0" mnemonicParsing="false" onAction="#moreInfo" prefHeight="30.0" prefWidth="100.0" text="More Info" />
          </children>
       </Pane>
-      <Label alignment="CENTER" fx:id="animalName" layoutX="150.0" layoutY="400.0" prefHeight="50.0" prefWidth="150.0"/>
+      <Label fx:id="animalName" alignment="CENTER" layoutX="75.0" layoutY="500.0" prefHeight="50.0" prefWidth="300.0" text="Name" />
       <Button fx:id="leftImage" layoutX="5.0" layoutY="350.0" mnemonicParsing="false" onAction="#leftPicture" prefHeight="30.0" prefWidth="40.0" text="previous" />
       <Button fx:id="rightImage" layoutX="405.0" layoutY="350.0" mnemonicParsing="false" onAction="#rightPicture" prefHeight="30.0" prefWidth="40.0" text="next" />
-   	  <Button layoutX="185.0" layoutY="500.0" mnemonicParsing="false" onAction="#moreInfo" prefHeight="30.0" prefWidth="80.0" text="more info" />
 
    </children>
 </AnchorPane>
-
