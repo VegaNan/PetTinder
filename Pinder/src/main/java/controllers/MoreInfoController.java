@@ -70,12 +70,12 @@ public class MoreInfoController {
 	}
 	
 	public void changeImage(int imageNum) {
-		if(0 > imageNum) {
+		if(imageNum <= 0) {
 			leftImage.setVisible(false);
 		}else {
 			leftImage.setVisible(true);
 		}
-		if(animal.getPhotosUrl().length <= imageNum) {
+		if(imageNum >= animal.getPhotosUrl().length - 1) {
 			rightImage.setVisible(false);
 		}else {
 			rightImage.setVisible(true);
