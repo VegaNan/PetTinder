@@ -7,8 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import objects.Animal;
 import objects.User;
@@ -23,27 +26,33 @@ public class SwipeyPageController{
 	public static int inArraySlot = 0;
 	private int imageNum = 0;
 	public static Animal[] currentAnimalArray;
+
 	private String url = "https://thumbs.dreamstime.com/z/no-animals-sign-allowed-white-background-86517013.jpg";
 
 	@FXML
 	ImageView animalView;
 	
 	@FXML
-	Button profileButton, matchesButton, yesButton, maybeButton, noButton;
-	 @FXML
-     public void initialize() {
-		 if(LoginPageController.user == null) {
-			 currentUser = SignUpController.newUser;
-			 currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
-			 currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
-			 newPet();
-		 }else {
-			 currentUser = LoginPageController.user;
-			 currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
-			 currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
-			 newPet();
-		 }
-     }
+	Button profileButton, matchesButton, yesButton, maybeButton, noButton, leftImage, rightImage;
+	
+	@FXML 
+	Label animalName;
+	
+	@FXML
+    public void initialize() {
+		inArraySlot = 0;
+		if(SignUpController.newUser != null) {
+			currentUser = SignUpController.newUser;
+			currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
+			currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
+			newPet();
+		}else if(LoginPageController.user !=null ){
+			currentUser = LoginPageController.user;
+			currentAnimalArray = new Animal[(dbc.getAnimalsBy("type", currentUser.getAnimalPref())).length];
+			currentAnimalArray = dbc.getAnimalsBy("type", currentUser.getAnimalPref());
+			newPet();
+		}
+    }
 
 	public void setUser(User user) {
 		currentUser = user;
@@ -58,9 +67,6 @@ public class SwipeyPageController{
 		Scene scene = new Scene(parent);
 		scene.getStylesheets().add("MoreInfo.css");
 		Stage window = primaryStage;
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/MoreInfo.fxml"));
-
 		window.setScene(scene);
 		window.show();
 	}
@@ -85,6 +91,20 @@ public class SwipeyPageController{
 				
 		window.setScene(scene);
 		window.show();		
+	}
+	
+	public void keyPress(KeyEvent key) throws IOException {
+		if(key.getCode() == KeyCode.RIGHT) {
+			yesAction();
+		} else if(key.getCode() == KeyCode.LEFT) {
+			noAction();
+		} else if(key.getCode() == KeyCode.DOWN) {
+			maybeAction();
+		} else if(key.getCode() == KeyCode.UP){
+			moreInfo();
+		}else {
+			
+		}
 	}
 	
 	public void yesAction() {
@@ -126,21 +146,23 @@ public class SwipeyPageController{
 	}
 	
 	public void newPet() {
-		//TODO fix this
 		imageNum = 0;
-		inArraySlot++;
+		inArraySlot ++;
 		
 		if(inArraySlot < currentAnimalArray.length) {
 			if(currentUser.getMatched().contains((currentAnimalArray)[inArraySlot].getId()) 
 					|| currentUser.getMaybe().contains((currentAnimalArray)[inArraySlot].getId())
 					|| currentUser.getNo().contains((currentAnimalArray)[inArraySlot].getId())) {
-				System.out.println("skipping " + currentAnimalArray[inArraySlot].getName());
 				newPet();
 			}else {
 				currentAnimal = currentAnimalArray[inArraySlot];
-				System.out.println(currentAnimal.getName());
 				Image image = new Image(currentAnimalArray[inArraySlot].getPhotosUrl()[0]);
 				animalView.setImage(image);
+				leftImage.setVisible(false);
+				if(currentAnimal.getPhotosUrl().length < 2) {
+					rightImage.setVisible(false);
+				}
+				animalName.setText(currentAnimal.getName());
 				primaryStage.show();
 			}
 		}else {
@@ -151,8 +173,20 @@ public class SwipeyPageController{
 	}
 	
 	public void changeImage(int imageNum) {
+		if(imageNum <= 0) {
+			leftImage.setVisible(false);
+		}else {
+			leftImage.setVisible(true);
+		}
+		
+		if(imageNum >= currentAnimal.getPhotosUrl().length - 1) {
+			rightImage.setVisible(false);
+		}else {
+			rightImage.setVisible(true);
+		}
+		
 		if (currentAnimal.getPhotosUrl().length > imageNum && 0 <= imageNum) {
-			Image image = new Image(currentAnimalArray[inArraySlot].getPhotosUrl()[imageNum]);
+			Image image = new Image(currentAnimal.getPhotosUrl()[imageNum]);
 			animalView.setImage(image);
 			primaryStage.show();
 		}
@@ -168,6 +202,14 @@ public class SwipeyPageController{
 
 	public static User getUser() {
 		return currentUser;
+	}
+	
+	public int getInArraySlot() {
+		return inArraySlot;
+	}
+
+	public void setInArraySlot(int inArraySlot) {
+		SwipeyPageController.inArraySlot = inArraySlot;
 	}
 	
 }

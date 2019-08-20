@@ -18,7 +18,6 @@ public class MatchesPageController {
 	private Stage primaryStage = GUI.primaryStage;
 	DatabaseController dbc = new DatabaseController();
 	private static User currentUser;
-	private int inArraySlot;
 	private int currentPage = 0;
 	private int currentAnimal = 0;
 	private static String[] animalIds;
@@ -45,7 +44,6 @@ public class MatchesPageController {
 		loader.setController(controller);
 		controller.setPrimaryStage(primaryStage);
 		controller.setUser(currentUser);
-		controller.inArraySlot = inArraySlot;
 		window.setScene(scene);
 		window.show();
 	}
@@ -68,14 +66,6 @@ public class MatchesPageController {
 	
 	public void setAnimalIds(String[] animalIds) {
 		MatchesPageController.animalIds = animalIds;
-	}
-	
-	public int getInArraySlot() {
-		return inArraySlot;
-	}
-
-	public void setInArraySlot(int inArraySlot) {
-		this.inArraySlot = inArraySlot;
 	}
 
 	public void setPet() {

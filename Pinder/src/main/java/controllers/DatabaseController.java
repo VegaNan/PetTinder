@@ -143,7 +143,6 @@ public class DatabaseController {
 		Animal[] animals = new Animal[animalNum];
 		
 		for(int i = 0; i < animalNum; i++) {
-			System.out.println(dbAnimals[i]);
 			JSONObject jo = new JSONObject(dbAnimals[i]);
 			String id = jo.get("id").toString();
 			String organizationId = jo.getString("organization_id");
@@ -167,6 +166,9 @@ public class DatabaseController {
 			String description = "";
 			if(jo.get("description").toString() != null){
 				description = jo.get("description").toString();
+				if(jo.get("description").toString().contains("null")) {
+					description = "No description available \uD83D\uDE2D \n contact the organization for more information";
+				}
 			}
 
 			
