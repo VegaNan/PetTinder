@@ -25,6 +25,8 @@ Label {
 }
 Button {
 	-fx-background-color: none;
-	-fx-border-style: solid;
+	-fx-border-style: none;
 	-fx-border-radius: 50%;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center;
 }

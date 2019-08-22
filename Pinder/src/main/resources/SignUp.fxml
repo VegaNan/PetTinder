@@ -13,22 +13,23 @@
       <Label layoutX="60.0" layoutY="115.0" prefHeight="30.0" prefWidth="80.0" text="First Name" />
       <Label layoutX="60.0" layoutY="180.0" prefHeight="30.0" prefWidth="80.0" text="Last Name" />
       <Label layoutX="60.0" layoutY="375.0" prefHeight="30.0" prefWidth="80.0" text="Location" />
-      <Label layoutX="60.0" layoutY="245.0" prefHeight="30.0" prefWidth="80.0" text="email" />
+      <Label layoutX="60.0" layoutY="245.0" prefHeight="30.0" prefWidth="80.0" text="Email" />
       <TextField fx:id="firstNameField" layoutX="200.0" layoutY="115.0" />
       <TextField fx:id="lastNameField" layoutX="200.0" layoutY="180.0" />
-      <Label layoutX="150.0" layoutY="37.5" prefHeight="40.0" prefWidth="150.0" text="Sign Up" />
+      <Label fx:id="Title" alignment="CENTER" layoutX="150.0" layoutY="37.5" prefHeight="40.0" prefWidth="150.0" text="Profile" />
       <Label layoutX="60.0" layoutY="310.0" prefHeight="30.0" prefWidth="80.0" text="Password" />
       <TextField fx:id="emailField" layoutX="200.0" layoutY="245.0" />
       <PasswordField fx:id="passwordField" layoutX="200.0" layoutY="310.0" />
       <TextField fx:id="locationField" layoutX="200.0" layoutY="375.0" />
       <Label layoutX="60.0" layoutY="475.0" prefHeight="30.0" prefWidth="125.0" text="Perferred Animal" />
       <Button fx:id="submitButton" layoutX="185.0" layoutY="620.0" mnemonicParsing="false" onAction="#submitUser" prefHeight="30.0" prefWidth="80.0" text="Submit" />
-      <Button fx:id="backButton" onAction="#back" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#back" prefHeight="30.0" text="Back" />
       <RadioButton fx:id="dogRadioButton" layoutX="250.0" layoutY="475.0" mnemonicParsing="false" prefHeight="30.0" text="Dogs">
          <toggleGroup>
             <ToggleGroup fx:id="prefAnimal" />
          </toggleGroup></RadioButton>
       <RadioButton fx:id="catRadioButton" layoutX="250.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" text="Cats" toggleGroup="$prefAnimal" />
+      <Button fx:id="logoutButton" layoutX="365.0" layoutY="10.0" mnemonicParsing="false" prefWidth="75.0" text="Logout" />
       <!-- <RadioButton fx:id="otherRadioButton" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" prefHeight="30.0" text="Other" toggleGroup="$prefAnimal" />  -->
 
    </children>
