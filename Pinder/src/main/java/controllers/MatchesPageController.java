@@ -26,13 +26,13 @@ public class MatchesPageController {
 	ImageView petimg0, petimg1, petimg2, petimg3, petimg4, petimg5, petimg6, petimg7, petimg8, petimg9;
 	@FXML
 	Label pettxt0, pettxt1, pettxt2, pettxt3, pettxt4, pettxt5, pettxt6, pettxt7, pettxt8, pettxt9;
-	 @FXML
-     public void initialize() {
-		 currentUser = SwipeyPageController.getUser();
-		 animalIds= new String[currentUser.getMatched().size()];
-		 currentUser.getMatched().toArray(animalIds);
-		 setPet();
-     }
+	@FXML
+    public void initialize() {
+		currentUser = SwipeyPageController.getUser();
+		animalIds= new String[currentUser.getMatched().size()];
+		currentUser.getMatched().toArray(animalIds);
+		setPet();
+    }
 	
 	public void backToSwipey() throws IOException {
 		String filename = "/SwipeyPage.fxml";
@@ -69,128 +69,182 @@ public class MatchesPageController {
 	}
 
 	public void setPet() {
-		currentPage++;
-		int slot = 0;
-		while(currentAnimal < animalIds.length && slot < 10) {
-			int id = Integer.parseInt(animalIds[currentAnimal]);
-			Animal animal = dbc.getAnimalById(id);
-			String photo = animal.getPhotosUrl()[0];
-			String text = animal.getDescription();
-			Image photoImg = new Image(photo);
-			switch(slot){
-			case 0:
-				petimg0.setImage(photoImg);
-				pettxt0.setText(text);
-				break;
-			case 1:
-				petimg1.setImage(photoImg);
-				pettxt1.setText(animal.getDescription());
-				break;
-			case 2:
-				petimg2.setImage(photoImg);
-				pettxt2.setText(animal.getDescription());
-				break;
-			case 3:
-				petimg3.setImage(photoImg);
-				pettxt3.setText(animal.getDescription());
-				break;
-			case 4:		
-				petimg4.setImage(photoImg);
-				pettxt4.setText(animal.getDescription());
-				break;
-			case 5:
-				petimg5.setImage(photoImg);
-				pettxt5.setText(animal.getDescription());
-				break;
-			case 6:
-				petimg6.setImage(photoImg);
-				pettxt6.setText(animal.getDescription());
-				break;
-			case 7:
-				petimg7.setImage(photoImg);
-				pettxt7.setText(animal.getDescription());
-				break;
-			case 8:
-				petimg8.setImage(photoImg);
-				pettxt8.setText(animal.getDescription());
-				break;
-			case 9:
-				petimg9.setImage(photoImg);
-				pettxt9.setText(animal.getDescription());
-				break;
-				
+		if(currentPage <= animalIds.length/10) {
+			currentPage++;
+			int slot = 0;
+			while(currentAnimal < animalIds.length && slot < 10) {
+				int id = Integer.parseInt(animalIds[currentAnimal]);
+				Animal animal = dbc.getAnimalById(id);
+				String photo = animal.getPhotosUrl()[0];
+				String text = animal.getDescription();
+				Image photoImg = new Image(photo);
+				switch(slot){
+				case 0:
+					petimg0.setImage(photoImg);
+					pettxt0.setText(text);
+					break;
+				case 1:
+					petimg1.setImage(photoImg);
+					pettxt1.setText(animal.getDescription());
+					break;
+				case 2:
+					petimg2.setImage(photoImg);
+					pettxt2.setText(animal.getDescription());
+					break;
+				case 3:
+					petimg3.setImage(photoImg);
+					pettxt3.setText(animal.getDescription());
+					break;
+				case 4:		
+					petimg4.setImage(photoImg);
+					pettxt4.setText(animal.getDescription());
+					break;
+				case 5:
+					petimg5.setImage(photoImg);
+					pettxt5.setText(animal.getDescription());
+					break;
+				case 6:
+					petimg6.setImage(photoImg);
+					pettxt6.setText(animal.getDescription());
+					break;
+				case 7:
+					petimg7.setImage(photoImg);
+					pettxt7.setText(animal.getDescription());
+					break;
+				case 8:
+					petimg8.setImage(photoImg);
+					pettxt8.setText(animal.getDescription());
+					break;
+				case 9:
+					petimg9.setImage(photoImg);
+					pettxt9.setText(animal.getDescription());
+					break;
+					
+				}
+				currentAnimal++;
+				slot++;
+		
 			}
-			currentAnimal++;
-			slot++;
-	
-		Stage window = primaryStage;
-		window.show();
+			
+			while(currentAnimal == animalIds.length && slot < 10) {
+
+				switch(slot){
+				case 0:
+					petimg0.setImage(null);
+					pettxt0.setText("");
+					break;
+				case 1:
+					petimg1.setImage(null);
+					pettxt1.setText("");
+					break;
+				case 2:
+					petimg2.setImage(null);
+					pettxt2.setText("");
+					break;
+				case 3:
+					petimg3.setImage(null);
+					pettxt3.setText("");
+					break;
+				case 4:		
+					petimg4.setImage(null);
+					pettxt4.setText("");
+					break;
+				case 5:
+					petimg5.setImage(null);
+					pettxt5.setText("");
+					break;
+				case 6:
+					petimg6.setImage(null);
+					pettxt6.setText("");
+					break;
+				case 7:
+					petimg7.setImage(null);
+					pettxt7.setText("");
+					break;
+				case 8:
+					petimg8.setImage(null);
+					pettxt8.setText("");
+					break;
+				case 9:
+					petimg9.setImage(null);
+					pettxt9.setText("");
+					break;
+					
+				}
+				slot++;
+			}
+			Stage window = primaryStage;
+			window.show();
+			System.out.println(currentPage + " / " + (animalIds.length/10 + 1));
 		}
 	}
 	public void setPetBack() {
-		currentPage--;
-		if(currentAnimal >= 20) {
-			currentAnimal -=20;
-		}
-		int slot = 0;
-		while(currentAnimal< animalIds.length && slot < 10) {
-			int id = Integer.parseInt(animalIds[currentAnimal]);
-			Animal animal = dbc.getAnimalById(id);
-			String photo = animal.getPhotosUrl()[0];
-			String text = animal.getDescription();
-			Image photoImg = new Image(photo);
-			
-			switch(slot){
-			case 0:
-				petimg0.setImage(photoImg);
-				pettxt0.setText(text);
-				break;
-			case 1:
-				petimg1.setImage(photoImg);
-				pettxt1.setText(animal.getDescription());
-				break;
-			case 2:
-				petimg2.setImage(photoImg);
-				pettxt2.setText(animal.getDescription());
-				break;
-			case 3:
-				petimg3.setImage(photoImg);
-				pettxt3.setText(animal.getDescription());
-				break;
-			case 4:		
-				petimg4.setImage(photoImg);
-				pettxt4.setText(animal.getDescription());
-				break;
-			case 5:
-				petimg5.setImage(photoImg);
-				pettxt5.setText(animal.getDescription());
-				break;
-			case 6:
-				petimg6.setImage(photoImg);
-				pettxt6.setText(animal.getDescription());
-				break;
-			case 7:
-				petimg7.setImage(photoImg);
-				pettxt7.setText(animal.getDescription());
-				break;
-			case 8:
-				petimg8.setImage(photoImg);
-				pettxt8.setText(animal.getDescription());
-				break;
-			case 9:
-				petimg9.setImage(photoImg);
-				pettxt9.setText(animal.getDescription());
-				break;
-				
+		if(currentPage > 1) {
+			currentPage--;
+			if(currentAnimal >= 20) {
+				currentAnimal = currentPage*10 - 10;
 			}
-			currentAnimal++;
-			slot++;
-	
-		Stage window = primaryStage;
-		window.show();
+			int slot = 0;
+			while(currentAnimal< animalIds.length && slot < 10) {
+				int id = Integer.parseInt(animalIds[currentAnimal]);
+				Animal animal = dbc.getAnimalById(id);
+				String photo = animal.getPhotosUrl()[0];
+				String text = animal.getDescription();
+				Image photoImg = new Image(photo);
+				
+				switch(slot){
+				case 0:
+					petimg0.setImage(photoImg);
+					pettxt0.setText(text);
+					break;
+				case 1:
+					petimg1.setImage(photoImg);
+					pettxt1.setText(animal.getDescription());
+					break;
+				case 2:
+					petimg2.setImage(photoImg);
+					pettxt2.setText(animal.getDescription());
+					break;
+				case 3:
+					petimg3.setImage(photoImg);
+					pettxt3.setText(animal.getDescription());
+					break;
+				case 4:		
+					petimg4.setImage(photoImg);
+					pettxt4.setText(animal.getDescription());
+					break;
+				case 5:
+					petimg5.setImage(photoImg);
+					pettxt5.setText(animal.getDescription());
+					break;
+				case 6:
+					petimg6.setImage(photoImg);
+					pettxt6.setText(animal.getDescription());
+					break;
+				case 7:
+					petimg7.setImage(photoImg);
+					pettxt7.setText(animal.getDescription());
+					break;
+				case 8:
+					petimg8.setImage(photoImg);
+					pettxt8.setText(animal.getDescription());
+					break;
+				case 9:
+					petimg9.setImage(photoImg);
+					pettxt9.setText(animal.getDescription());
+					break;
+					
+				}
+				currentAnimal++;
+				slot++;
+		
+			}
+			Stage window = primaryStage;
+			window.show();
+			System.out.println(currentPage + " / " + (animalIds.length/10 + 1));
 		}
 	}
-
+	
 	public int getCurrentPage() {
 		return currentPage;
 	}
