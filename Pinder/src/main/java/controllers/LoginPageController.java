@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import objects.User;
 
@@ -40,6 +42,12 @@ public class LoginPageController {
 		
 		window.setScene(scene);
 		window.show();
+	}
+	
+	public void keyPress(KeyEvent key) throws IOException {
+		if(key.getCode() == KeyCode.ENTER) {
+			login();
+		}
 	}
 	
 	public void login() throws IOException{
