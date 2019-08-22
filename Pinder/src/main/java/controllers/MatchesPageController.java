@@ -10,6 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 import objects.Animal;
 import objects.User;
@@ -78,7 +82,7 @@ public class MatchesPageController {
 				Animal animal = dbc.getAnimalById(id);
 				String photo = animal.getPhotosUrl()[0];
 				String text = animal.getDescription();
-				ImageView photoImg = new ImageView(new Image(photo));
+				ImageView photoImg = new ImageView(new Image(photo,100, 100 , true, true));
 				
 				switch(slot){
 				case 0:
@@ -192,7 +196,7 @@ public class MatchesPageController {
 				Animal animal = dbc.getAnimalById(id);
 				String photo = animal.getPhotosUrl()[0];
 				String text = animal.getDescription();
-				ImageView photoImg = new ImageView(new Image(photo));
+				ImageView photoImg = new ImageView(new Image(photo,100, 100 , true, true));
 				
 				switch(slot){
 				case 0:
