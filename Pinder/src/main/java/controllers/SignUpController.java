@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import objects.User;
 import views.GUI;
@@ -48,6 +50,12 @@ public class SignUpController {
 		
 		window.setScene(scene);
 		window.show();
+	}
+	
+	public void keyPress(KeyEvent key) throws IOException {
+		if(key.getCode() == KeyCode.ENTER) {
+			submitUser();
+		}
 	}
 
 	public void submitUser() throws IOException {
