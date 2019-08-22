@@ -26,7 +26,7 @@
       <Button fx:id="rightImage" layoutX="405.0" layoutY="350.0" mnemonicParsing="false" onAction="#rightPicture" prefHeight="30.0" prefWidth="40.0" text="Button" />
       <Pane layoutY="550.0" prefHeight="150.0" prefWidth="450.0">
          <children>
-            <Label fx:id="petDescription" layoutX="10.0" layoutY="10.0" prefHeight="130.0" prefWidth="430.0" text="PetDescription" />
+            <Label fx:id="petDescriptionLabel" layoutX="10.0" layoutY="10.0" prefHeight="130.0" prefWidth="430.0" text="PetDescription" />
          </children>
       </Pane>
    </children>
