@@ -2,14 +2,12 @@ AnchorPane {
 	-fx-background-color: #fcfaf7;
 }
 
-#backButton {
+#backButton, #previousButton, #forwardButton {
 	-fx-text-fill: #bd2222;
 	-fx-background-color: #fcfaf7;
 	-fx-border-style: solid;
 	-fx-border-color: #bd2222;
 	-fx-border-radius: 3px;
-	
-	
 }
 
 Label {
@@ -17,13 +15,18 @@ Label {
 	-fx-border-style: none;
 	-fx-text-fill: #21262c;
 	-fx-wrap-text: true;
+	-fx-text-alignment: center;
 }
 
-ImageView {
-	-fx-background-radius: 50%;
-}
 #Title {
 	-fx-font-size: 32px;
 	-fx-text-alignment: center;
 	-fx-text-fill: #bd2222;
+}
+Button {
+	-fx-background-color: none;
+	-fx-border-style: none;
+	-fx-border-radius: 50%;
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: center;
 }
