@@ -55,7 +55,7 @@
                         <Button fx:id="petimg0" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" />
                         <Button fx:id="petimg1" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="1" />
                         <Button fx:id="petimg2" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="2" />
-                        <Button fx:id="petimg3" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="3" />
+                        <Button fx:id="petimg3" maxHeight="110.0" maxWidth="110.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="3" />
                         <Button fx:id="petimg4" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="4" />
                         <Button fx:id="petimg5" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="5" />
                         <Button fx:id="petimg6" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="6" />
