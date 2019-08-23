@@ -14,7 +14,7 @@
       <Pane prefHeight="150.0" prefWidth="450.0">
          <children>
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" text="Back" />
-            <Label fx:id="Title" alignment="CENTER" layoutX="75.0" layoutY="55.0" prefWidth="300.0" text="Your Loved Animals" />
+            <Label fx:id="Title" alignment="CENTER" layoutX="75.0" layoutY="65.0" prefWidth="300.0" text="Your Loved Animals" />
             <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#backToSwipey" prefHeight="10.0" prefWidth="60.0" text="Back" />
 			<Button fx:id="previousButton" layoutX="105.0" layoutY="10.0" mnemonicParsing="false" onAction="#setPetBack" prefHeight="30.0" prefWidth="100.0" text="Previous" />
 			<Button fx:id="forwardButton" layoutX="245.0" layoutY="10.0" mnemonicParsing="false" onAction="#setPet" prefHeight="10.0" prefWidth="100.0" text="Forward" />
@@ -23,7 +23,7 @@
       </Pane>
       <ScrollPane layoutY="150.0" prefHeight="550.0" prefWidth="450.0">
         <content>
-          <AnchorPane maxHeight="1100.0" minHeight="0.0" minWidth="0.0" prefHeight="1100.0" prefWidth="450.0">
+          <AnchorPane fx:id= "secondPane" maxHeight="1100.0" minHeight="0.0" minWidth="0.0" prefHeight="1100.0" prefWidth="450.0">
                <children>
                   <GridPane maxHeight="1100.0" prefHeight="1100.0" prefWidth="450.0">
                     <columnConstraints>

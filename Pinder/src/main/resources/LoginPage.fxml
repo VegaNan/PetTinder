@@ -9,7 +9,7 @@
 
 <AnchorPane onKeyPressed="#keyPress" prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginPageController">
    <children>
-      <Label fx:id="Name" alignment="CENTER" layoutX="112.5" layoutY="50.0" prefHeight="75.0" prefWidth="225.0" text="Pinder" />
+      <Label fx:id="Name" alignment="CENTER" layoutX="112.5" layoutY="75.0" prefHeight="75.0" prefWidth="225.0" text="Pinder" />
       <Pane layoutX="75.0" layoutY="350.0" prefHeight="200.0" prefWidth="300.0">
          <children>
             <Label fx:id="loginLabel" layoutX="125.0" layoutY="10.0" prefHeight="30.0" prefWidth="70.0" text="Login" />

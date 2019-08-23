@@ -8,7 +8,7 @@
 
 <AnchorPane onKeyPressed="#keyPress" prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MoreInfoController">
    <children>
-      <Pane prefHeight="100.0" prefWidth="450.0">
+      <Pane fx:id="picPane" prefHeight="450.0" prefWidth="450.0">
          <children>
             <Label fx:id="animalNameLabel" alignment="CENTER" layoutX="75.0" layoutY="20.0" prefHeight="60.0" prefWidth="300.0" text="Name" />
             <Button fx:id="backButton" layoutX="10.0" layoutY="25.0" mnemonicParsing="false" onAction="#backAction" prefHeight="15.0" prefWidth="60.0" text="Back" />

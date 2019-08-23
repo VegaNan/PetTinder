@@ -1,10 +1,29 @@
 AnchorPane {
-	-fx-background-color: #fcfaf7;
+	-fx-background-color: linear-gradient(to bottom, #ffa500 0%, #ff0000 100%);
 }
 
-#backButton, #previousButton, #forwardButton {
+Pane {
+	-fx-border-width: 0 0 4 0;
+	-fx-border-style: solid;
+	-fx-border-color: #bd2222;
+}
+	
+GridPane {
+	-fx-background-color: rgba(252, 250, 247, 0.875);
+}
+
+#backButton {
 	-fx-text-fill: #bd2222;
-	-fx-background-color: #fcfaf7;
+	-fx-background-color: none;
+	-fx-border-style: solid;
+	-fx-border-color: #bd2222;
+	-fx-border-radius: 3px;
+}
+
+#previousButton, #forwardButton {
+	-fx-text-fill: #bd2222;
+	-fx-font-weight: bold;
+	-fx-background-color: none;
 	-fx-border-style: solid;
 	-fx-border-color: #bd2222;
 	-fx-border-radius: 3px;
@@ -16,6 +35,10 @@ Label {
 	-fx-text-fill: #21262c;
 	-fx-wrap-text: true;
 	-fx-text-alignment: center;
+}
+
+#pageNum {
+	-fx-text-fill: #fff;
 }
 
 #Title {
