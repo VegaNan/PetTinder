@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -21,6 +22,8 @@ public class LoginPageController {
 	
 	@FXML
 	TextField username, password;
+	@FXML
+	Label loginLabel;
 	
 	@FXML
 	Button loginButton, signUpButton;
@@ -57,6 +60,7 @@ public class LoginPageController {
 			
 			if(user == null) {
 				//TODO show this on the GUI
+				loginLabel.setText("try again");
 				System.out.println("incorrect login credentials");
 			}else {
 				changeScene("/SwipeyPage.fxml", user);

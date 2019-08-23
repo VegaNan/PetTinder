@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import objects.Animal;
+import objects.Organization;
 import views.GUI;
 
 public class MoreInfoController {
@@ -34,7 +35,9 @@ public class MoreInfoController {
 		animal = SwipeyPageController.currentAnimalArray[SwipeyPageController.inArraySlot];
 		typeAnimalLabel.setText("Type: " + animal.getType());
 		milesAwayLabel.setText("Location: " + animal.getLocation());
-		organizationLabel.setText("Organization: " + animal.getOrganization());
+		//Organization org = dbc.getOrganizationById(animal.getOrganizationId());
+	
+		organizationLabel.setText("Organization: " + animal.getOrganizationId());
 		petDescriptionLabel.setText("Description: " + animal.getDescription().replace("!", "").replace("@", "")
 				.replace("#", "").replace("$", "").replace("%", "").replace("^", "").replace("&", "").replace("*", "")
 				.replace("amp", "").replace("44", "").replace("10", "").replace(";;", ",").replace("nbsp", "")

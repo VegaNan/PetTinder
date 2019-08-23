@@ -2,6 +2,8 @@ package controllers;
 
 import java.io.IOException;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,10 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 import objects.Animal;
 import objects.User;
@@ -30,7 +28,7 @@ public class MatchesPageController {
 	@FXML
 	Button petimg0, petimg1, petimg2, petimg3, petimg4, petimg5, petimg6, petimg7, petimg8, petimg9;
 	@FXML
-	Label pettxt0, pettxt1, pettxt2, pettxt3, pettxt4, pettxt5, pettxt6, pettxt7, pettxt8, pettxt9;
+	Label pettxt0, pettxt1, pettxt2, pettxt3, pettxt4, pettxt5, pettxt6, pettxt7, pettxt8, pettxt9, pageNum;
 	@FXML
     public void initialize() {
 		currentUser = SwipeyPageController.getUser();
@@ -179,12 +177,12 @@ public class MatchesPageController {
 				}
 				slot++;
 			}
+			pageNum.setText(currentPage + " / " + (animalIds.length/10 + 1));
 			Stage window = primaryStage;
 			window.show();
-			System.out.println(currentPage + " / " + (animalIds.length/10 + 1));
 		}
 	}
-	public void setPetBack() {
+	public void setPetBack(){
 		if(currentPage > 1) {
 			currentPage--;
 			if(currentAnimal >= 20) {
@@ -201,6 +199,10 @@ public class MatchesPageController {
 				switch(slot){
 				case 0:
 					petimg0.setGraphic(photoImg);
+					petimg0.setOnAction(new EventHandler<ActionEvent>() {
+						public void handle(ActionEvent event) {
+						}
+					});
 					pettxt0.setText(text);
 					break;
 				case 1:
@@ -245,9 +247,9 @@ public class MatchesPageController {
 				slot++;
 		
 			}
+			pageNum.setText(currentPage + " / " + (animalIds.length/10 + 1));
 			Stage window = primaryStage;
 			window.show();
-			System.out.println(currentPage + " / " + (animalIds.length/10 + 1));
 		}
 	}
 	
