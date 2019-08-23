@@ -1,5 +1,9 @@
 AnchorPane {
-	-fx-background-color: #fcfaf7;
+	-fx-background-color: linear-gradient(to bottom, #ffa500 0%, #ff0000 100%);
+}
+
+Pane {
+	-fx-background-color: rgba(252, 250, 247, 0.875);
 }
 
 Button {
@@ -8,4 +12,9 @@ Button {
 	-fx-border-style: solid;
 	-fx-border-color: #bd2222;
 	-fx-border-radius: 3px;
+}
+
+Label {
+	-fx-text-fill: #21262c;
+	-fx-font-size: 16px;
 }
