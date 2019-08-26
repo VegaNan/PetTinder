@@ -23,7 +23,7 @@
       </Pane>
       <ScrollPane layoutY="150.0" prefHeight="550.0" prefWidth="450.0">
         <content>
-          <AnchorPane fx:id= "secondPane" maxHeight="1100.0" minHeight="0.0" minWidth="0.0" prefHeight="1100.0" prefWidth="450.0">
+          <AnchorPane fx:id="secondPane" maxHeight="1100.0" minHeight="0.0" minWidth="0.0" prefHeight="1100.0" prefWidth="450.0">
                <children>
                   <GridPane maxHeight="1100.0" prefHeight="1100.0" prefWidth="450.0">
                     <columnConstraints>
@@ -53,16 +53,16 @@
                         <Label fx:id="pettxt7" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <Label fx:id="pettxt8" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         <Label fx:id="pettxt9" prefHeight="110.0" prefWidth="343.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <Button fx:id="petimg0" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" />
-                        <Button fx:id="petimg1" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="1" />
-                        <Button fx:id="petimg2" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="2" />
-                        <Button fx:id="petimg3" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="3" />
-                        <Button fx:id="petimg4" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="4" />
-                        <Button fx:id="petimg5" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="5" />
-                        <Button fx:id="petimg6" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="6" />
-                        <Button fx:id="petimg7" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="7" />
-                        <Button fx:id="petimg8" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="8" />
-                        <Button fx:id="petimg9" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" text="Button" GridPane.rowIndex="9" />
+                        <Button fx:id="petimg0" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" />
+                        <Button fx:id="petimg1" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" GridPane.rowIndex="1" />
+                        <Button fx:id="petimg2" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" GridPane.rowIndex="2" />
+                        <Button fx:id="petimg3" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" GridPane.rowIndex="3" />
+                        <Button fx:id="petimg4" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" GridPane.rowIndex="4" />
+                        <Button fx:id="petimg5" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" GridPane.rowIndex="5" />
+                        <Button fx:id="petimg6" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" GridPane.rowIndex="6" />
+                        <Button fx:id="petimg7" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" GridPane.rowIndex="7" />
+                        <Button fx:id="petimg8" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" GridPane.rowIndex="8" />
+                        <Button fx:id="petimg9" mnemonicParsing="false" prefHeight="110.0" prefWidth="110.0" GridPane.rowIndex="9" />
                      </children>
                   </GridPane>
                </children>
