@@ -41,9 +41,7 @@ public class APIController {
 		}
 	}
 	
-	public static String animalRequest() {
-		int page = 1;
-		int pages = 4;
+	public static String animalRequest(int page) {
 		String command = "curl -H \"Authorization: Bearer " + accessToken + "\" GET https://api.petfinder.com/v2/animals?status=adoptable&location=" + location +"&page=" + page + "&limit=100";
 		Process process = null;
 		String response = new String();
@@ -62,14 +60,10 @@ public class APIController {
 			process.destroy();
 			//getting the number of pages
 			String[] info = response.split(",");
-			//pages = Integer.parseInt(info[info.length-2].split(":")[1]);
-			printProgress(page, pages);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		//get ALL pets
-		while(page <= pages) {
 			response = "";
 			command = "curl -H \"Authorization: Bearer " + accessToken + "\" GET https://api.petfinder.com/v2/animals?location=" + location +"&page=" + page + "&limit=100";
 			try {
@@ -84,12 +78,9 @@ public class APIController {
 				//close our streams and destroy our processes
 				in.close();
 				process.destroy();
-				page +=1;
-				printProgress(page, pages);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
 		return response;
 	}
 
@@ -128,7 +119,7 @@ public class APIController {
 	private static void printProgress(int current, int total) {
 		total = total + 1;
 	    StringBuilder string = new StringBuilder();   
-	    int percent = (int) (current * 100 / total);
+	    int percent = current * 100 / total;
 	    string
 	        .append(String.join("", Collections.nCopies(percent == 0 ? 2 : 2 - (int) (Math.log10(percent)), " ")))
 	        .append(String.format(" %d%% [", percent))

@@ -7,8 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class GUI extends Application {
-	
+public class GUI extends Application {	
 	
 	public static Stage primaryStage;
 	
@@ -21,6 +20,7 @@ public class GUI extends Application {
 			LoginPageController controller = loader.getController();
 			controller.setPrimaryStage(primaryStage);
 			Scene scene = new Scene(root, 450, 700);
+			scene.getStylesheets().add("LoginPageStyle.css");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
