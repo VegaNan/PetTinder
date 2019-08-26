@@ -57,7 +57,7 @@ public class Animal {
 		this.declawed = declawed;
 		this.photosUrl = photosUrl;
 		this.tags = tags;
-		this.description = description;
+		setDescription(description);
 		this.dbString = dbString;
 	}
 
@@ -238,7 +238,10 @@ public class Animal {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.description = description.replace("!", "").replace("@", "")
+				.replace("#", "").replace("$", "").replace("%", "").replace("^", "").replace("&", "").replace("*", "")
+				.replace("amp", "").replace("44", "").replace("10", "").replace(";;", ",").replace("nbsp", "")
+				.replace(";", "").replace("039", "'").replace("39", "").replace("34", "");
 	}
 
 	public String getDbString() {
