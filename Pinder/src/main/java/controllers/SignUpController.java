@@ -10,6 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import objects.User;
 import views.GUI;
@@ -17,7 +20,7 @@ import views.GUI;
 public class SignUpController {
 
 	private Stage primaryStage = GUI.primaryStage;
-	private User newUser;
+	public static User newUser;
 
 	@FXML
 	TextField firstNameField, lastNameField, locationField, emailField;
@@ -29,7 +32,7 @@ public class SignUpController {
 	RadioButton dogRadioButton, catRadioButton, otherRadioButton;
 
 	@FXML
-	Button submitButton;
+	Button submitButton, backButton;
 
 	private void changeScene(String filename) throws IOException {
 		// parent takes in the file
@@ -49,6 +52,12 @@ public class SignUpController {
 		window.setScene(scene);
 		window.show();
 	}
+	
+	public void keyPress(KeyEvent key) throws IOException {
+		if(key.getCode() == KeyCode.ENTER) {
+			submitUser();
+		}
+	}
 
 	public void submitUser() throws IOException {
 		if(!firstNameField.getText().trim().isEmpty() & 
@@ -57,8 +66,8 @@ public class SignUpController {
 				!emailField.getText().trim().isEmpty() & 
 				!passwordField.getText().trim().isEmpty() & 
 				(dogRadioButton.isSelected() | 
-						catRadioButton.isSelected() | 
-						otherRadioButton.isSelected())) {
+						catRadioButton.isSelected())) // | otherRadioButton.isSelected())) 
+		{
 			newUser = new User();
 			newUser.setFirstName(firstNameField.getText().trim());
 			newUser.setLastName(lastNameField.getText().trim());
@@ -85,6 +94,18 @@ public class SignUpController {
 
 	public void setPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
+	}
+	
+	public void back() throws IOException {
+		GUI.primaryStage = primaryStage;
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginPage.fxml"));
+		AnchorPane root = (AnchorPane) loader.load();
+		LoginPageController controller = loader.getController();
+		controller.setPrimaryStage(primaryStage);
+		Scene scene = new Scene(root, 450, 700);
+		scene.getStylesheets().add("LoginPageStyle.css");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 
 }

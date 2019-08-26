@@ -4,8 +4,8 @@ AnchorPane {
 
 #Name {
 	-fx-text-alignment: center;
-	-fx-font-size: 60px;
-	-fx-font-family: "Letterpress", "Scrubby", "monospace";
+	-fx-font-size: 62px;
+	-fx-font-family: 'monospace';
 	-fx-font-weight: 500;
 	-fx-text-fill: #fff4f0;
 }
