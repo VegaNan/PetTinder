@@ -58,8 +58,22 @@ public class SwipeyPageController{
 		currentUser = user;
 	}
 	
-	public void profilePage() {
+	public void settingsPage() throws IOException {
+		Parent parent = FXMLLoader.load(getClass().getResource("/SettingsPage.fxml"));
+		Scene scene = new Scene(parent);
+//		scene.getStylesheets().add("MatchesPageStyle.css");
+		Stage window = primaryStage;
 		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/SettingsPage.fxml"));
+		SettingsController controller = new SettingsController();
+		
+		controller.setUser(currentUser);
+		controller.setPrimaryStage(primaryStage);
+		
+		loader.setController(controller);
+				
+		window.setScene(scene);
+		window.show();
 	}
 	
 	public void moreInfo() throws IOException {
