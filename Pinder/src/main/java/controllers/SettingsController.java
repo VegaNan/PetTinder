@@ -65,6 +65,7 @@ public class SettingsController {
 		LoginPageController controller = new LoginPageController();
 
 		loader.setController(controller);
+		controller.setPrimaryStage(primaryStage);
 
 		window.setScene(scene);
 		window.show();

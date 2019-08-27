@@ -22,6 +22,7 @@ public class GUI extends Application {
 			Scene scene = new Scene(root, 450, 700);
 			scene.getStylesheets().add("LoginPageStyle.css");
 			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
