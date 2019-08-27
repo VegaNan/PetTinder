@@ -41,7 +41,7 @@ public class MoreInfoController {
 		petDescriptionLabel.setText("Description: " + animal.getDescription().replace("!", "").replace("@", "")
 				.replace("#", "").replace("$", "").replace("%", "").replace("^", "").replace("&", "").replace("*", "")
 				.replace("amp", "").replace("44", "").replace("10", "").replace(";;", ",").replace("nbsp", "")
-				.replace(";", "").replace("039", "'"));
+				.replace(";", "").replace("039", "'").replace("39", ""));
 		animalNameLabel.setText(animal.getName());
 		animalImage.setImage(new Image(animal.getPhotosUrl()[0]));
 		leftImage.setVisible(false);

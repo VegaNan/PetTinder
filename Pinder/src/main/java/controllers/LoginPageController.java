@@ -13,15 +13,17 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import objects.User;
+import views.GUI;
 
 public class LoginPageController {
 
-	private Stage primaryStage;
+	private Stage primaryStage = GUI.primaryStage;
 	DatabaseController dbc = new DatabaseController();
 	public static User user;
 	
 	@FXML
 	TextField username, password;
+	
 	@FXML
 	Label loginLabel;
 	

@@ -9,7 +9,7 @@
    <children>
       <Pane layoutX="10.0" layoutY="10.0" prefHeight="680.0" prefWidth="430.0">
          <children>
-            <Button layoutX="360.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Swipey" />
+            <Button layoutX="350.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Swipey" />
       		<Label layoutX="50.0" layoutY="100.0" prefHeight="25.0" text="First Name" />
       		<Label layoutX="50.0" layoutY="180.0" prefHeight="25.0" text="Last Name" />
       		<Label layoutX="50.0" layoutY="260.0" prefHeight="25.0" text="Email" />
