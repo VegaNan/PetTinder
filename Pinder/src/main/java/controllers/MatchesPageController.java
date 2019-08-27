@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -85,6 +86,13 @@ public class MatchesPageController {
 				switch(slot){
 				case 0:
 					petimg0.setGraphic(photoImg);
+					petimg0.setOnAction(new EventHandler<ActionEvent>() {
+						@Override
+						public void handle(ActionEvent arg0) {
+							// TODO Auto-generated method stub
+							
+						}
+					});
 					pettxt0.setText(text);
 					break;
 				case 1:
