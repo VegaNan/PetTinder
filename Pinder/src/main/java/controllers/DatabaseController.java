@@ -78,8 +78,13 @@ public class DatabaseController {
 		MongoCollection<Document> collectionResults = organizationCollection;
 		BasicDBObject fields = new BasicDBObject();
 		fields.put("id", id);
-		FindIterable<Document> cursor = collectionResults.find(fields);
-		String dbString = cursor.first().toString();
+		String dbString = "";
+		Iterable<Document> cursor = collectionResults.find(fields);
+		for(Document doc: cursor) {
+			dbString+=doc.toJson();
+			dbString+=doc.toJson() + "~";
+
+		}
 		Organization org = createOrganizationObjects(dbString)[0];
 		return org;
 	}
@@ -197,19 +202,21 @@ public class DatabaseController {
 		int dbLength = dbOrgs.length;
 		Organization[] orgArr = new Organization[dbLength];
 		
-		
+		System.out.println(dbString);
 		for(int i = 0; i < dbLength; i++) {
 			JSONObject jo = new JSONObject(dbOrgs[i]);
 
 			String organizationId = jo.getString("id"); 
 			String name = jo.getString("name");
-			String location = jo.getString("address1");
-			String state = jo.getString("state");
-			String zipcode = jo.getString("postcode");
-			String country = jo.getString("country");
-			String contactEmail = jo.getString("email");
-			String contactPhone = jo.getString("phone");
-			String websiteUrl = jo.getString("website");
+
+			String location = jo.getJSONObject("address").get("address1").toString();
+			String state = jo.getJSONObject("address").get("state").toString();
+			String zipcode = jo.getJSONObject("address").get("postcode").toString();
+			String country = jo.getJSONObject("address").get("country").toString();
+			
+			String contactEmail = jo.get("email").toString();
+			String contactPhone = jo.get("phone").toString();
+			String websiteUrl = jo.get("website").toString();
 	
 			orgArr[i] = new Organization(organizationId, name, location, state, country, contactEmail, contactPhone, zipcode, websiteUrl);
 		}

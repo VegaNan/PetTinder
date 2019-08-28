@@ -33,11 +33,16 @@ public class MoreInfoController {
 
 	@FXML
 	public void initialize() {
+		
 		animal = SwipeyPageController.currentAnimalArray[SwipeyPageController.inArraySlot];
+		Organization org = dbc.getOrganizationById(animal.getOrganizationId());
+		System.out.println(org.toString());
+		
 		typeAnimalLabel.setText("Type: " + animal.getType());
 		milesAwayLabel.setText("Location: " + animal.getLocation());
+		
 	
-		organizationLabel.setText("Organization: " + animal.getOrganizationId());
+		organizationLabel.setText("Organization: " + org.getName());
 		petDescriptionLabel.setText("Description: " + animal.getDescription().replace("!", "").replace("@", "")
 				.replace("#", "").replace("$", "").replace("%", "").replace("^", "").replace("&", "").replace("*", "")
 				.replace("amp", "").replace("44", "").replace("10", "").replace(";;", ",").replace("nbsp", "")
