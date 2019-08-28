@@ -23,6 +23,7 @@ public class MoreInfoController {
 	DatabaseController dbc = new DatabaseController();
 	public static Animal animal;
 	public int imageNum = 0;
+	
 	@FXML
 	Label typeAnimalLabel, milesAwayLabel, organizationLabel, animalNameLabel, petDescriptionLabel;
 	@FXML
@@ -35,7 +36,6 @@ public class MoreInfoController {
 		animal = SwipeyPageController.currentAnimalArray[SwipeyPageController.inArraySlot];
 		typeAnimalLabel.setText("Type: " + animal.getType());
 		milesAwayLabel.setText("Location: " + animal.getLocation());
-		//Organization org = dbc.getOrganizationById(animal.getOrganizationId());
 	
 		organizationLabel.setText("Organization: " + animal.getOrganizationId());
 		petDescriptionLabel.setText("Description: " + animal.getDescription().replace("!", "").replace("@", "")
@@ -48,7 +48,27 @@ public class MoreInfoController {
 		if (animal.getPhotosUrl().length < 2) {
 			rightImage.setVisible(false);
 		}
-
+	}
+	
+	public void setAnimal(Animal animal) {
+		MoreInfoController.animal = animal;
+		typeAnimalLabel.setText("Type: " + animal.getType());
+		milesAwayLabel.setText("Location: " + animal.getLocation());
+	
+		organizationLabel.setText("Organization: " + animal.getOrganizationId());
+		petDescriptionLabel.setText("Description: " + animal.getDescription().replace("!", "").replace("@", "")
+				.replace("#", "").replace("$", "").replace("%", "").replace("^", "").replace("&", "").replace("*", "")
+				.replace("amp", "").replace("44", "").replace("10", "").replace(";;", ",").replace("nbsp", "")
+				.replace(";", "").replace("039", "'"));
+		animalNameLabel.setText(animal.getName());
+		animalImage.setImage(new Image(animal.getPhotosUrl()[0]));
+		leftImage.setVisible(false);
+		if (animal.getPhotosUrl().length < 2) {
+			rightImage.setVisible(false);
+		}
+		
+		Stage window = primaryStage;
+		window.show();
 	}
 
 	public void keyPress(KeyEvent key) throws IOException {
