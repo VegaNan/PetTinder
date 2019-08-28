@@ -17,9 +17,9 @@
       <ImageView fx:id="animalImage" fitHeight="350.0" fitWidth="350.0" layoutX="50.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" />
       <Pane layoutY="450.0" prefHeight="100.0" prefWidth="450.0">
          <children>
-            <Label fx:id="typeAnimalLabel" layoutX="10.0" layoutY="10.0" prefHeight="80.0" prefWidth="137.0" text="Type of Animal" />
-            <Label fx:id="milesAwayLabel" layoutX="157.0" layoutY="10.0" prefHeight="80.0" prefWidth="137.0" text="Miles Away" />
-            <Label fx:id="organizationLabel" layoutX="304.0" layoutY="10.0" prefHeight="80.0" prefWidth="137.0" text="Organization" />
+            <Label fx:id="typeAnimalLabel" layoutX="10.0" layoutY="10.0" prefHeight="80.0" prefWidth="90.0" text="Type of Animal" />
+            <Label fx:id="milesAwayLabel" layoutX="110.0" layoutY="10.0" prefHeight="80.0" prefWidth="160.0" text="Miles Away" />
+            <Label fx:id="organizationLabel" layoutX="280.0" layoutY="10.0" prefHeight="80.0" prefWidth="160.0" text="Organization" />
          </children>
       </Pane>
       <Button fx:id="leftImage" layoutX="5.0" layoutY="350.0" mnemonicParsing="false" onAction="#leftPicture" prefHeight="30.0" prefWidth="40.0" text="Button" />
