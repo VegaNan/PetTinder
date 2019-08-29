@@ -8,25 +8,25 @@
 
 <AnchorPane onKeyPressed="#keyPress" prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MoreInfoController">
    <children>
-      <Pane fx:id="picPane" prefHeight="450.0" prefWidth="450.0">
+      <Pane fx:id="picPane" layoutX="10.0" layoutY="10.0" prefHeight="460.0" prefWidth="430.0">
          <children>
             <Label fx:id="animalNameLabel" alignment="CENTER" layoutX="75.0" layoutY="20.0" prefHeight="60.0" prefWidth="300.0" text="Name" />
             <Button fx:id="backButton" layoutX="10.0" layoutY="25.0" mnemonicParsing="false" onAction="#backAction" prefHeight="15.0" prefWidth="60.0" text="Back" />
          </children> 
       </Pane>
       <ImageView fx:id="animalImage" fitHeight="350.0" fitWidth="350.0" layoutX="50.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" />
-      <Pane layoutY="450.0" prefHeight="100.0" prefWidth="450.0">
+      <Pane layoutX="10.0" layoutY="480.0" prefHeight="90.0" prefWidth="430.0">
          <children>
-            <Label fx:id="typeAnimalLabel" layoutX="10.0" layoutY="10.0" prefHeight="80.0" prefWidth="90.0" text="Type of Animal" />
-            <Label fx:id="milesAwayLabel" layoutX="110.0" layoutY="10.0" prefHeight="80.0" prefWidth="160.0" text="Miles Away" />
-            <Label fx:id="organizationLabel" layoutX="280.0" layoutY="10.0" prefHeight="80.0" prefWidth="160.0" text="Organization" />
+            <Label fx:id="typeAnimalLabel" layoutY="10.0" prefHeight="80.0" prefWidth="100.0" text="Type of Animal" />
+            <Label fx:id="milesAwayLabel" alignment="CENTER" layoutX="100.0" layoutY="10.0" prefHeight="80.0" prefWidth="175.0" text="Miles Away" />
+            <Label fx:id="organizationLabel" alignment="CENTER" layoutX="275.0" layoutY="10.0" prefHeight="80.0" prefWidth="175.0" text="Organization" />
          </children>
       </Pane>
-      <Button fx:id="leftImage" layoutX="5.0" layoutY="350.0" mnemonicParsing="false" onAction="#leftPicture" prefHeight="30.0" prefWidth="40.0" text="Button" />
-      <Button fx:id="rightImage" layoutX="405.0" layoutY="350.0" mnemonicParsing="false" onAction="#rightPicture" prefHeight="30.0" prefWidth="40.0" text="Button" />
-      <Pane layoutY="550.0" prefHeight="150.0" prefWidth="450.0">
+      <Button fx:id="leftImage" layoutX="10.0" layoutY="350.0" mnemonicParsing="false" onAction="#leftPicture" prefHeight="30.0" prefWidth="40.0" text="Button" />
+      <Button fx:id="rightImage" layoutX="400.0" layoutY="350.0" mnemonicParsing="false" onAction="#rightPicture" prefHeight="30.0" prefWidth="40.0" text="Button" />
+      <Pane layoutX="10.0" layoutY="570.0" prefHeight="120.0" prefWidth="430.0">
          <children>
-            <Label fx:id="petDescriptionLabel" layoutX="10.0" layoutY="10.0" prefHeight="130.0" prefWidth="430.0" text="PetDescription" />
+            <Label fx:id="petDescriptionLabel" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="410.0" text="PetDescription" />
          </children>
       </Pane>
    </children>

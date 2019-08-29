@@ -3,6 +3,7 @@ AnchorPane {
 }
 
 Pane {
+	-fx-background-color: rgba(252, 250, 247, 0.5);
 	-fx-border-width: 0 0 4 0;
 	-fx-border-style: solid;
 	-fx-border-color: #bd2222;

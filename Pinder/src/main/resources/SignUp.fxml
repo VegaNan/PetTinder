@@ -7,30 +7,34 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane onKeyPressed="#keyPress" prefHeight="700.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignUpController">
    <children>
-      <Label layoutX="60.0" layoutY="115.0" prefHeight="30.0" prefWidth="80.0" text="First Name" />
-      <Label layoutX="60.0" layoutY="180.0" prefHeight="30.0" prefWidth="80.0" text="Last Name" />
-      <Label layoutX="60.0" layoutY="375.0" prefHeight="30.0" prefWidth="80.0" text="Location" />
-      <Label layoutX="60.0" layoutY="245.0" prefHeight="30.0" prefWidth="80.0" text="Email" />
-      <TextField fx:id="firstNameField" layoutX="200.0" layoutY="115.0" />
-      <TextField fx:id="lastNameField" layoutX="200.0" layoutY="180.0" />
-      <Label fx:id="Title" alignment="CENTER" layoutX="150.0" layoutY="37.5" prefHeight="40.0" prefWidth="150.0" text="Profile" />
-      <Label layoutX="60.0" layoutY="310.0" prefHeight="30.0" prefWidth="80.0" text="Password" />
-      <TextField fx:id="emailField" layoutX="200.0" layoutY="245.0" />
-      <PasswordField fx:id="passwordField" layoutX="200.0" layoutY="310.0" />
-      <TextField fx:id="locationField" layoutX="200.0" layoutY="375.0" />
-      <Label layoutX="60.0" layoutY="475.0" prefHeight="30.0" prefWidth="125.0" text="Perferred Animal" />
-      <Button fx:id="submitButton" layoutX="185.0" layoutY="620.0" mnemonicParsing="false" onAction="#submitUser" prefHeight="30.0" prefWidth="80.0" text="Submit" />
-      <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#back" prefHeight="30.0" text="Back" />
-      <RadioButton fx:id="dogRadioButton" layoutX="250.0" layoutY="475.0" mnemonicParsing="false" prefHeight="30.0" text="Dogs">
-         <toggleGroup>
-            <ToggleGroup fx:id="prefAnimal" />
-         </toggleGroup></RadioButton>
-      <RadioButton fx:id="catRadioButton" layoutX="250.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" text="Cats" toggleGroup="$prefAnimal" />
-      <Button fx:id="logoutButton" layoutX="365.0" layoutY="10.0" mnemonicParsing="false" prefWidth="75.0" text="Logout" />
-      <!-- <RadioButton fx:id="otherRadioButton" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" prefHeight="30.0" text="Other" toggleGroup="$prefAnimal" />  -->
-
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="680.0" prefWidth="430.0">
+         <children>
+            <Label layoutX="50.0" layoutY="105.0" prefHeight="30.0" prefWidth="80.0" text="First Name" />
+      		<Label layoutX="60.0" layoutY="180.0" prefHeight="30.0" prefWidth="80.0" text="Last Name" />
+      		<Label layoutX="60.0" layoutY="375.0" prefHeight="30.0" prefWidth="80.0" text="Location" />
+      		<Label layoutX="60.0" layoutY="245.0" prefHeight="30.0" prefWidth="80.0" text="Email" />
+      		<TextField fx:id="firstNameField" layoutX="200.0" layoutY="115.0" />
+      		<TextField fx:id="lastNameField" layoutX="200.0" layoutY="180.0" />
+      		<Label fx:id="Title" alignment="CENTER" layoutX="140.0" layoutY="37.5" prefHeight="40.0" prefWidth="150.0" text="Profile" />
+      		<Label layoutX="60.0" layoutY="310.0" prefHeight="30.0" prefWidth="80.0" text="Password" />
+      		<TextField fx:id="emailField" layoutX="200.0" layoutY="245.0" />
+      		<PasswordField fx:id="passwordField" layoutX="200.0" layoutY="310.0" />
+      		<TextField fx:id="locationField" layoutX="200.0" layoutY="375.0" />
+      		<Label layoutX="60.0" layoutY="475.0" prefHeight="30.0" prefWidth="125.0" text="Perferred Animal" />
+      		<Button fx:id="submitButton" layoutX="175.0" layoutY="621.0" mnemonicParsing="false" onAction="#submitUser" prefHeight="30.0" prefWidth="80.0" text="Submit" />
+      		<Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#back" prefHeight="30.0" text="Back" />
+      		<RadioButton fx:id="dogRadioButton" layoutX="250.0" layoutY="475.0" mnemonicParsing="false" prefHeight="30.0" text="Dogs">
+         		<toggleGroup>
+            		<ToggleGroup fx:id="prefAnimal" />
+         		</toggleGroup></RadioButton>
+      		<RadioButton fx:id="catRadioButton" layoutX="250.0" layoutY="515.0" mnemonicParsing="false" prefHeight="30.0" text="Cats" toggleGroup="$prefAnimal" />
+      		<Button fx:id="logoutButton" layoutX="345.0" layoutY="10.0" mnemonicParsing="false" prefWidth="75.0" text="Logout" />
+      		<!-- <RadioButton fx:id="otherRadioButton" layoutX="250.0" layoutY="555.0" mnemonicParsing="false" prefHeight="30.0" text="Other" toggleGroup="$prefAnimal" />  -->
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

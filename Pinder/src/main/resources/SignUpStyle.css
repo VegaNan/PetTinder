@@ -1,10 +1,14 @@
 AnchorPane {
-	-fx-background-color: #fcfaf7;
+	-fx-background-color: linear-gradient(to bottom, #ffa500 0%, #ff0000 100%);
+}
+
+Pane {
+	-fx-background-color: rgba(252, 250, 247, 0.6);
 }
 
 Button {
 	-fx-text-fill: #bd2222;
-	-fx-background-color: #fcfaf7;
+	-fx-background-color: none;
 	-fx-border-style: solid;
 	-fx-border-color: #bd2222;
 	-fx-border-radius: 3px;

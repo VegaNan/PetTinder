@@ -27,7 +27,8 @@ Button {
 Label {
 	-fx-text-fill: #21262c;
 	-fx-wrap-text: true;
-	-fx-padding: 3px;
+	-fx-padding: 8px;
+	-fx-text-alignment: center;
 }
 
 GridPane {

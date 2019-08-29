@@ -1,5 +1,13 @@
 AnchorPane {
-	-fx-background-color: #fcfaf7;
+	-fx-background-color: linear-gradient(to bottom, #ffa500 0%, #ff0000 100%);
+}
+
+Pane {
+	-fx-background-color: rgba(252, 250, 247, 0.9);
+}
+
+#secPane{
+	-fx-background-color: rgba(252, 250, 247, 0.6);
 }
 
 Button {
@@ -14,8 +22,4 @@ Button {
 Label {
 	-fx-text-fill: #bd2222;
 	-fx-font-size: 32px;
-}
-
-Pane {
-	
 }
