@@ -34,6 +34,7 @@ public class LoginPageController {
 		// parent takes in the file
 		Parent parent = FXMLLoader.load(getClass().getResource(filename));
 		Scene scene = new Scene(parent);
+		scene.getStylesheets().add("SwipeyPageStyle.css");
 		Stage window = primaryStage;
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(filename));
@@ -74,6 +75,7 @@ public class LoginPageController {
 		Parent parent = FXMLLoader.load(getClass().getResource("/SignUp.fxml"));
 		Scene newContactScene = new Scene(parent);
 		Stage window = primaryStage;
+		newContactScene.getStylesheets().add("SignUpStyle.css");
 		window.setScene(newContactScene);
 		window.show();
 	}

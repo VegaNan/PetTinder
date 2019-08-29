@@ -79,8 +79,9 @@ public class SwipeyPageController{
 	public void moreInfo() throws IOException {
 		Parent parent = FXMLLoader.load(getClass().getResource("/MoreInfo.fxml"));
 		Scene scene = new Scene(parent);
-		scene.getStylesheets().add("MoreInfo.css");
 		Stage window = primaryStage;
+
+		scene.getStylesheets().add("MoreInfoStyle.css");
 		window.setScene(scene);
 		window.show();
 	}

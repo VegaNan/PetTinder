@@ -38,6 +38,19 @@ public class MatchesPageController {
 		setPet();
     }
 	
+	public void moreInfo(Animal animal) throws IOException{
+		Parent parent = FXMLLoader.load(getClass().getResource("/MoreInfo.fxml"));
+		Scene scene = new Scene(parent);
+		MoreInfoController controller = new MoreInfoController();
+		controller.setAnimal(animal);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/MoreInfo.fxml"));
+		loader.setController(controller);
+		scene.getStylesheets().add("MoreInfoStyle.css");
+		Stage window = primaryStage;
+		window.setScene(scene);
+		window.show();
+	}
+	
 	public void backToSwipey() throws IOException {
 		String filename = "/SwipeyPage.fxml";
 		Parent parent = FXMLLoader.load(getClass().getResource(filename));
@@ -89,8 +102,11 @@ public class MatchesPageController {
 					petimg0.setOnAction(new EventHandler<ActionEvent>() {
 						@Override
 						public void handle(ActionEvent arg0) {
-							// TODO Auto-generated method stub
-							
+							try {
+								moreInfo(animal);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 						}
 					});
 					pettxt0.setText(text);

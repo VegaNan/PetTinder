@@ -55,8 +55,8 @@ public class MoreInfoController {
 		}
 	}
 	
-	public void setAnimal(Animal animal) {
-		MoreInfoController.animal = animal;
+	public void setAnimal(Animal a) {
+		MoreInfoController.animal = a;
 		typeAnimalLabel.setText("Type: " + animal.getType());
 		milesAwayLabel.setText("Location: " + animal.getLocation());
 	
@@ -125,6 +125,8 @@ public class MoreInfoController {
 		String filename = "/SwipeyPage.fxml";
 		Parent parent = FXMLLoader.load(getClass().getResource(filename));
 		Scene scene = new Scene(parent);
+
+		scene.getStylesheets().add("SwipeyPageStyle.css");
 		Stage window = primaryStage;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(filename));
 		SwipeyPageController controller = new SwipeyPageController();
