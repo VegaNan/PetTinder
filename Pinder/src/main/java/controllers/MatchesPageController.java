@@ -42,12 +42,12 @@ public class MatchesPageController {
 		Parent parent = FXMLLoader.load(getClass().getResource("/MoreInfo.fxml"));
 		Scene scene = new Scene(parent);
 		MoreInfoController controller = new MoreInfoController();
-		controller.setAnimal(animal);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/MoreInfo.fxml"));
 		loader.setController(controller);
 		scene.getStylesheets().add("MoreInfoStyle.css");
 		Stage window = primaryStage;
 		window.setScene(scene);
+		controller.setAnimal(animal);
 		window.show();
 	}
 	
@@ -103,7 +103,7 @@ public class MatchesPageController {
 						@Override
 						public void handle(ActionEvent arg0) {
 							try {
-								moreInfo(animal);
+								moreInfo(dbc.getAnimalById(id));
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
